@@ -2,8 +2,8 @@ package android
 
 object AndroidComposeLibrary {
 
-    const val composeCompilerVersion = "1.4.4"
-    const val composeVersion = "1.4.0"
+    const val composeCompilerVersion = "1.4.7"
+    const val composeVersion = "1.4.3"
     private const val composeActivityVersion = "1.7.0"
 
     const val runtime = "androidx.compose.runtime:runtime:$composeVersion"
