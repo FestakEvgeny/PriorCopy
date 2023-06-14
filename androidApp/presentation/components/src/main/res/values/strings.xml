@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!-- Content List Layout -->
+  <string name="content_list_layout_empty">Empty</string>
+
+  <!-- Expandable Text -->
+  <string name="expand">Expand</string>
+  <string name="collapse">Collapse</string>
+
+  <!-- Pick Image Dialog -->
+  <string name="pick_image_dialog_gallery">Pick Image From Gallery</string>
+  <string name="pick_image_from_camera">Pick Image From Camera</string>
+
+</resources>

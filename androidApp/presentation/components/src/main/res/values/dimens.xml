@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_container_margin">16dp</dimen>
+    <dimen name="toolbar_center_container_margin">8dp</dimen>
+    <dimen name="toolbar_icon_size">24dp</dimen>
+    <dimen name="toolbar_search_margin">8dp</dimen>
+    <dimen name="toolbar_loading_height">2dp</dimen>
+
+    <!-- Action Button -->
+    <dimen name="action_button_border_size">1dp</dimen>
+    <dimen name="action_button_text_margin">4dp</dimen>
+    <dimen name="action_button_content_margin">8dp</dimen>
+
+    <!-- Content Layout -->
+    <dimen name="content_layout_header_size">36dp</dimen>
+    <dimen name="content_layout_border_size">1dp</dimen>
+    <dimen name="content_layout_edit_icon_size">24dp</dimen>
+    <dimen name="content_layout_content_margin">8dp</dimen>
+
+    <!-- Chip -->
+    <dimen name="chip_content_margin">4dp</dimen>
+    <dimen name="chip_image_size">30dp</dimen>
+
+    <!-- Tabs -->
+    <dimen name="tabs_component_tab_padding">16dp</dimen>
+    <dimen name="tabs_component_tab_content_space">6dp</dimen>
+    <dimen name="tabs_component_tab_indicator_padding">4dp</dimen>
+    <dimen name="tabs_component_tab_indicator_border_size">2dp</dimen>
+    <dimen name="tabs_component_tab_image_size">24dp</dimen>
+
+    <!-- Pick Image Dialog -->
+    <dimen name="pick_image_dialog_padding">16dp</dimen>
+    <dimen name="pick_image_content_padding">16dp</dimen>
+
+</resources>

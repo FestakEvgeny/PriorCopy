@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!-- Content List Layout -->
+  <string name="content_list_layout_empty">Пусто</string>
+
+  <!-- Nutrition -->
+  <string name="nutrition_carbohydrates">Углеводы</string>
+  <string name="nutrition_protein">Белки</string>
+  <string name="nutrition_fats">Жиры</string>
+
+  <!-- Разворачиваемый текст -->
+  <string name="expand">Развернуть</string>
+  <string name="collapse">Свернуть</string>
+
+  <!-- Pick Image Dialog -->
+  <string name="pick_image_dialog_gallery">Взять картинку из галереи</string>
+  <string name="pick_image_from_camera">Взять картинку из камеры</string>
+
+</resources>
