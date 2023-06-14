@@ -1,5 +1,6 @@
 package fetskovich.evgeny.app.features.ui
 
+import android.util.Log
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -34,6 +35,7 @@ fun NavGraphBuilder.register(
     parentNavController: NavHostController,
     modifier: Modifier = Modifier
 ) {
+    Log.e("JEKA", "Register feature: "+feature)
     feature.registerGraph(
         navGraphBuilder = this,
         navController = navController,

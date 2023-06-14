@@ -22,8 +22,8 @@ class SettingsFeatureApi(
         modifier: Modifier
     ) {
         navGraphBuilder.navigation(
-            startDestination = SettingsRootNavGraph.route,
-            route = SettingsGeneralNavigation.route
+            route = SettingsRootNavGraph.route,
+            startDestination = SettingsGeneralNavigation.route,
         ) {
             features.forEach { feature ->
                 register(

@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import fetskovich.evgeny.app.features.ui.FeatureApi
 import fetskovich.evgeny.app.features.ui.register
 import fetskovich.evgeny.navigation.graph.overview.OverviewRootNavGraph
+import fetskovich.evgeny.navigation.graph.overview.RecipesNavigation
 
 @Composable
 fun BottomNavigationNavHost(
@@ -17,7 +18,7 @@ fun BottomNavigationNavHost(
 ) {
     NavHost(
         navController = bottomNavController,
-        startDestination = OverviewRootNavGraph.route,
+        startDestination = RecipesNavigation.route,
         modifier = modifier
     ) {
         features.forEach { feature ->
