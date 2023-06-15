@@ -1,13 +1,15 @@
-package fetskovich.evgeny.app.features.ui.main.overview.recipes
+package fetskovich.evgeny.app.features.ui.core.payments.api
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import fetskovich.evgeny.app.features.ui.FeatureApi
-import fetskovich.evgeny.navigation.graph.overview.RecipesNavigation
+import fetskovich.evgeny.app.features.ui.core.history.HistoryScreen
+import fetskovich.evgeny.app.features.ui.core.history.api.HistoryScreenNavigation
+import fetskovich.evgeny.app.features.ui.core.payments.PaymentsScreen
 
-class RecipesFeatureApi : FeatureApi {
+class PaymentsScreenApi : FeatureApi {
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
@@ -16,9 +18,9 @@ class RecipesFeatureApi : FeatureApi {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(
-            route = RecipesNavigation.route
+            route = PaymentsScreenNavigation.route
         ) {
-            RecipesListScreen()
+            PaymentsScreen()
         }
     }
 }

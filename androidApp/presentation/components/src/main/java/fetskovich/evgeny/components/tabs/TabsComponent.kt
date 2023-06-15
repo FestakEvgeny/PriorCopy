@@ -38,8 +38,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import fetskovich.evgeny.presentation.components.R
-import fetskovich.evgeny.theme.ApplicationTheme
-import fetskovich.evgeny.theme.BasicTheme
+import fetskovich.evgeny.presentation.theme.ApplicationTheme
+import fetskovich.evgeny.presentation.theme.BasicTheme
 
 private const val TAB_INDICATOR_LABEL = "Tab indicator"
 private const val BORDER_COLOR_LABEL = "Border color"

@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    namespace = "fetskovich.evgeny.presentation.theme"
     compileSdk = AndroidBuildVersions.compileSdk
 
 

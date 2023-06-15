@@ -1,13 +1,13 @@
-package fetskovich.evgeny.app.features.ui.splash
+package fetskovich.evgeny.app.features.ui.core.more.other.api
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import fetskovich.evgeny.app.features.ui.FeatureApi
-import fetskovich.evgeny.navigation.graph.splash.SplashScreenNavigation
+import fetskovich.evgeny.app.features.ui.core.more.other.OtherScreen
 
-class SplashFeatureApi : FeatureApi {
+class OtherScreenApi : FeatureApi {
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
@@ -16,11 +16,9 @@ class SplashFeatureApi : FeatureApi {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(
-            route = SplashScreenNavigation.route
+            route = OtherScreenNavigation.route
         ) {
-            SplashScreen(
-                navController = navController,
-            )
+            OtherScreen()
         }
     }
 }

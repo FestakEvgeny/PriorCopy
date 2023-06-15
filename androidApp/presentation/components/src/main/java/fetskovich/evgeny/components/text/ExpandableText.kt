@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import fetskovich.evgeny.presentation.components.R
-import fetskovich.evgeny.theme.ApplicationTheme
+import fetskovich.evgeny.presentation.theme.ApplicationTheme
 
 private const val DEFAULT_VISIBLE_LINES = 2
 

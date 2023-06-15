@@ -11,8 +11,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import fetskovich.evgeny.presentation.components.R
-import fetskovich.evgeny.theme.ApplicationTheme
-import fetskovich.evgeny.theme.BasicTheme
+import fetskovich.evgeny.presentation.theme.ApplicationTheme
+import fetskovich.evgeny.presentation.theme.BasicTheme
 
 @Composable
 fun IconToolbarItem(

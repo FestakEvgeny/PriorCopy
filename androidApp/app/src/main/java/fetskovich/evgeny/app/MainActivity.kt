@@ -8,22 +8,21 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import fetskovich.evgeny.app.features.ui.main.bottomnav.MainBottomNavigationFeatureApi
-import fetskovich.evgeny.app.features.ui.main.overview.OverviewFeatureApi
-import fetskovich.evgeny.app.features.ui.main.overview.category.CategoryFeatureApi
-import fetskovich.evgeny.app.features.ui.main.overview.recipes.RecipesFeatureApi
-import fetskovich.evgeny.app.features.ui.main.settings.SettingsFeatureApi
-import fetskovich.evgeny.app.features.ui.main.settings.general.GeneralSettingsFeatureApi
-import fetskovich.evgeny.app.features.ui.splash.SplashFeatureApi
-import fetskovich.evgeny.architecture.Greeting
-import fetskovich.evgeny.recipeskmm.android.MyApplicationTheme
+import fetskovich.evgeny.app.features.ui.core.bottomnav.api.MainBottomNavigationFeatureApi
+import fetskovich.evgeny.app.features.ui.core.history.api.HistoryScreenApi
+import fetskovich.evgeny.app.features.ui.core.main.api.MainScreensGraphApi
+import fetskovich.evgeny.app.features.ui.core.main.login.api.LoginScreenApi
+import fetskovich.evgeny.app.features.ui.core.more.api.MoreScreensGraphApi
+import fetskovich.evgeny.app.features.ui.core.more.other.api.OtherScreenApi
+import fetskovich.evgeny.app.features.ui.core.payments.api.PaymentsScreenApi
+import fetskovich.evgeny.app.features.ui.splash.api.SplashFeatureApi
+import fetskovich.evgeny.presentation.theme.BasicTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
+            BasicTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -34,13 +33,13 @@ class MainActivity : ComponentActivity() {
                             SplashFeatureApi(),
                             MainBottomNavigationFeatureApi(
                                 setOf(
-                                    OverviewFeatureApi(
-                                        setOf(RecipesFeatureApi(), CategoryFeatureApi())
+                                    MainScreensGraphApi(
+                                        setOf(LoginScreenApi())
                                     ),
-                                    SettingsFeatureApi(
-                                        setOf(
-                                            GeneralSettingsFeatureApi(),
-                                        )
+                                    HistoryScreenApi(),
+                                    PaymentsScreenApi(),
+                                    MoreScreensGraphApi(
+                                        setOf(OtherScreenApi())
                                     )
                                 )
                             ),
@@ -61,10 +60,3 @@ fun GreetingView(text: String) {
     Text(text = text)
 }
 
-@Preview
-@Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
-    }
-}

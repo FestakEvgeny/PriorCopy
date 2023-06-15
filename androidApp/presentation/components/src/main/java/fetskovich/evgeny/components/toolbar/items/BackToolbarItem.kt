@@ -7,8 +7,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import fetskovich.evgeny.theme.ApplicationTheme
-import fetskovich.evgeny.theme.BasicTheme
+import fetskovich.evgeny.presentation.theme.ApplicationTheme
+import fetskovich.evgeny.presentation.theme.BasicTheme
 
 @Composable
 fun BackToolbarItem(

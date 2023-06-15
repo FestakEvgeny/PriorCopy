@@ -35,7 +35,7 @@ fun NavGraphBuilder.register(
     parentNavController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    Log.e("JEKA", "Register feature: "+feature)
+    Log.e("JEKA", "Register feature: "+feature+" Parent: "+parentNavController)
     feature.registerGraph(
         navGraphBuilder = this,
         navController = navController,

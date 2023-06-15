@@ -13,8 +13,8 @@ import androidx.constraintlayout.compose.Dimension
 import fetskovich.evgeny.components.toolbar.items.BackToolbarItem
 import fetskovich.evgeny.components.toolbar.items.IconToolbarItem
 import fetskovich.evgeny.components.toolbar.items.TitleToolbarItem
-import fetskovich.evgeny.theme.ApplicationTheme
-import fetskovich.evgeny.theme.BasicTheme
+import fetskovich.evgeny.presentation.theme.ApplicationTheme
+import fetskovich.evgeny.presentation.theme.BasicTheme
 import fetskovich.evgeny.presentation.components.R
 
 @Composable

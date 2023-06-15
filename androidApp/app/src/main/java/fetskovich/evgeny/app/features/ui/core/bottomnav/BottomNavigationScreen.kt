@@ -1,4 +1,4 @@
-package fetskovich.evgeny.app.features.ui.main.bottomnav
+package fetskovich.evgeny.app.features.ui.core.bottomnav
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,10 +14,13 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import fetskovich.evgeny.app.features.ui.FeatureApi
+import fetskovich.evgeny.app.features.ui.core.history.api.HistoryScreenNavigation
+import fetskovich.evgeny.app.features.ui.core.main.api.MainScreensGraphNavigation
+import fetskovich.evgeny.app.features.ui.core.more.api.MoreScreensGraphNavigation
+import fetskovich.evgeny.app.features.ui.core.payments.api.PaymentsScreenNavigation
 import fetskovich.evgeny.components.bottomnav.BaseBottomNavigation
 import fetskovich.evgeny.components.bottomnav.BottomNavigationTabItem
 import fetskovich.evgeny.navigation.graph.overview.OverviewRootNavGraph
-import fetskovich.evgeny.navigation.graph.settings.SettingsRootNavGraph
 import fetskovich.evgeny.recipeskmm.app.R
 
 @Composable
@@ -28,7 +31,7 @@ fun BottomNavigationScreen(
 ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route ?: OverviewRootNavGraph.route
+    val currentRoute = navBackStackEntry?.destination?.route ?: MainScreensGraphNavigation.route
 
     Scaffold(
         bottomBar = {
@@ -64,13 +67,23 @@ fun BottomNavigationScreen(
 @Composable
 private fun createRoutes() = listOf(
     BottomNavigationTabItem(
-        title = stringResource(id = R.string.overview_tab),
+        title = stringResource(id = R.string.bottom_tab_main),
         icon = Icons.Filled.Home,
-        route = OverviewRootNavGraph.route
+        route = MainScreensGraphNavigation.route
     ),
     BottomNavigationTabItem(
-        title = stringResource(id = R.string.settings_tab),
+        title = stringResource(id = R.string.bottom_tab_history),
+        icon = Icons.Filled.Home,
+        route = HistoryScreenNavigation.route
+    ),
+    BottomNavigationTabItem(
+        title = stringResource(id = R.string.bottom_tab_payments),
+        icon = Icons.Filled.Home,
+        route = PaymentsScreenNavigation.route
+    ),
+    BottomNavigationTabItem(
+        title = stringResource(id = R.string.bottom_tab_more),
         icon = Icons.Filled.Settings,
-        route = SettingsRootNavGraph.route
+        route = MoreScreensGraphNavigation.route
     ),
 )

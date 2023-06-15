@@ -2,7 +2,9 @@
     <string name="app_name">My Application</string>
 
     <!-- Bottom Navigation Bar -->
-    <string name="overview_tab">Овервью</string>
-    <string name="settings_tab">Настройки</string>
+    <string name="bottom_tab_main">Главная</string>
+    <string name="bottom_tab_history">История</string>
+    <string name="bottom_tab_payments">Платежи</string>
+    <string name="bottom_tab_more">Еще</string>
 
 </resources>

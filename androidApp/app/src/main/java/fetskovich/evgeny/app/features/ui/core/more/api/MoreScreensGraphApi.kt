@@ -1,15 +1,14 @@
-package fetskovich.evgeny.app.features.ui.main.overview
+package fetskovich.evgeny.app.features.ui.core.more.api
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigation
 import fetskovich.evgeny.app.features.ui.FeatureApi
+import fetskovich.evgeny.app.features.ui.core.more.other.api.OtherScreenNavigation
 import fetskovich.evgeny.app.features.ui.register
-import fetskovich.evgeny.navigation.graph.overview.CategoriesNavigation
-import fetskovich.evgeny.navigation.graph.overview.OverviewRootNavGraph
 
-class OverviewFeatureApi(
+class MoreScreensGraphApi (
     private val features: Set<FeatureApi>
 ) : FeatureApi {
 
@@ -20,8 +19,8 @@ class OverviewFeatureApi(
         modifier: Modifier
     ) {
         navGraphBuilder.navigation(
-            startDestination = CategoriesNavigation.route,
-            route = OverviewRootNavGraph.route,
+            route = MoreScreensGraphNavigation.route,
+            startDestination = OtherScreenNavigation.route,
         ) {
             features.forEach { feature ->
                 register(

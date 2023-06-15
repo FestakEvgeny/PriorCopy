@@ -1,15 +1,13 @@
-package fetskovich.evgeny.app.features.ui.main.overview.category
+package fetskovich.evgeny.app.features.ui.splash.api
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import fetskovich.evgeny.app.features.ui.FeatureApi
-import fetskovich.evgeny.app.features.ui.main.overview.categories.CategoriesListScreen
-import fetskovich.evgeny.navigation.graph.overview.CategoriesNavigation
-import fetskovich.evgeny.navigation.graph.overview.CategoryManageNavigation
+import fetskovich.evgeny.app.features.ui.splash.SplashScreen
 
-class CategoryFeatureApi : FeatureApi {
+class SplashFeatureApi : FeatureApi {
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
@@ -18,9 +16,11 @@ class CategoryFeatureApi : FeatureApi {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(
-            route = CategoryManageNavigation.route
+            route = SplashScreenNavigation.route
         ) {
-            CategoryScreen()
+            SplashScreen(
+                navController = navController,
+            )
         }
     }
 }

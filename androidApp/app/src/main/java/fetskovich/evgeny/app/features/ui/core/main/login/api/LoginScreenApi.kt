@@ -1,13 +1,13 @@
-package fetskovich.evgeny.app.features.ui.main.settings.general
+package fetskovich.evgeny.app.features.ui.core.main.login.api
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import fetskovich.evgeny.app.features.ui.FeatureApi
-import fetskovich.evgeny.navigation.graph.settings.SettingsGeneralNavigation
+import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreen
 
-class GeneralSettingsFeatureApi : FeatureApi  {
+class LoginScreenApi : FeatureApi {
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
@@ -16,9 +16,9 @@ class GeneralSettingsFeatureApi : FeatureApi  {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(
-            route = SettingsGeneralNavigation.route
+            route = LoginScreenNavigation.route
         ) {
-            GeneralSettingsScreen()
+            LoginScreen()
         }
     }
 }

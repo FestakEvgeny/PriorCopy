@@ -18,7 +18,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import fetskovich.evgeny.presentation.components.R
-import fetskovich.evgeny.theme.BasicTheme
+import fetskovich.evgeny.presentation.theme.BasicTheme
 
 @Composable
 fun SearchToolbarItem(

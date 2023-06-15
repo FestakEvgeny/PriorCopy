@@ -2,8 +2,10 @@
     <string name="app_name">My Application</string>
 
     <!-- Bottom Navigation Bar -->
-    <string name="overview_tab">Overview</string>
-    <string name="settings_tab">Settings</string>
+    <string name="bottom_tab_main">Main</string>
+    <string name="bottom_tab_history">History</string>
+    <string name="bottom_tab_payments">Payments</string>
+    <string name="bottom_tab_more">More</string>
 
 
 </resources>

@@ -1,13 +1,13 @@
-package fetskovich.evgeny.app.features.ui.main.overview.categories
+package fetskovich.evgeny.app.features.ui.core.history.api
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import fetskovich.evgeny.app.features.ui.FeatureApi
-import fetskovich.evgeny.navigation.graph.overview.CategoriesNavigation
+import fetskovich.evgeny.app.features.ui.core.history.HistoryScreen
 
-class CategoriesFeatureApi : FeatureApi {
+class HistoryScreenApi : FeatureApi {
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
@@ -16,9 +16,9 @@ class CategoriesFeatureApi : FeatureApi {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(
-            route = CategoriesNavigation.route
+            route = HistoryScreenNavigation.route
         ) {
-            CategoriesListScreen()
+            HistoryScreen()
         }
     }
 }
