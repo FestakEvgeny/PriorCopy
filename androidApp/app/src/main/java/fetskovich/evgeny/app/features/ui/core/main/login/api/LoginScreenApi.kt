@@ -1,11 +1,22 @@
 package fetskovich.evgeny.app.features.ui.core.main.login.api
 
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
+import fetskovich.evgeny.app.core.coroutines.CoroutineContextProviderImpl
 import fetskovich.evgeny.app.features.ui.FeatureApi
 import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreen
+import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreenViewModel
+import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenMviHandler
+import fetskovich.evgeny.app.features.viewmodel.ViewModelProviderFactory
+import fetskovich.evgeny.data.auth.AuthorizationRepositoryImpl
+import fetskovich.evgeny.domain.auth.GetLatestEmailUseCase
 
 class LoginScreenApi : FeatureApi {
 
@@ -18,7 +29,25 @@ class LoginScreenApi : FeatureApi {
         navGraphBuilder.composable(
             route = LoginScreenNavigation.route
         ) {
-            LoginScreen()
+            val factory = ViewModelProviderFactory {
+                LoginScreenViewModel(
+                    mviHandler = LoginScreenMviHandler(),
+                    getLatestEmailUseCase = GetLatestEmailUseCase(
+                        authorizationRepository = AuthorizationRepositoryImpl(),
+                        coroutinesContextProvider = CoroutineContextProviderImpl(),
+                    )
+                )
+            }
+
+            // TODO STill doesnn't work
+            val viewModel: LoginScreenViewModel by viewModel(
+                factory = factory,
+            )
+
+
+            LoginScreen(
+                viewModel = viewModel,
+            )
         }
     }
 }

@@ -15,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun BaseBottomNavigation(
   tabs: List<BottomNavigationTabItem>,
@@ -24,6 +23,7 @@ fun BaseBottomNavigation(
   modifier: Modifier = Modifier
 ) {
   BottomNavigation(
+    backgroundColor = ApplicationTheme.colors.background,
     modifier = modifier
   ) {
     tabs.forEach { tab ->
@@ -40,8 +40,10 @@ fun BaseBottomNavigation(
           )
         },
         alwaysShowLabel = true,
-        selectedContentColor = ApplicationTheme.colors.iconColor,
-        unselectedContentColor = ApplicationTheme.colors.secondary,
+        selectedContentColor = ApplicationTheme.colors.baseTextColor,
+        unselectedContentColor = ApplicationTheme.colors.baseTextColor.copy(
+          alpha = 0.4f,
+        ),
         selected = currentRoute.contains(tab.route),
         onClick = {
           onItemClicked(tab)

@@ -12,12 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import fetskovich.evgeny.app.features.ui.FeatureApi
 import fetskovich.evgeny.app.features.ui.core.history.api.HistoryScreenNavigation
 import fetskovich.evgeny.app.features.ui.core.main.api.MainScreensGraphNavigation
 import fetskovich.evgeny.app.features.ui.core.more.api.MoreScreensGraphNavigation
 import fetskovich.evgeny.app.features.ui.core.payments.api.PaymentsScreenNavigation
+import fetskovich.evgeny.app.features.ui.register
 import fetskovich.evgeny.components.bottomnav.BaseBottomNavigation
 import fetskovich.evgeny.components.bottomnav.BottomNavigationTabItem
 import fetskovich.evgeny.navigation.graph.overview.OverviewRootNavGraph
@@ -61,6 +63,28 @@ fun BottomNavigationScreen(
             modifier = Modifier
                 .padding(paddings)
         )
+    }
+}
+
+@Composable
+private fun BottomNavigationNavHost(
+    mainNavController: NavHostController,
+    bottomNavController: NavHostController,
+    features: Set<FeatureApi>,
+    modifier: Modifier
+) {
+    NavHost(
+        navController = bottomNavController,
+        startDestination = MainScreensGraphNavigation.route,
+        modifier = modifier
+    ) {
+        features.forEach { feature ->
+            register(
+                feature = feature,
+                navController = bottomNavController,
+                parentNavController = mainNavController
+            )
+        }
     }
 }
 

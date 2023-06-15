@@ -13,7 +13,6 @@ object AndroidComposeLibrary {
 
     object Ui {
         const val activity = "androidx.activity:activity-compose:$composeActivityVersion"
-        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
 
         const val ui = "androidx.compose.ui:ui:$composeVersion"
         const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
@@ -24,5 +23,12 @@ object AndroidComposeLibrary {
         const val icons = "androidx.compose.material:material-icons-extended:$composeVersion"
 
         const val util = "androidx.compose.ui:ui-util:$composeVersion"
+    }
+
+    object Lifecycle {
+        private const val version = "2.6.1"
+
+        const val viewModelLifecycle = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
+        const val runtimeLifecycle  = "androidx.lifecycle:lifecycle-runtime-compose:$version"
     }
 }

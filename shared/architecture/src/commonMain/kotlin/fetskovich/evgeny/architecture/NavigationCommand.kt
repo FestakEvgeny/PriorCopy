@@ -1,3 +1,5 @@
 package fetskovich.evgeny.architecture
 
-interface NavigationCommand
+import fetskovich.evgeny.architecture.mvi.SingleAction
+
+interface NavigationCommand : SingleAction

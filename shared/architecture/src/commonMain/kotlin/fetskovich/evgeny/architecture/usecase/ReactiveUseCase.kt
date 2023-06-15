@@ -4,9 +4,9 @@ import fetskovich.evgeny.architecture.mvi.ActionIntent
 import fetskovich.evgeny.architecture.mvi.IntentResult
 import kotlinx.coroutines.flow.Flow
 
-interface ReactiveUseCase {
+interface ReactiveUseCase<I : ActionIntent, R : IntentResult> {
 
-    suspend fun execute(
-        intent: ActionIntent
-    ): Flow<Result<IntentResult>>
+    fun execute(
+        intent: I
+    ): Flow<R>
 }

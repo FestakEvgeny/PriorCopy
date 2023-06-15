@@ -1,8 +1,33 @@
 package fetskovich.evgeny.architecture.mvi
 
+import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 
-interface StateHandler {
+abstract class StateHandler<S : ScreenState, A : SingleAction>(
+    private val initialState: S,
+) {
 
-    val state: StateFlow<ScreenState>
+    private val mutableState = MutableStateFlow(initialState)
+    val stateFlow: StateFlow<S> = mutableState
+    val state: S get() = stateFlow.value
+
+    private val singleActionChannel = Channel<A>()
+    val singleAction = singleActionChannel.receiveAsFlow()
+
+    protected suspend fun processSingleAction(
+        action: A
+    ) {
+        singleActionChannel.send(action)
+    }
+
+    protected fun updateState(
+        updatedState: S
+    ) {
+        mutableState.update { updatedState }
+    }
 }

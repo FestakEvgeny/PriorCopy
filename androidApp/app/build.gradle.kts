@@ -67,16 +67,15 @@ dependencies {
     implementation(AndroidXLibrary.material)
 
     implementation(AndroidComposeLibrary.Ui.activity)
-    implementation(AndroidComposeLibrary.Ui.viewModel)
     implementation(AndroidComposeLibrary.Ui.ui)
     implementation(AndroidComposeLibrary.Ui.tooling)
     implementation(AndroidComposeLibrary.Ui.toolingPreview)
     implementation(AndroidComposeLibrary.Ui.constraint)
-
     implementation(AndroidComposeLibrary.Ui.material)
     implementation(AndroidComposeLibrary.Ui.icons)
-
     implementation(AndroidComposeLibrary.Ui.util)
+    implementation(AndroidComposeLibrary.Lifecycle.viewModelLifecycle)
+    implementation(AndroidComposeLibrary.Lifecycle.runtimeLifecycle)
     implementation(AndroidComposeLibrary.runtime)
     implementation(AndroidComposeLibrary.animation)
     implementation(AndroidComposeLibrary.navigation)

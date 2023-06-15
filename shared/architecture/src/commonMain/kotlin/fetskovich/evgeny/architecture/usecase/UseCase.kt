@@ -3,9 +3,9 @@ package fetskovich.evgeny.architecture.usecase
 import fetskovich.evgeny.architecture.mvi.ActionIntent
 import fetskovich.evgeny.architecture.mvi.IntentResult
 
-interface UseCase {
+interface UseCase<I : ActionIntent, R : IntentResult> {
 
     suspend fun execute(
-        intent: ActionIntent
-    ): Result<IntentResult>
+        intent: I
+    ): R
 }
