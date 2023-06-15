@@ -1,8 +1,8 @@
-package fetskovich.evgeny.theme.colors
+package fetskovich.evgeny.presentation.theme.colors
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
-import fetskovich.evgeny.theme.colors.types.yellowAppColors
+import fetskovich.evgeny.presentation.theme.colors.types.yellowAppColors
 
 internal val LocalAppColors = staticCompositionLocalOf {
   defaultColors()

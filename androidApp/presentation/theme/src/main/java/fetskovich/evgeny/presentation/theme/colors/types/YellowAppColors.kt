@@ -1,10 +1,10 @@
-package fetskovich.evgeny.theme.colors.types
+package fetskovich.evgeny.presentation.theme.colors.types
 
 import android.annotation.SuppressLint
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
-import fetskovich.evgeny.theme.colors.AppColors
+import fetskovich.evgeny.presentation.theme.colors.AppColors
 
 internal fun yellowAppColors(isDark: Boolean) = if (isDark) {
   yellowDarkColorPalette
@@ -16,6 +16,7 @@ internal fun yellowAppColors(isDark: Boolean) = if (isDark) {
 private val yellowDarkColorPalette = AppColors(
   toolbarItemColor = Color(0xFFFFFFFF),
   iconColor = Color(0xFFFFFFFF),
+  baseTextColor = Color(0xFF424242),
   materialColors = darkColors(
     primary = Color(0xFF795CD1),
     onPrimary = Color(0xFFFFFFFF),
@@ -35,8 +36,9 @@ private val yellowDarkColorPalette = AppColors(
 private val yellowLightColorPalette = AppColors(
   toolbarItemColor = Color(0xFFFFFFFF),
   iconColor = Color(0xFFFFFFFF),
+  baseTextColor = Color(0xFF424242),
   materialColors = lightColors(
-    primary = Color(0xFF795CD1),
+    primary = Color(0xFFFAEB38),
     onPrimary = Color(0xFFFFFFFF),
     primaryVariant = Color(0xFF6200EE),
     secondary = Color(0xFF28025E),

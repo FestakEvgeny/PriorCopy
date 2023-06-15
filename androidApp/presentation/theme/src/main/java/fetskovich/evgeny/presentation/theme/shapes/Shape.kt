@@ -1,4 +1,4 @@
-package fetskovich.evgeny.theme.shapes
+package fetskovich.evgeny.presentation.theme.shapes
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

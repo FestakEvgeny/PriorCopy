@@ -1,4 +1,4 @@
-package fetskovich.evgeny.theme.typography
+package fetskovich.evgeny.presentation.theme.typography
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

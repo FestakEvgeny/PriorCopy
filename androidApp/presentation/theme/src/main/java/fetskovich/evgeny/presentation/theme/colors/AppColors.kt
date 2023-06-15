@@ -1,10 +1,11 @@
-package fetskovich.evgeny.theme.colors
+package fetskovich.evgeny.presentation.theme.colors
 
 import androidx.compose.material.Colors
 import androidx.compose.ui.graphics.Color
 
 data class AppColors(
   val materialColors: Colors,
+  val baseTextColor: Color,
   val toolbarItemColor: Color,
   val iconColor: Color,
 ) {

@@ -1,17 +1,17 @@
 @file:Suppress("MatchingDeclarationName")
-package fetskovich.evgeny.theme
+package fetskovich.evgeny.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
-import fetskovich.evgeny.theme.colors.AppColorPalette
-import fetskovich.evgeny.theme.colors.AppColors
-import fetskovich.evgeny.theme.colors.LocalAppColors
-import fetskovich.evgeny.theme.colors.appColors
-import fetskovich.evgeny.theme.shapes.shapes
-import fetskovich.evgeny.theme.typography.typography
+import fetskovich.evgeny.presentation.theme.colors.AppColorPalette
+import fetskovich.evgeny.presentation.theme.colors.AppColors
+import fetskovich.evgeny.presentation.theme.colors.LocalAppColors
+import fetskovich.evgeny.presentation.theme.colors.appColors
+import fetskovich.evgeny.presentation.theme.shapes.shapes
+import fetskovich.evgeny.presentation.theme.typography.typography
 
 object ApplicationTheme {
   val colors: AppColors
@@ -38,4 +38,9 @@ fun BasicTheme(
       content = content
     )
   }
+}
+
+@Composable
+private fun BasicThemePreview() {
+
 }
