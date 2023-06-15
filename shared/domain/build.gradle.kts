@@ -17,7 +17,13 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(shared.SharedLibrary.Coroutines.core)
+                implementation(project(":shared:entity"))
+                implementation(project(":shared:architecture"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))

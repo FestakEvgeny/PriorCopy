@@ -49,6 +49,9 @@ android {
 dependencies {
     // Shared
     implementation(project(":shared:architecture"))
+    implementation(project(":shared:entity"))
+    implementation(project(":shared:domain"))
+    implementation(project(":shared:data"))
 
     // Modules
     implementation(project(":androidApp:navigation"))

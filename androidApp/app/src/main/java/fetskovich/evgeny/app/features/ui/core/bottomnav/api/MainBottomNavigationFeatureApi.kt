@@ -20,7 +20,7 @@ class MainBottomNavigationFeatureApi(
     ) {
         navGraphBuilder.composable(
             route = BottomScreenNavigation.route
-        ) { entry ->
+        ) { _ ->
             val bottomNavController = rememberNavController()
 
             BottomNavigationScreen(
