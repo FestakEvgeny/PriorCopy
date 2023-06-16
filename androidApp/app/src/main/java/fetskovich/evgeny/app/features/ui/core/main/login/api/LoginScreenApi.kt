@@ -8,8 +8,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import fetskovich.evgeny.app.core.coroutines.CoroutineContextProviderImpl
+import fetskovich.evgeny.app.core.resources.ResourceProviderImpl
 import fetskovich.evgeny.app.features.ui.FeatureApi
 import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreen
 import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreenViewModel
@@ -29,15 +31,20 @@ class LoginScreenApi : FeatureApi {
         navGraphBuilder.composable(
             route = LoginScreenNavigation.route
         ) {
+            val context = LocalContext.current
+
             LoginScreen(
                 viewModel = viewModel(
                     factory = ViewModelProviderFactory {
                         LoginScreenViewModel(
-                            mviHandler = LoginScreenMviHandler(),
+                            mviHandler = LoginScreenMviHandler(
+                                resourceProvider = ResourceProviderImpl(context,)
+                            ),
                             getLatestEmailUseCase = GetLatestEmailUseCase(
                                 authorizationRepository = AuthorizationRepositoryImpl(),
                                 coroutinesContextProvider = CoroutineContextProviderImpl(),
-                            )
+                            ),
+                            coroutinesContextProvider = CoroutineContextProviderImpl(),
                         )
                     },
                 ),

@@ -1,9 +1,9 @@
 package fetskovich.evgeny.components.bottomnav
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 
 data class BottomNavigationTabItem(
   val title: String,
-  val icon: ImageVector,
+  val icon: Painter?,
   val route: String
 )

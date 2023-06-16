@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -92,22 +93,22 @@ private fun BottomNavigationNavHost(
 private fun createRoutes() = listOf(
     BottomNavigationTabItem(
         title = stringResource(id = R.string.bottom_tab_main),
-        icon = Icons.Filled.Home,
+        icon = painterResource(id = R.drawable.ic_login),
         route = MainScreensGraphNavigation.route
     ),
     BottomNavigationTabItem(
         title = stringResource(id = R.string.bottom_tab_history),
-        icon = Icons.Filled.Home,
+        icon = painterResource(id = R.drawable.ic_location),
         route = HistoryScreenNavigation.route
     ),
     BottomNavigationTabItem(
         title = stringResource(id = R.string.bottom_tab_payments),
-        icon = Icons.Filled.Home,
+        icon = painterResource(id = R.drawable.ic_assistant),
         route = PaymentsScreenNavigation.route
     ),
     BottomNavigationTabItem(
         title = stringResource(id = R.string.bottom_tab_more),
-        icon = Icons.Filled.Settings,
+        icon = painterResource(id = R.drawable.ic_more),
         route = MoreScreensGraphNavigation.route
     ),
 )
