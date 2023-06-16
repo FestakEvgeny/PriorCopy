@@ -29,24 +29,18 @@ class LoginScreenApi : FeatureApi {
         navGraphBuilder.composable(
             route = LoginScreenNavigation.route
         ) {
-            val factory = ViewModelProviderFactory {
-                LoginScreenViewModel(
-                    mviHandler = LoginScreenMviHandler(),
-                    getLatestEmailUseCase = GetLatestEmailUseCase(
-                        authorizationRepository = AuthorizationRepositoryImpl(),
-                        coroutinesContextProvider = CoroutineContextProviderImpl(),
-                    )
-                )
-            }
-
-            // TODO STill doesnn't work
-            val viewModel: LoginScreenViewModel by viewModel(
-                factory = factory,
-            )
-
-
             LoginScreen(
-                viewModel = viewModel,
+                viewModel = viewModel(
+                    factory = ViewModelProviderFactory {
+                        LoginScreenViewModel(
+                            mviHandler = LoginScreenMviHandler(),
+                            getLatestEmailUseCase = GetLatestEmailUseCase(
+                                authorizationRepository = AuthorizationRepositoryImpl(),
+                                coroutinesContextProvider = CoroutineContextProviderImpl(),
+                            )
+                        )
+                    },
+                ),
             )
         }
     }
