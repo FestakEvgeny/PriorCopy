@@ -7,4 +7,13 @@
     <string name="bottom_tab_payments">Платежи</string>
     <string name="bottom_tab_more">Еще</string>
 
+    <!-- Login Screen -->
+    <string name="login_screen_email">Емэйл</string>
+    <string name="login_screen_password">Пароль</string>
+    <string name="login_screen_enter">Войти</string>
+    <string name="login_screen_forgot_data">Забыли логин или пароль?</string>
+    <string name="login_screen_sign_up">ЗАРЕГИСТРИРОВАТЬСЯ</string>
+    <string name="login_screen_password_invalid">Пароль должен быть больше %d но меньше %s символов.</string>
+    <string name="login_screen_email_invalid">Емэйл введен некорректно.</string>
+
 </resources>

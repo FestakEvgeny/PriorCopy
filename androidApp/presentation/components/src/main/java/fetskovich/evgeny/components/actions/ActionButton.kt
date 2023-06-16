@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -14,79 +15,111 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import fetskovich.evgeny.presentation.components.R
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
+import fetskovich.evgeny.presentation.theme.BasicTheme
 
 @Composable
 fun ActionButton(
-  modifier: Modifier = Modifier,
-  onClick: () -> Unit,
-  isEnabled: Boolean,
-  content: @Composable RowScope.() -> Unit
+    onClick: () -> Unit,
+    isError: Boolean,
+    modifier: Modifier = Modifier,
+    isEnabled: Boolean = true,
+    withBorder: Boolean = false,
+    content: @Composable RowScope.() -> Unit,
 ) {
-  Button(
-    shape = MaterialTheme.shapes.medium,
-    border = BorderStroke(
-      width = dimensionResource(id = R.dimen.action_button_border_size),
-      color = if (isEnabled) {
-        ApplicationTheme.colors.primary
-      } else {
-        ApplicationTheme.colors.error
-      }
-    ),
-    enabled = isEnabled,
-    onClick = onClick,
-    modifier = modifier
-  ) {
-    content()
-  }
+    Button(
+        shape = MaterialTheme.shapes.medium,
+        border = if (withBorder) {
+            BorderStroke(
+                width = dimensionResource(id = R.dimen.action_button_border_size),
+                color = if (isError) {
+                    ApplicationTheme.colors.primary
+                } else {
+                    ApplicationTheme.colors.error
+                }
+            )
+        } else {
+            null
+        },
+        enabled = isEnabled,
+        onClick = onClick,
+        modifier = modifier
+            .width(40.dp)
+    ) {
+        content()
+    }
 }
 
 @Composable
 fun TextActionButton(
-  modifier: Modifier = Modifier,
-  text: String,
-  isEnabled: Boolean,
-  onClick: () -> Unit
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    isEnabled: Boolean = true,
+    isError: Boolean = false,
 ) {
-  ActionButton(
-    modifier = modifier,
-    onClick = onClick,
-    isEnabled = isEnabled,
-    content = {
-      Text(
-        text = text,
-        style = MaterialTheme.typography.body1,
-        color = ApplicationTheme.colors.onPrimary,
-        modifier = Modifier
-          .padding(all = dimensionResource(id = R.dimen.action_button_content_margin))
-      )
+    ActionButton(
+        modifier = modifier,
+        onClick = onClick,
+        isError = isError,
+        isEnabled = isEnabled,
+        content = {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.body1,
+                color = ApplicationTheme.colors.baseTextColor,
+                modifier = Modifier
+                    .padding(all = dimensionResource(id = R.dimen.action_button_content_margin))
+            )
+        }
+    )
+}
+
+@Preview
+@Composable
+private fun ActionButtonErrorPreview() {
+    BasicTheme {
+        TextActionButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    all = dimensionResource(id = R.dimen.action_button_text_margin)
+                ),
+            text = "Test text",
+            onClick = {},
+            isEnabled = true,
+            isError = true,
+        )
     }
-  )
 }
 
 @Preview
 @Composable
 private fun ActionButtonValidPreview() {
-  TextActionButton(
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(
-        all = dimensionResource(id = R.dimen.action_button_text_margin)
-      ),
-    text = "Test text",
-    onClick = {},
-    isEnabled = true
-  )
+    BasicTheme {
+        TextActionButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    all = dimensionResource(id = R.dimen.action_button_text_margin)
+                ),
+            text = "Test text",
+            onClick = {},
+            isEnabled = true
+        )
+    }
 }
 
 @Preview
 @Composable
 private fun ActionButtonNotValidPreview() {
-  TextActionButton(
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(all = 8.dp),
-    text = "Test text",
-    onClick = {},
-    isEnabled = false
-  )
+    BasicTheme {
+        TextActionButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 8.dp),
+            text = "Test text",
+            onClick = {},
+            isEnabled = false
+        )
+    }
 }

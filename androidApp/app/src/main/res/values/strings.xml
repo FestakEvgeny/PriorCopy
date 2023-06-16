@@ -7,5 +7,13 @@
     <string name="bottom_tab_payments">Payments</string>
     <string name="bottom_tab_more">More</string>
 
+    <!-- Login Screen -->
+    <string name="login_screen_email">Email</string>
+    <string name="login_screen_password">Password</string>
+    <string name="login_screen_enter">Login</string>
+    <string name="login_screen_forgot_data">Forgot email or password?</string>
+    <string name="login_screen_sign_up">Sign Up</string>
+    <string name="login_screen_password_invalid">Password must be more then %d and less then %s symbols.</string>
+    <string name="login_screen_email_invalid">Email must be in email format.</string>
 
 </resources>
