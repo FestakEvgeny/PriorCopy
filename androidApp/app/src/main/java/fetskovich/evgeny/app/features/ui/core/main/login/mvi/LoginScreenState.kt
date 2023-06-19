@@ -8,5 +8,6 @@ data class LoginScreenState(
     val isPasswordVisible: Boolean = false,
     val passwordErrorMessage: String? = null,
     val emailErrorMessage: String? = null,
+    val isLoading: Boolean = false,
 ) : ScreenState
 

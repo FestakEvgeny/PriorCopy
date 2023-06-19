@@ -12,6 +12,7 @@ import fetskovich.evgeny.app.features.ui.core.bottomnav.api.MainBottomNavigation
 import fetskovich.evgeny.app.features.ui.core.history.api.HistoryScreenApi
 import fetskovich.evgeny.app.features.ui.core.main.api.MainScreensGraphApi
 import fetskovich.evgeny.app.features.ui.core.main.login.api.LoginScreenApi
+import fetskovich.evgeny.app.features.ui.core.main.products.api.ProductsScreenApi
 import fetskovich.evgeny.app.features.ui.core.more.api.MoreScreensGraphApi
 import fetskovich.evgeny.app.features.ui.core.more.other.api.OtherScreenApi
 import fetskovich.evgeny.app.features.ui.core.payments.api.PaymentsScreenApi
@@ -34,7 +35,10 @@ class MainActivity : ComponentActivity() {
                             MainBottomNavigationFeatureApi(
                                 setOf(
                                     MainScreensGraphApi(
-                                        setOf(LoginScreenApi())
+                                        setOf(
+                                            LoginScreenApi(),
+                                            ProductsScreenApi(),
+                                        )
                                     ),
                                     HistoryScreenApi(),
                                     PaymentsScreenApi(),

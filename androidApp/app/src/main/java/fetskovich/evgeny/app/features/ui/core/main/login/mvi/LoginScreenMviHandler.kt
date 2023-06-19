@@ -4,7 +4,8 @@ import fetskovich.evgeny.app.core.resources.ResourceProvider
 import fetskovich.evgeny.app.features.ui.core.main.login.PASSWORD_MAX_LENGTH
 import fetskovich.evgeny.app.features.ui.core.main.login.PASSWORD_MIN_LENGTH
 import fetskovich.evgeny.architecture.mvi.StateHandler
-import fetskovich.evgeny.domain.auth.GetLatestEmailResult
+import fetskovich.evgeny.domain.usecase.authorization.AuthorizeUserResult
+import fetskovich.evgeny.domain.usecase.authorization.GetEmailResult
 import fetskovich.evgeny.recipeskmm.app.R
 
 class LoginScreenMviHandler(
@@ -13,17 +14,37 @@ class LoginScreenMviHandler(
     initialState = LoginScreenState()
 ) {
 
-    suspend fun handleLatestEmailReceived(
-        result: GetLatestEmailResult
+    suspend fun handleAuthorizationResult(
+        result: AuthorizeUserResult
     ) {
         when (result) {
-            is GetLatestEmailResult.Error -> processSingleAction(
+            is AuthorizeUserResult.Authorized -> {
+                processSingleAction(LoginScreenAction.NavigateToProducts)
+            }
+
+            is AuthorizeUserResult.Error -> {
+                processSingleAction(LoginScreenAction.DisplayError(result.error.message ?: ""))
+            }
+
+            AuthorizeUserResult.Loading -> updateState(
+                state.copy(
+                    isLoading = true,
+                )
+            )
+        }
+    }
+
+    suspend fun handleLatestEmailReceived(
+        result: GetEmailResult
+    ) {
+        when (result) {
+            is GetEmailResult.Error -> processSingleAction(
                 LoginScreenAction.DisplayError(
                     result.throwable.message ?: ""
                 )
             )
 
-            is GetLatestEmailResult.Loaded -> {
+            is GetEmailResult.Loaded -> {
                 updateState(
                     state.copy(
                         userEmail = result.email,
@@ -31,7 +52,7 @@ class LoginScreenMviHandler(
                 )
             }
 
-            GetLatestEmailResult.Loading, GetLatestEmailResult.NotExists -> {
+            GetEmailResult.Loading, GetEmailResult.NotExists -> {
                 // do nothing
             }
         }
@@ -61,7 +82,7 @@ class LoginScreenMviHandler(
         )
     }
 
-    suspend fun handleFormError(
+    fun handleFormError(
         isPasswordValid: Boolean,
         isEmailValid: Boolean
     ) {

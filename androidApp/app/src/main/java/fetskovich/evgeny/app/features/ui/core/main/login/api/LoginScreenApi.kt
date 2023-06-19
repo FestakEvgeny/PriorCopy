@@ -1,13 +1,9 @@
 package fetskovich.evgeny.app.features.ui.core.main.login.api
 
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import fetskovich.evgeny.app.core.coroutines.CoroutineContextProviderImpl
@@ -18,7 +14,10 @@ import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreenViewModel
 import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenMviHandler
 import fetskovich.evgeny.app.features.viewmodel.ViewModelProviderFactory
 import fetskovich.evgeny.data.auth.AuthorizationRepositoryImpl
-import fetskovich.evgeny.domain.auth.GetLatestEmailUseCase
+import fetskovich.evgeny.data.user.UserSettingsStorageImpl
+import fetskovich.evgeny.domain.usecase.authorization.AuthorizeUserUseCase
+import fetskovich.evgeny.domain.usecase.authorization.GetEmailUseCase
+import fetskovich.evgeny.domain.usecase.authorization.SaveEmailUseCase
 
 class LoginScreenApi : FeatureApi {
 
@@ -34,14 +33,22 @@ class LoginScreenApi : FeatureApi {
             val context = LocalContext.current
 
             LoginScreen(
+                navController = navController,
                 viewModel = viewModel(
                     factory = ViewModelProviderFactory {
                         LoginScreenViewModel(
                             mviHandler = LoginScreenMviHandler(
-                                resourceProvider = ResourceProviderImpl(context,)
+                                resourceProvider = ResourceProviderImpl(context)
                             ),
-                            getLatestEmailUseCase = GetLatestEmailUseCase(
+                            getEmailUseCase = GetEmailUseCase(
+                                userSettingsStorage = UserSettingsStorageImpl(),
+                                coroutinesContextProvider = CoroutineContextProviderImpl(),
+                            ),
+                            authorizeUseCase = AuthorizeUserUseCase(
                                 authorizationRepository = AuthorizationRepositoryImpl(),
+                                saveEmailUseCase = SaveEmailUseCase(
+                                    settingsStorage = UserSettingsStorageImpl(),
+                                ),
                                 coroutinesContextProvider = CoroutineContextProviderImpl(),
                             ),
                             coroutinesContextProvider = CoroutineContextProviderImpl(),

@@ -2,14 +2,15 @@ package fetskovich.evgeny.app.features.ui.core.main.login
 
 import android.util.Patterns
 import androidx.lifecycle.viewModelScope
-import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenAction
 import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenIntent
 import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenMviHandler
 import fetskovich.evgeny.app.features.viewmodel.BaseViewModel
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
 import fetskovich.evgeny.architecture.mvi.ActionIntent
-import fetskovich.evgeny.domain.auth.GetLatestEmailIntent
-import fetskovich.evgeny.domain.auth.GetLatestEmailUseCase
+import fetskovich.evgeny.domain.usecase.authorization.AuthorizeUserIntent
+import fetskovich.evgeny.domain.usecase.authorization.AuthorizeUserUseCase
+import fetskovich.evgeny.domain.usecase.authorization.GetEmailIntent
+import fetskovich.evgeny.domain.usecase.authorization.GetEmailUseCase
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -18,15 +19,17 @@ const val PASSWORD_MAX_LENGTH = 64
 
 class LoginScreenViewModel(
     private val mviHandler: LoginScreenMviHandler,
-    private val getLatestEmailUseCase: GetLatestEmailUseCase,
+    private val getEmailUseCase: GetEmailUseCase,
+    private val authorizeUseCase: AuthorizeUserUseCase,
     private val coroutinesContextProvider: CoroutinesContextProvider,
 ) : BaseViewModel() {
 
     val stateFlow = mviHandler.stateFlow
+    val actionFlow = mviHandler.singleAction
 
     init {
         viewModelScope.launch {
-            getLatestEmailUseCase.execute(GetLatestEmailIntent)
+            getEmailUseCase.execute(GetEmailIntent)
                 .collectLatest(mviHandler::handleLatestEmailReceived)
         }
     }
@@ -44,13 +47,11 @@ class LoginScreenViewModel(
 
     private fun login() {
         viewModelScope.launch(coroutinesContextProvider.io) {
-            val isPasswordValid = stateFlow.value.userPassword.let {
-                it.length in PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH
-            }
+            val state = stateFlow.value
 
-            val isEmailValid = stateFlow.value.userEmail.let {
-                Patterns.EMAIL_ADDRESS.matcher(it).matches()
-            }
+            val isPasswordValid = state.userPassword.let(::validatePassword)
+
+            val isEmailValid = state.userEmail.let(::validateEmail)
 
             if (!isPasswordValid || !isEmailValid) {
                 mviHandler.handleFormError(
@@ -60,7 +61,18 @@ class LoginScreenViewModel(
                 return@launch
             }
 
-            // TODO Execute Login async logic
+            authorizeUseCase.execute(
+                AuthorizeUserIntent(
+                    email = stateFlow.value.userEmail,
+                    password = stateFlow.value.userPassword,
+                )
+            ).collectLatest(mviHandler::handleAuthorizationResult)
         }
     }
+
+    private fun validatePassword(password: String) = password.let {
+        it.length in PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH
+    }
+
+    private fun validateEmail(email: String) = Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }

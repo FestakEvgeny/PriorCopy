@@ -23,6 +23,7 @@ kotlin {
                 implementation(project(":shared:domain"))
                 implementation(project(":shared:architecture"))
                 implementation(shared.SharedLibrary.Coroutines.core)
+                implementation(shared.SharedLibrary.Storage.settings)
             }
         }
         val commonTest by getting {

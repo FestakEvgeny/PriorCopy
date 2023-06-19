@@ -14,27 +14,40 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavHostController
+import androidx.navigation.NavOptionsBuilder
+import fetskovich.evgeny.app.features.ui.core.main.login.api.LoginScreenNavigation
+import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenAction
 import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenIntent
 import fetskovich.evgeny.app.features.ui.core.main.login.mvi.LoginScreenState
+import fetskovich.evgeny.app.features.ui.core.main.products.api.ProductsScreenNavigation
+import fetskovich.evgeny.app.features.ui.splash.api.SplashScreenNavigation
 import fetskovich.evgeny.components.actions.TextActionButton
 import fetskovich.evgeny.components.text.BaseTextField
 import fetskovich.evgeny.components.text.PasswordTextField
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.recipeskmm.app.R
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(
-    viewModel: LoginScreenViewModel
+    viewModel: LoginScreenViewModel,
+    navController: NavHostController,
 ) {
     val state by viewModel.stateFlow.collectAsStateWithLifecycle()
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     Screen(
         state = state,
@@ -51,6 +64,27 @@ fun LoginScreen(
             viewModel.processIntent(LoginScreenIntent.LoginUser)
         },
     )
+
+    LaunchedEffect(Unit) {
+        lifecycleOwner.lifecycleScope.launch {
+            // TODO flowWithLifecycle
+            viewModel.actionFlow.collectLatest { action ->
+                when (action) {
+                    is LoginScreenAction.DisplayError -> {
+                        // TODO Display simple toast
+                    }
+
+                    LoginScreenAction.NavigateToProducts -> {
+                        navController.navigate(ProductsScreenNavigation.route) {
+                            popUpTo(LoginScreenNavigation.route) {
+                                inclusive = true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -83,6 +117,7 @@ private fun Screen(
             Text(
                 text = state.emailErrorMessage,
                 color = ApplicationTheme.colors.error,
+                style = MaterialTheme.typography.body2,
             )
         }
 
@@ -101,6 +136,7 @@ private fun Screen(
             Text(
                 text = state.passwordErrorMessage,
                 color = ApplicationTheme.colors.error,
+                style = MaterialTheme.typography.body2,
             )
         }
 
