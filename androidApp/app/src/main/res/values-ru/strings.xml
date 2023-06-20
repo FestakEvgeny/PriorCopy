@@ -16,4 +16,7 @@
     <string name="login_screen_password_invalid">Пароль должен быть больше %d но меньше %s символов.</string>
     <string name="login_screen_email_invalid">Емэйл введен некорректно.</string>
 
+    <!-- Products Screen -->
+    <string name="products_screen_card_item_sort">Упорядочить</string>
+
 </resources>
