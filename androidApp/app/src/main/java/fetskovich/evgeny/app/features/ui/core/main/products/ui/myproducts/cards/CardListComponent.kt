@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -19,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import fetskovich.evgeny.presentation.theme.BasicTheme
@@ -28,12 +29,24 @@ import fetskovich.evgeny.recipeskmm.app.R
 @Composable
 fun CardListComponent(
     items: List<CardListItem>,
+    onSortChange: () -> Unit,
     modifier: Modifier
 ) {
-    Card(
-        modifier = modifier
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier,
     ) {
-
+        items(
+            items = items,
+            key = { item ->
+                item.id
+            }
+        ) { item ->
+            CardComponent(
+                item = item,
+                onSortChange = onSortChange,
+            )
+        }
     }
 }
 
@@ -105,11 +118,8 @@ private fun CardComponent(
                             style = MaterialTheme.typography.body2
                         )
                     }
-
                 }
-
             }
-
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -136,10 +146,47 @@ private fun CardComponent(
                 )
 
                 Text(
-                    text = stringResource(id = R.string.products_screen_card_item_sort),
+                    text = stringResource(id = R.string.products_screen_my_products_card_item_sort),
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun CardComponentsListPreview() {
+    BasicTheme {
+        CardListComponent(
+            items = listOf(
+                CardListItem(
+                    id = "test",
+                    cardIcon = R.drawable.ic_profile,
+                    cardName = "DK9581",
+                    cardNumber = "---- 9581",
+                    cardBalanceMainCurrency = "4 959,03 BYN",
+                    cardBalanceOffCurrency = "1 654,11 USD"
+                ),
+                CardListItem(
+                    id = "test2",
+                    cardIcon = R.drawable.ic_profile,
+                    cardName = "DK9581",
+                    cardNumber = "---- 9581",
+                    cardBalanceMainCurrency = "4 959,03 BYN",
+                    cardBalanceOffCurrency = "1 654,11 USD"
+                ),
+                CardListItem(
+                    id = "tes3",
+                    cardIcon = R.drawable.ic_profile,
+                    cardName = "DK9581",
+                    cardNumber = "---- 9581",
+                    cardBalanceMainCurrency = "4 959,03 BYN",
+                    cardBalanceOffCurrency = "1 654,11 USD"
+                )
+            ),
+            onSortChange = {},
+            modifier = Modifier
+        )
     }
 }
 

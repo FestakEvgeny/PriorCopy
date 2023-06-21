@@ -38,8 +38,8 @@ fun BaseBottomNavigation(
                     )
                 },
                 alwaysShowLabel = true,
-                selectedContentColor = ApplicationTheme.colors.baseTextColor,
-                unselectedContentColor = ApplicationTheme.colors.baseTextColor.copy(
+                selectedContentColor = ApplicationTheme.colors.primaryVariant,
+                unselectedContentColor = ApplicationTheme.colors.primaryVariant.copy(
                     alpha = 0.4f,
                 ),
                 selected = currentRoute.contains(tab.route),

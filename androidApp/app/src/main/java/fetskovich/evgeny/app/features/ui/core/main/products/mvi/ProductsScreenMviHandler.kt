@@ -1,4 +1,10 @@
 package fetskovich.evgeny.app.features.ui.core.main.products.mvi
 
-class ProductsScreenMviHandler {
+import fetskovich.evgeny.architecture.mvi.StateHandler
+
+class ProductsScreenMviHandler : StateHandler<ProductsScreenState, ProductsScreenAction>(
+    initialState = ProductsScreenState("")
+) {
+
+
 }

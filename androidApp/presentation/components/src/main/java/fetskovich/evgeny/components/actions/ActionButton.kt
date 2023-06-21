@@ -66,7 +66,7 @@ fun TextActionButton(
             Text(
                 text = text,
                 style = MaterialTheme.typography.body1,
-                color = ApplicationTheme.colors.baseTextColor,
+                color = ApplicationTheme.colors.primaryVariant,
                 modifier = Modifier
                     .padding(all = dimensionResource(id = R.dimen.action_button_content_margin))
             )

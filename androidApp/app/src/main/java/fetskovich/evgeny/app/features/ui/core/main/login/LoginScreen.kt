@@ -159,7 +159,7 @@ private fun Screen(
 
         Text(
             text = stringResource(id = R.string.login_screen_forgot_data),
-            color = ApplicationTheme.colors.baseTextColor,
+            color = ApplicationTheme.colors.primaryVariant,
             style = TextStyle(
                 textDecoration = TextDecoration.Underline,
             ),
@@ -170,7 +170,7 @@ private fun Screen(
 
         Text(
             text = stringResource(id = R.string.login_screen_sign_up),
-            color = ApplicationTheme.colors.baseTextColor,
+            color = ApplicationTheme.colors.primaryVariant,
             style = MaterialTheme.typography.body2,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)

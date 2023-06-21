@@ -17,6 +17,12 @@
     <string name="login_screen_email_invalid">Емэйл введен некорректно.</string>
 
     <!-- Products Screen -->
-    <string name="products_screen_card_item_sort">Упорядочить</string>
+
+    <!-- My Products -->
+    <string name="products_screen_my_products_title">Мои продукты</string>
+    <string name="products_screen_my_products_card_item_sort">Упорядочить</string>
+    <string name="products_screen_my_products_cards">Карты</string>
+    <string name="products_screen_my_products_credits">Кредиты</string>
+    <string name="prodcuts_screen_my_products_deposits">Депозиты и счета</string>
 
 </resources>

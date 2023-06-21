@@ -48,7 +48,7 @@ fun BaseTextField(
             unfocusedIndicatorColor = if (isError) {
                 ApplicationTheme.colors.error
             } else {
-                ApplicationTheme.colors.baseTextColor.copy(
+                ApplicationTheme.colors.primaryVariant.copy(
                     alpha = 0.3f
                 )
             },
