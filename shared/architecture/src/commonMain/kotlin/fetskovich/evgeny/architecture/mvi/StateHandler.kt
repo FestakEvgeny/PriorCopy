@@ -1,7 +1,5 @@
 package fetskovich.evgeny.architecture.mvi
 
-import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
