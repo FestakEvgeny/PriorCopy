@@ -2,6 +2,12 @@ package shared
 
 object SharedLibrary {
 
+    object Kodein {
+
+        private const val version = "7.20.1"
+        const val core = "org.kodein.di:kodein-di:$version"
+    }
+
     object Coroutines {
 
         private const val coroutinesVersion = "1.7.1"

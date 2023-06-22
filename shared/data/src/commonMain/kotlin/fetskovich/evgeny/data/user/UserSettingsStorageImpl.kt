@@ -11,7 +11,6 @@ class UserSettingsStorageImpl : UserSettingsStorage {
 
     override suspend fun getEmail(): String? {
         val email = settings.getString(EMAIL_KEY, "")
-        println("GET EMAIL: $email")
         return email.ifEmpty { null }
     }
 

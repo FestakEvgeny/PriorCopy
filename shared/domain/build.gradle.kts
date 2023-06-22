@@ -20,6 +20,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(shared.SharedLibrary.Coroutines.core)
+                implementation(shared.SharedLibrary.Kodein.core)
+
                 implementation(project(":shared:entity"))
                 implementation(project(":shared:architecture"))
             }
