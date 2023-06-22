@@ -4,5 +4,7 @@ import fetskovich.evgeny.architecture.mvi.ActionIntent
 
 sealed class ProductsScreenIntent : ActionIntent {
 
-    object AddNewBankingCard : ProductsScreenIntent()
+    data class ChangeProductType(
+        val type: ProductType
+    ) : ProductsScreenIntent()
 }

@@ -23,6 +23,6 @@
     <string name="products_screen_my_products_card_item_sort">Упорядочить</string>
     <string name="products_screen_my_products_cards">Карты</string>
     <string name="products_screen_my_products_credits">Кредиты</string>
-    <string name="prodcuts_screen_my_products_deposits">Депозиты и счета</string>
+    <string name="products_screen_my_products_deposits">Депозиты и счета</string>
 
 </resources>

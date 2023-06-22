@@ -17,19 +17,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.MyProductsState
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductType
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListComponent
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.MyProductTypes
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.ProductTypeListItem
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.recipeskmm.app.R
 
 @Composable
 fun MyProductsComponent(
-    state: MyProductsState,
+    state: MyProductsState?,
     onAddProductClick: () -> Unit,
+    onSortChanged: () -> Unit,
+    onChangeProductType: (ProductTypeListItem) -> Unit,
 ) {
-    val baseTextColor = ApplicationTheme.colors.primaryVariant
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -37,6 +41,30 @@ fun MyProductsComponent(
         Header(
             onAddProductClick = onAddProductClick
         )
+
+        state?.let {
+            MyProductTypes(
+                items = state.availableTypes,
+                onChangeProductType = onChangeProductType,
+                modifier = Modifier
+            )
+
+            when (state.selectedType) {
+                ProductType.CARDS -> {
+                    CardListComponent(
+                        items = state.cardsList,
+                        onSortChange = onSortChanged,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
+
+                ProductType.CREDITS -> Text(text = "Credits")
+                ProductType.DEPOSITS -> Text(text = "Deposits")
+            }
+        } ?: kotlin.run {
+            // Display loading
+        }
 
     }
 }
@@ -58,7 +86,7 @@ private fun Header(
             )
     ) {
         Text(
-            text = "Мои продукты",
+            text = stringResource(id = R.string.products_screen_my_products_title),
             style = MaterialTheme.typography.body1,
         )
 
