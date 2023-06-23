@@ -8,6 +8,7 @@
     <string name="bottom_tab_more">Еще</string>
 
     <!-- Login Screen -->
+    <string name="login_screen_logo">Приорбанк копия</string>
     <string name="login_screen_email">Емэйл</string>
     <string name="login_screen_password">Пароль</string>
     <string name="login_screen_enter">Войти</string>

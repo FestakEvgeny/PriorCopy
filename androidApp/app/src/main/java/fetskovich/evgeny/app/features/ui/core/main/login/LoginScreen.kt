@@ -1,6 +1,7 @@
 package fetskovich.evgeny.app.features.ui.core.main.login
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,8 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
@@ -96,6 +100,7 @@ private fun Screen(
     onLoginButtonClick: () -> Unit,
 ) {
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .padding(16.dp)
             .fillMaxSize()
@@ -103,8 +108,27 @@ private fun Screen(
 
         Spacer(
             modifier = Modifier
-                .height(50.dp)
+                .height(60.dp)
         )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = stringResource(id = R.string.login_screen_logo),
+                style = MaterialTheme.typography.subtitle1.copy(
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 24.sp,
+                ),
+                color = ApplicationTheme.colors.primaryVariant,
+            )
+        }
+
+        Spacer(
+            modifier = Modifier
+                .height(40.dp)
+        )
+
 
         BaseTextField(
             text = state.userEmail,
@@ -154,7 +178,7 @@ private fun Screen(
 
         Spacer(
             modifier = Modifier
-                .height(20.dp)
+                .height(30.dp)
         )
 
         Text(
@@ -162,20 +186,20 @@ private fun Screen(
             color = ApplicationTheme.colors.primaryVariant,
             style = TextStyle(
                 textDecoration = TextDecoration.Underline,
-            ),
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth()
+            )
         )
+
+        Spacer(modifier = Modifier.weight(1f))
 
         Text(
             text = stringResource(id = R.string.login_screen_sign_up),
             color = ApplicationTheme.colors.primaryVariant,
-            style = MaterialTheme.typography.body2,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth()
+            style = MaterialTheme.typography.body2.copy(
+                fontWeight = FontWeight.Bold,
+            ),
         )
+
+        Spacer(modifier = Modifier.height(10.dp))
     }
 }
 
@@ -188,7 +212,7 @@ private fun PasswordField(
 ) {
     PasswordTextField(
         text = password,
-        hintText = "Password",
+        hintText = stringResource(id = R.string.login_screen_password),
         isVisualTransformationEnabled = isPasswordVisible,
         onTextChanged = onPasswordTextChanged,
         trailingIcon = {

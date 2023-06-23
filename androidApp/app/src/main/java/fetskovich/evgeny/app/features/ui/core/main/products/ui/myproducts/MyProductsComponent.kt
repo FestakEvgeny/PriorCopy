@@ -127,8 +127,8 @@ private fun Header(
             painter = painterResource(id = R.drawable.ic_add),
             contentDescription = null,
             modifier = Modifier
-                .padding(4.dp)
-                .size(12.dp)
+                .padding(8.dp)
+                .size(14.dp)
                 .drawBehind {
                     drawCircle(
                         color = primaryColor,

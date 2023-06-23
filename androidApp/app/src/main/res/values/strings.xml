@@ -8,6 +8,7 @@
     <string name="bottom_tab_more">More</string>
 
     <!-- Login Screen -->
+    <string name="login_screen_logo">Priorbank copy</string>
     <string name="login_screen_email">Email</string>
     <string name="login_screen_password">Password</string>
     <string name="login_screen_enter">Login</string>

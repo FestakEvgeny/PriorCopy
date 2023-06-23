@@ -26,5 +26,10 @@ internal val typography = Typography(
     fontFamily = FontFamily.SansSerif,
     fontWeight = FontWeight.Normal,
     fontSize = 14.sp,
+  ),
+  button = TextStyle(
+    fontFamily = FontFamily.SansSerif,
+    fontWeight = FontWeight.Bold,
+    fontSize = 16.sp,
   )
 )
