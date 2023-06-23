@@ -24,5 +24,10 @@
     <string name="products_screen_my_products_cards">Cards</string>
     <string name="products_screen_my_products_credits">Credits</string>
     <string name="products_screen_my_products_deposits">Deposits</string>
+    <string name="prodcuts_screen_my_products_no_cards">You don\'t have any available cards at the moment. You can ask and create a new card</string>
+    <string name="prodcuts_screen_my_products_no_credits">You don\'t have any credits at the moment. You can ask and create a new credit</string>
+    <string name="prodcuts_screen_my_products_no_deposits">You don\'t have any available deposits or payments. You can offer and create a new deposit</string>
+    <string name="products_screen_my_products_create_now">Create now</string>
+
 
 </resources>

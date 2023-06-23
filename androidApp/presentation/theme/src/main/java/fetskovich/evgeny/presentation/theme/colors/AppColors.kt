@@ -7,6 +7,7 @@ data class AppColors(
   val materialColors: Colors,
   val baseTextColor: Color,
   val toolbarItemColor: Color,
+  val activeLink: Color,
   val iconColor: Color,
 ) {
   val primary = materialColors.primary

@@ -24,5 +24,10 @@
     <string name="products_screen_my_products_cards">Карты</string>
     <string name="products_screen_my_products_credits">Кредиты</string>
     <string name="products_screen_my_products_deposits">Депозиты и счета</string>
+    <string name="prodcuts_screen_my_products_no_cards">У Вас нет доступных карточек, Вы можете оформить новую карту</string>
+    <string name="prodcuts_screen_my_products_no_credits">У Вас нет доступных кредитов, Вы можете оформить новый кредит</string>
+    <string name="prodcuts_screen_my_products_no_deposits">У Вас нет доступных депозитов и счетов, Вы можете оформить новый депозит</string>
+    <string name="products_screen_my_products_create_now">Оформить сейчас</string>
+
 
 </resources>

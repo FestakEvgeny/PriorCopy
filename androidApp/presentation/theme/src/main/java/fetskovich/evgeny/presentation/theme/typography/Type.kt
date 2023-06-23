@@ -25,6 +25,6 @@ internal val typography = Typography(
   body2 = TextStyle(
     fontFamily = FontFamily.SansSerif,
     fontWeight = FontWeight.Normal,
-    fontSize = 14.sp
+    fontSize = 14.sp,
   )
 )

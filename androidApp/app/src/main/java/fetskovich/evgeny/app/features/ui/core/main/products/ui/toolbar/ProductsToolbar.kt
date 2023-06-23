@@ -39,7 +39,7 @@ fun ProductsToolbar(
                 .padding(
                     start = 16.dp
                 )
-                .size(32.dp)
+                .size(22.dp)
 
         )
 
@@ -54,7 +54,7 @@ fun ProductsToolbar(
                     .padding(
                         end = 16.dp
                     )
-                    .size(32.dp)
+                    .size(22.dp)
             )
 
             Icon(
@@ -67,7 +67,7 @@ fun ProductsToolbar(
                     .padding(
                         end = 16.dp
                     )
-                    .size(32.dp)
+                    .size(22.dp)
             )
         }
     }

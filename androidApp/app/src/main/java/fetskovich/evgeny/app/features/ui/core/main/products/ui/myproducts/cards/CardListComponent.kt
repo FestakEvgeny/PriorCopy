@@ -21,8 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
 import fetskovich.evgeny.recipeskmm.app.R
 
@@ -32,20 +34,74 @@ fun CardListComponent(
     onSortChange: () -> Unit,
     modifier: Modifier
 ) {
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = modifier,
-    ) {
-        items(
-            items = items,
-            key = { item ->
-                item.id
+    if (items.isEmpty()) {
+        CardNotFoundComponent(
+            modifier = modifier,
+        )
+    } else {
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = modifier,
+        ) {
+            items(
+                items = items,
+                key = { item ->
+                    item.id
+                }
+            ) { item ->
+                CardComponent(
+                    item = item,
+                    onSortChange = onSortChange,
+                )
             }
-        ) { item ->
-            CardComponent(
-                item = item,
-                onSortChange = onSortChange,
+        }
+    }
+}
+
+@Composable
+private fun CardNotFoundComponent(
+    modifier: Modifier
+) {
+    Card(
+        elevation = 4.dp,
+        backgroundColor = ApplicationTheme.colors.background,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 8.dp,
+            ),
+    ) {
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+
+            Text(
+                text = stringResource(id = R.string.prodcuts_screen_my_products_no_cards),
+                style = MaterialTheme.typography.caption,
+                color = ApplicationTheme.colors.primaryVariant,
             )
+
+            Row(
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier
+                    .padding(
+                        top = 25.dp,
+                    )
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(id = R.string.products_screen_my_products_create_now),
+                    style = MaterialTheme.typography.body2.copy(
+                        fontWeight = FontWeight.Bold,
+                    ),
+                    color = ApplicationTheme.colors.activeLink,
+                )
+            }
         }
     }
 }
@@ -58,6 +114,7 @@ private fun CardComponent(
 ) {
     Card(
         elevation = 6.dp,
+        backgroundColor = ApplicationTheme.colors.background,
         modifier = modifier
             .fillMaxWidth()
             .padding(
@@ -96,7 +153,11 @@ private fun CardComponent(
 
                         Text(
                             text = item.cardBalanceMainCurrency,
-                            style = MaterialTheme.typography.subtitle2
+                            style = MaterialTheme.typography.subtitle2,
+                            modifier = Modifier
+                                .padding(
+                                    start = 50.dp,
+                                )
                         )
                     }
 
@@ -115,7 +176,11 @@ private fun CardComponent(
 
                         Text(
                             text = item.cardBalanceOffCurrency,
-                            style = MaterialTheme.typography.body2
+                            style = MaterialTheme.typography.body2,
+                            modifier = Modifier
+                                .padding(
+                                    start = 50.dp,
+                                )
                         )
                     }
                 }
@@ -205,5 +270,16 @@ private fun CardComponentPreview() {
             ),
             onSortChange = {}
         )
+    }
+}
+
+@Preview
+@Composable
+private fun CardNotFoundComponentPreview() {
+    BasicTheme {
+        CardNotFoundComponent(
+            modifier = Modifier
+        )
+
     }
 }
