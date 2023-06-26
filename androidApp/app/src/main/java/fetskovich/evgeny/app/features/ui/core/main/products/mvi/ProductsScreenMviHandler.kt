@@ -31,6 +31,20 @@ class ProductsScreenMviHandler(
             )
         )
     }
+
+    fun updateAddProductDialogVisibility(isVisible: Boolean) {
+        val sheetState = if (isVisible) {
+            ProductsBottomSheetState.AddProduct
+        } else {
+            null
+        }
+
+        updateState(
+            state.copy(
+                bottomSheetState = sheetState,
+            )
+        )
+    }
 }
 
 private fun createInitialState(

@@ -7,6 +7,7 @@ import fetskovich.evgeny.architecture.mvi.ScreenState
 data class ProductsScreenState(
     val userEmail: String = "",
     val productsSectionState: MyProductsState,
+    val bottomSheetState: ProductsBottomSheetState? = null,
 ): ScreenState
 
 data class MyProductsState(
@@ -21,4 +22,9 @@ enum class ProductType {
     CARDS,
     CREDITS,
     DEPOSITS,
+}
+
+sealed class ProductsBottomSheetState {
+
+    object AddProduct : ProductsBottomSheetState()
 }

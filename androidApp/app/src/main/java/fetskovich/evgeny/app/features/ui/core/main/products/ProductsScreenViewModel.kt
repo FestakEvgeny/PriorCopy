@@ -18,6 +18,13 @@ class ProductsScreenViewModel(
                 is ProductsScreenIntent.ChangeProductType -> mviStateHandler.changeProductType(
                     selectedId = intent.type,
                 )
+
+                ProductsScreenIntent.ShowAddProductDialog -> mviStateHandler.updateAddProductDialogVisibility(
+                    isVisible = true,
+                )
+                ProductsScreenIntent.DismissAddProductDialog -> mviStateHandler.updateAddProductDialogVisibility(
+                    isVisible = false,
+                )
             }
         }
     }
