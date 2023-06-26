@@ -9,12 +9,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Surface
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,6 +39,7 @@ import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.addpro
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.ProductTypeListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.toolbar.ProductsToolbar
+import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
 import fetskovich.evgeny.recipeskmm.app.R
 import kotlinx.coroutines.flow.collectLatest
@@ -89,37 +94,23 @@ private fun BottomSheetScreen(
     onChangeProductType: (ProductTypeListItem) -> Unit,
     executeIntent: (ProductsScreenIntent) -> Unit,
 ) {
-    val sheetState = rememberBottomSheetState(
-        initialValue = BottomSheetValue.Collapsed,
-        confirmStateChange = {
-            val currentUpdateStateIntent = state.bottomSheetState?.let(::getHideBottomSheetIntent)
-
-            if (currentUpdateStateIntent == null) {
-                true
-            } else {
-                executeIntent(currentUpdateStateIntent)
-                // Prevent to hide the dialog. This logic must be handled by MVI flow.
-                true
-            }
-
-        }
-    )
-    val scaffoldState = rememberBottomSheetScaffoldState(
-        bottomSheetState = sheetState,
+    val sheetState = rememberModalBottomSheetState(
+        initialValue = ModalBottomSheetValue.Hidden,
+        skipHalfExpanded = false,
+        confirmValueChange = {
+            state.bottomSheetState?.let(::getHideBottomSheetIntent)?.let(executeIntent)
+            true
+        }, // TODO Add animation spec
     )
 
-    BottomSheetScaffold(
-        scaffoldState = scaffoldState,
-        topBar = {
-            ProductsToolbar(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                onProfileClick = onProfileClick,
-                onSupportClick = onSupportClick,
-            )
-        },
+    ModalBottomSheetLayout(
+        sheetState = sheetState,
+        sheetBackgroundColor = ApplicationTheme.colors.background,
+        sheetShape = RoundedCornerShape(
+            topStart = 20.dp,
+            topEnd = 20.dp,
+        ),
         sheetContent = {
-            Spacer(modifier = Modifier.height(1.dp))
             BottomSheetContent(
                 state = state.bottomSheetState,
             )
@@ -131,17 +122,17 @@ private fun BottomSheetScreen(
             state = state,
             onAddProductClick = onAddProductClick,
             onSortChanged = onSortChanged,
+            onSupportClick = onSupportClick,
+            onProfileClick = onProfileClick,
             onChangeProductType = onChangeProductType,
-            modifier = Modifier
-                .padding(it)
         )
     }
 
     LaunchedEffect(key1 = state.bottomSheetState) {
         if (state.bottomSheetState == null) {
-            sheetState.collapse()
+            sheetState.hide()
         } else {
-            sheetState.collapse()
+            sheetState.show()
         }
     }
 }
@@ -149,10 +140,12 @@ private fun BottomSheetScreen(
 @Composable
 private fun Screen(
     state: ProductsScreenState,
+    onProfileClick: () -> Unit,
+    onSupportClick: () -> Unit,
     onAddProductClick: () -> Unit,
     onSortChanged: () -> Unit,
     onChangeProductType: (ProductTypeListItem) -> Unit,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         modifier = modifier
@@ -162,6 +155,13 @@ private fun Screen(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
+
+            ProductsToolbar(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                onProfileClick = onProfileClick,
+                onSupportClick = onSupportClick,
+            )
 
             LazyColumn {
                 item {
