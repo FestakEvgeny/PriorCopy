@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
+import fetskovich.evgeny.app.features.ui.addbankcard.api.AddAnotherBankCardNavigation
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.MyProductsState
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductType
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsBottomSheetState
@@ -63,7 +64,9 @@ fun ProductsScreen(
             )
         },
         createCardClick = {},
-        createCardOfAnotherBankClick = {},
+        createCardOfAnotherBankClick = {
+            parentNavController?.navigate(AddAnotherBankCardNavigation.route)
+        },
         openOnlineDeposit = {},
         requestForOpenCredit = {},
         executeIntent = viewModel::processIntent,

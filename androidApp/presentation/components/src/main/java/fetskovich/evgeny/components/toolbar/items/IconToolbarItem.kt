@@ -22,7 +22,7 @@ fun IconToolbarItem(
   Icon(
     imageVector = imageVector,
     contentDescription = null,
-    tint = ApplicationTheme.colors.toolbarItemColor,
+    tint = ApplicationTheme.colors.primaryVariant,
     modifier = Modifier
       .size(
         size = dimensionResource(id = R.dimen.toolbar_icon_size)

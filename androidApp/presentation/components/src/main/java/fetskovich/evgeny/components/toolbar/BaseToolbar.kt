@@ -1,6 +1,11 @@
 package fetskovich.evgeny.components.toolbar
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -13,9 +18,9 @@ import androidx.constraintlayout.compose.Dimension
 import fetskovich.evgeny.components.toolbar.items.BackToolbarItem
 import fetskovich.evgeny.components.toolbar.items.IconToolbarItem
 import fetskovich.evgeny.components.toolbar.items.TitleToolbarItem
+import fetskovich.evgeny.presentation.components.R
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
-import fetskovich.evgeny.presentation.components.R
 
 @Composable
 fun BaseToolbar(
@@ -26,7 +31,7 @@ fun BaseToolbar(
     bottomComponent: (@Composable () -> Unit)? = null,
 ) {
     TopAppBar(
-        backgroundColor = ApplicationTheme.colors.primary,
+        backgroundColor = ApplicationTheme.colors.background,
         modifier = modifier
     ) {
         ConstraintLayout(

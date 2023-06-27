@@ -18,9 +18,9 @@ fun TitleToolbarItem(
   onClick: (() -> Unit)? = null
 ) {
   Text(
-    style = MaterialTheme.typography.body1,
+    style = MaterialTheme.typography.subtitle2,
     text = title,
-    color = ApplicationTheme.colors.toolbarItemColor,
+    color = ApplicationTheme.colors.primaryVariant,
     modifier = modifier
       .clickable { onClick?.invoke() }
   )

@@ -17,7 +17,7 @@ fun BackToolbarItem(
   Icon(
     imageVector = Icons.Filled.ArrowBack,
     contentDescription = null,
-    tint = ApplicationTheme.colors.toolbarItemColor,
+    tint = ApplicationTheme.colors.primaryVariant,
     modifier = Modifier
       .clickable { onClick() }
   )
