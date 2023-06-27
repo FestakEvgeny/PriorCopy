@@ -53,7 +53,7 @@ private fun DepositsNotFoundComponent(
         ) {
 
             Text(
-                text = stringResource(id = R.string.prodcuts_screen_my_products_no_deposits),
+                text = stringResource(id = R.string.products_screen_my_products_no_deposits),
                 style = MaterialTheme.typography.caption,
                 color = ApplicationTheme.colors.primaryVariant,
             )

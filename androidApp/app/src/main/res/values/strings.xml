@@ -25,10 +25,15 @@
     <string name="products_screen_my_products_cards">Cards</string>
     <string name="products_screen_my_products_credits">Credits</string>
     <string name="products_screen_my_products_deposits">Deposits</string>
-    <string name="prodcuts_screen_my_products_no_cards">You don\'t have any available cards at the moment. You can ask and create a new card</string>
-    <string name="prodcuts_screen_my_products_no_credits">You don\'t have any credits at the moment. You can ask and create a new credit</string>
-    <string name="prodcuts_screen_my_products_no_deposits">You don\'t have any available deposits or payments. You can offer and create a new deposit</string>
+    <string name="products_screen_my_products_no_cards">You don\'t have any available cards at the moment. You can ask and create a new card</string>
+    <string name="products_screen_my_products_no_credits">You don\'t have any credits at the moment. You can ask and create a new credit</string>
+    <string name="products_screen_my_products_no_deposits">You don\'t have any available deposits or payments. You can offer and create a new deposit</string>
     <string name="products_screen_my_products_create_now">Create now</string>
 
+    <!-- Add My Product Bottom Sheet -->
+    <string name="products_screen_add_product_card">Request a card</string>
+    <string name="products_screen_add_product_card_another_bank">Add a card from another bank</string>
+    <string name="products_screen_add_product_deposit">Open a deposit</string>
+    <string name="products_screen_add_product_credit">Request a credit</string>
 
 </resources>

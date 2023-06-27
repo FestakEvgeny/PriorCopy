@@ -1,23 +1,17 @@
 package fetskovich.evgeny.app.features.ui.core.main.products
 
-import android.util.Log
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomSheetScaffold
-import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Surface
-import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -68,6 +62,10 @@ fun ProductsScreen(
                 ProductsScreenIntent.ChangeProductType(product.id)
             )
         },
+        createCardClick = {},
+        createCardOfAnotherBankClick = {},
+        openOnlineDeposit = {},
+        requestForOpenCredit = {},
         executeIntent = viewModel::processIntent,
     )
 
@@ -91,6 +89,11 @@ private fun BottomSheetScreen(
     onSupportClick: () -> Unit,
     onAddProductClick: () -> Unit,
     onSortChanged: () -> Unit,
+    createCardClick: () -> Unit,
+    createCardOfAnotherBankClick: () -> Unit,
+    openOnlineDeposit: () -> Unit,
+    requestForOpenCredit: () -> Unit,
+
     onChangeProductType: (ProductTypeListItem) -> Unit,
     executeIntent: (ProductsScreenIntent) -> Unit,
 ) {
@@ -100,7 +103,8 @@ private fun BottomSheetScreen(
         confirmValueChange = {
             state.bottomSheetState?.let(::getHideBottomSheetIntent)?.let(executeIntent)
             true
-        }, // TODO Add animation spec
+        },
+        animationSpec = tween(durationMillis = 300, easing = LinearEasing),
     )
 
     ModalBottomSheetLayout(
@@ -113,6 +117,10 @@ private fun BottomSheetScreen(
         sheetContent = {
             BottomSheetContent(
                 state = state.bottomSheetState,
+                createCardClick = createCardClick,
+                createCardOfAnotherBankClick = createCardOfAnotherBankClick,
+                openOnlineDeposit = openOnlineDeposit,
+                requestForOpenCredit = requestForOpenCredit,
             )
         },
         modifier = Modifier
@@ -187,10 +195,20 @@ private fun getHideBottomSheetIntent(
 
 @Composable
 private fun ColumnScope.BottomSheetContent(
-    state: ProductsBottomSheetState?
+    state: ProductsBottomSheetState?,
+    createCardClick: () -> Unit,
+    createCardOfAnotherBankClick: () -> Unit,
+    openOnlineDeposit: () -> Unit,
+    requestForOpenCredit: () -> Unit,
 ) {
     when (state) {
-        ProductsBottomSheetState.AddProduct -> AddMyProductBottomSheetComponent()
+        ProductsBottomSheetState.AddProduct -> AddMyProductBottomSheetComponent(
+            createCardClick = createCardClick,
+            createCardOfAnotherBankClick = createCardOfAnotherBankClick,
+            openOnlineDeposit = openOnlineDeposit,
+            requestForOpenCredit = requestForOpenCredit
+        )
+
         else -> {
             // do nothing
         }
@@ -250,7 +268,11 @@ private fun BottomSheetScreenPreview() {
             onAddProductClick = { },
             onSortChanged = { },
             onChangeProductType = {},
-            executeIntent = {}
+            createCardClick = {},
+            createCardOfAnotherBankClick = {},
+            openOnlineDeposit = {},
+            requestForOpenCredit = {},
+            executeIntent = {},
         )
     }
 }

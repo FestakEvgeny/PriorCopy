@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -55,7 +53,7 @@ private fun CreditsNotFoundComponent(
         ) {
 
             Text(
-                text = stringResource(id = R.string.prodcuts_screen_my_products_no_credits),
+                text = stringResource(id = R.string.products_screen_my_products_no_credits),
                 style = MaterialTheme.typography.caption,
                 color = ApplicationTheme.colors.primaryVariant,
             )

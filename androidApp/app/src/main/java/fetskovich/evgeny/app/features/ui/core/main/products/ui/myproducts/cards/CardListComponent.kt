@@ -81,7 +81,7 @@ private fun CardNotFoundComponent(
         ) {
 
             Text(
-                text = stringResource(id = R.string.prodcuts_screen_my_products_no_cards),
+                text = stringResource(id = R.string.products_screen_my_products_no_cards),
                 style = MaterialTheme.typography.caption,
                 color = ApplicationTheme.colors.primaryVariant,
             )

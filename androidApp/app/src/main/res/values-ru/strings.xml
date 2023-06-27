@@ -25,10 +25,15 @@
     <string name="products_screen_my_products_cards">Карты</string>
     <string name="products_screen_my_products_credits">Кредиты</string>
     <string name="products_screen_my_products_deposits">Депозиты и счета</string>
-    <string name="prodcuts_screen_my_products_no_cards">У Вас нет доступных карточек, Вы можете оформить новую карту</string>
-    <string name="prodcuts_screen_my_products_no_credits">У Вас нет доступных кредитов, Вы можете оформить новый кредит</string>
-    <string name="prodcuts_screen_my_products_no_deposits">У Вас нет доступных депозитов и счетов, Вы можете оформить новый депозит</string>
+    <string name="products_screen_my_products_no_cards">У Вас нет доступных карточек, Вы можете оформить новую карту</string>
+    <string name="products_screen_my_products_no_credits">У Вас нет доступных кредитов, Вы можете оформить новый кредит</string>
+    <string name="products_screen_my_products_no_deposits">У Вас нет доступных депозитов и счетов, Вы можете оформить новый депозит</string>
     <string name="products_screen_my_products_create_now">Оформить сейчас</string>
 
+    <!-- Add My Product Bottom Sheet -->
+    <string name="products_screen_add_product_card">Оформить карту</string>
+    <string name="products_screen_add_product_card_another_bank">Добавить карту другого банка</string>
+    <string name="products_screen_add_product_deposit">Открыть онлайн-депозит</string>
+    <string name="products_screen_add_product_credit">Подать заявку на кредит</string>
 
 </resources>

@@ -63,6 +63,11 @@ private fun ProductComponent(
         },
         textAlign = TextAlign.Center,
         modifier = Modifier
+            .clickable(
+                onClick = {
+                    onChangeProductType(item)
+                },
+            )
             .graphicsLayer {
                 shape = RoundedCornerShape(12.dp)
                 clip = true
@@ -77,11 +82,6 @@ private fun ProductComponent(
             .padding(
                 horizontal = 14.dp,
                 vertical = 6.dp,
-            )
-            .clickable(
-                onClick = {
-                    onChangeProductType(item)
-                },
             ),
     )
 }
