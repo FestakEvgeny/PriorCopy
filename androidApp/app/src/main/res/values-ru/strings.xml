@@ -36,4 +36,19 @@
     <string name="products_screen_add_product_deposit">Открыть онлайн-депозит</string>
     <string name="products_screen_add_product_credit">Подать заявку на кредит</string>
 
+
+
+
+    <!-- Add Another Bank Card -->
+    <string name="add_another_bank_card_title">Карта другого банка</string>
+    <string name="add_another_bank_card_message">Сохраняйте карты других банков РБ, чтобы совершать переводы
+        на карты Приорбанка и других банков.\n\nДобавить можно карточки Visa, Maestro, MasterCard, подключённые к 3D-Secure.</string>
+    <string name="add_another_bank_card_card_number">Номер карты</string>
+    <string name="add_another_bank_card_card_number_invalid">Введите номер карты</string>
+    <string name="add_another_bank_card_expiration">Срок действия</string>
+    <string name="add_another_bank_card_expiration_invalid">Введите срок действия карты</string>
+    <string name="add_another_bank_card_cvv">CVC/CVV</string>
+    <string name="add_another_bank_card_cvv_invalid">Введите срок действия карты</string>
+    <string name="add_another_bank_card_add">Добавить</string>
+
 </resources>

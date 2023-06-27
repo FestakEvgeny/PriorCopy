@@ -63,12 +63,19 @@ fun ProductsScreen(
                 ProductsScreenIntent.ChangeProductType(product.id)
             )
         },
-        createCardClick = {},
+        createCardClick = {
+            viewModel.processIntent(ProductsScreenIntent.DismissAddProductDialog)
+        },
         createCardOfAnotherBankClick = {
+            viewModel.processIntent(ProductsScreenIntent.DismissAddProductDialog)
             parentNavController?.navigate(AddAnotherBankCardNavigation.route)
         },
-        openOnlineDeposit = {},
-        requestForOpenCredit = {},
+        openOnlineDeposit = {
+            viewModel.processIntent(ProductsScreenIntent.DismissAddProductDialog)
+        },
+        requestForOpenCredit = {
+            viewModel.processIntent(ProductsScreenIntent.DismissAddProductDialog)
+        },
         executeIntent = viewModel::processIntent,
     )
 

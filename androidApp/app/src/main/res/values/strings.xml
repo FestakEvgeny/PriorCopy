@@ -36,4 +36,19 @@
     <string name="products_screen_add_product_deposit">Open a deposit</string>
     <string name="products_screen_add_product_credit">Request a credit</string>
 
+
+
+
+    <!-- Add Another Bank Card -->
+    <string name="add_another_bank_card_title">Card of another bank</string>
+    <string name="add_another_bank_card_message">Save cards from the other Banks of Belarus to make
+        the transactions on Priorbank\'s cards and other banks.\n\n
+        You can add cars from Visa, Maestro, MasterCard, connected  to 3D-Secure.</string>
+    <string name="add_another_bank_card_card_number">Card Number</string>
+    <string name="add_another_bank_card_card_number_invalid">Input correct card number</string>
+    <string name="add_another_bank_card_expiration">Expiration date</string>
+    <string name="add_another_bank_card_expiration_invalid">Input correct expiration date</string>
+    <string name="add_another_bank_card_cvv">CVC/CVV</string>
+    <string name="add_another_bank_card_cvv_invalid">Input correct CVC/CVV</string>
+    <string name="add_another_bank_card_add">Add</string>
 </resources>
