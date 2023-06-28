@@ -2,7 +2,6 @@ package fetskovich.evgeny.presentation.theme.colors.types
 
 import android.annotation.SuppressLint
 import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 import fetskovich.evgeny.presentation.theme.colors.AppColors
 
@@ -23,7 +22,7 @@ private val yellowDarkColorPalette = AppColors(
     onPrimary = Color(0xFFFFFFFF),
     primaryVariant = Color(0xFF202020),
     secondary = Color(0xFF424242),
-    secondaryVariant = Color(0xFFFFFFFF),
+    secondaryVariant = Color(0xFF7C7A7A),
     surface = Color(0xFCFFFFFF),
     onSurface = Color(0xFF000000),
     background = Color(0xFFFFFFFF),
@@ -44,7 +43,7 @@ private val yellowLightColorPalette = AppColors(
     onPrimary = Color(0xFFFFFFFF),
     primaryVariant = Color(0xFF202020),
     secondary = Color(0xFFDADADA),
-    secondaryVariant = Color(0xFFFFFFFF),
+    secondaryVariant = Color(0xFF7C7A7A),
     surface = Color(0xFCFFFFFF),
     onSurface = Color(0xFF000000),
     background = Color(0xFFFFFFFF),

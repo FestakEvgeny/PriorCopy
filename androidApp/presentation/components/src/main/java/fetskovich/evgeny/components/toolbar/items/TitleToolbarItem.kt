@@ -18,7 +18,7 @@ fun TitleToolbarItem(
   onClick: (() -> Unit)? = null
 ) {
   Text(
-    style = MaterialTheme.typography.subtitle2,
+    style = MaterialTheme.typography.subtitle1,
     text = title,
     color = ApplicationTheme.colors.primaryVariant,
     modifier = modifier

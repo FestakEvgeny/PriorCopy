@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,7 @@ import fetskovich.evgeny.components.actions.TextActionButton
 import fetskovich.evgeny.components.toolbar.BaseToolbar
 import fetskovich.evgeny.components.toolbar.items.BackToolbarItem
 import fetskovich.evgeny.components.toolbar.items.TitleToolbarItem
+import fetskovich.evgeny.recipeskmm.app.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -84,7 +86,7 @@ private fun Screen(
                 },
                 centerComponent = {
                     TitleToolbarItem(
-                        title = "Карта другого банка",
+                        title = stringResource(id = R.string.add_another_bank_card_title),
                     )
                 }
             )
