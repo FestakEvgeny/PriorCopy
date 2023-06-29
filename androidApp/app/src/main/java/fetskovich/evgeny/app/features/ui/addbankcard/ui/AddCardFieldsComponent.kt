@@ -63,6 +63,7 @@ fun AddCardFieldsComponent(
 
     Card(
         backgroundColor = ApplicationTheme.colors.background,
+        elevation = 4.dp,
         modifier = modifier
             .padding(12.dp)
             .fillMaxWidth()
@@ -232,6 +233,7 @@ private fun ExpirationDateField(
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
+
                 )
             }
 
