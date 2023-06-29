@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -36,6 +37,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -149,6 +151,9 @@ private fun ColumnScope.CardNumberField(
                     focusManager.moveFocus(FocusDirection.Down)
                 }
             ),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
+            ),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
@@ -227,6 +232,9 @@ private fun ExpirationDateField(
                             focusManager.moveFocus(FocusDirection.Right)
                         }
                     ),
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Next
+                    ),
                     cursorBrush = SolidColor(ApplicationTheme.colors.primary),
                     modifier = Modifier
                         .padding(
@@ -297,6 +305,9 @@ private fun CvvField(
                             focusManager.clearFocus()
                             keyboardController?.hide()
                         }
+                    ),
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Done
                     ),
                     cursorBrush = SolidColor(ApplicationTheme.colors.primary),
                     modifier = Modifier
