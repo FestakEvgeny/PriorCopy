@@ -8,7 +8,7 @@ import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.singleton
 
-val dataDiModule = DI.Module {
+val dataDiModule = DI.Module ("DataModule") {
     // repositories (separate to another module if there will be a lot)
     bind<AuthorizationRepository>() with singleton { AuthorizationRepositoryImpl() }
 

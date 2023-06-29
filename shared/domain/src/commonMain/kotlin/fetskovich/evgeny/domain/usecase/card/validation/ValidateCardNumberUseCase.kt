@@ -9,22 +9,7 @@ class ValidateCardNumberUseCase : UseCase<ValidateCardIntent, ValidatedCardResul
     override suspend fun execute(
         intent: ValidateCardIntent
     ): ValidatedCardResult {
-        val value = intent.card
-
-        if (value.isEmpty()) {
-            return ValidatedCardResult(false)
-        }
-
-        // Luhn's algortihm.
-        var checksum = 0
-        for (i in value.length - 1 downTo 0 step 2) {
-            checksum += value[i] - '0'
-        }
-        for (i in value.length - 2 downTo 0 step 2) {
-            val n: Int = (value[i] - '0') * 2
-            checksum += if (n > 9) n - 9 else n
-        }
-        val isValid = checksum % 10 == 0
+        val isValid = intent.card.length == 16
 
         return ValidatedCardResult(isValid)
     }
