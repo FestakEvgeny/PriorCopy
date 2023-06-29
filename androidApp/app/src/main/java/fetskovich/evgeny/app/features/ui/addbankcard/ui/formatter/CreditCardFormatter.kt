@@ -4,6 +4,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 
+// format 4121312312341234 to 4121 3123 1234 1234
 fun formatCardNumber(
     text: AnnotatedString,
 ): TransformedText {

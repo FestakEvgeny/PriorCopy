@@ -1,10 +1,10 @@
 package fetskovich.evgeny.app.features.ui.addbankcard.ui.formatter
 
-import android.util.Log
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 
+// format 4455 to 44/55
 fun formatCardExpirationField(
     text: AnnotatedString,
 ): TransformedText {

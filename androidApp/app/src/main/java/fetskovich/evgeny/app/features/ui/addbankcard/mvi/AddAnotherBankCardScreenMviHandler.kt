@@ -8,7 +8,11 @@ import fetskovich.evgeny.recipeskmm.app.R
 class AddAnotherBankCardScreenMviHandler(
     private val resourceProvider: ResourceProvider,
 ) : StateHandler<AddAnotherBankCardScreenState, AddAnotherBankCardScreenAction>(
-    initialState = AddAnotherBankCardScreenState()
+    initialState = AddAnotherBankCardScreenState(
+        cardNumber = ValidationFieldState.Valid("4916989602113451"),
+        cardExpiration = ValidationFieldState.Valid("0227"),
+        cardCvv = ValidationFieldState.Valid("312")
+    )
 ) {
 
     fun updateCardNumber(text: String) {
