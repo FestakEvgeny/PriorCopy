@@ -32,7 +32,7 @@ class LoginScreenApi : FeatureApi {
                 import(loginScreenFeatureModule)
             }
 
-            // TODO Solve the issue with recomposition
+
             val viewModelProvider: ViewModelProviderFactory<LoginScreenViewModel> by loginModule.instance()
 
             LoginScreen(

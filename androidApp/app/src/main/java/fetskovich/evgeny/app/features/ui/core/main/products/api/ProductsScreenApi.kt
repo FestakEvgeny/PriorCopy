@@ -34,7 +34,6 @@ class ProductsScreenApi : FeatureApi {
                 import(productsFeatureModule)
             }
 
-            // TODO Solve the issue with recomposition
             val viewModelProvider: ViewModelProviderFactory<ProductsScreenViewModel> by screenModule.instance()
 
             ProductsScreen(

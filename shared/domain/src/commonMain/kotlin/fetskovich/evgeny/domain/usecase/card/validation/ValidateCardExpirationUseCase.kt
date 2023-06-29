@@ -9,7 +9,7 @@ class ValidateCardExpirationUseCase : UseCase<ValidateCardExpirationIntent, Vali
     override suspend fun execute(
         intent: ValidateCardExpirationIntent
     ): ValidatedCardExpirationResult {
-        val isValid = intent.expiration.length == 4 // TODO Apply normal validation
+        val isValid = intent.expiration.length == 4
         return ValidatedCardExpirationResult(isValid)
     }
 }
