@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -214,24 +215,23 @@ private fun ExpirationDateField(
                         shape = RoundedCornerShape(8.dp)
                     )
             ) {
-                TextField(
+                BasicTextField(
                     value = expirationDate.text,
                     onValueChange = {
                         onExpirationDateChanged(it.take(5))
                     },
-                    maxLines = 1,
+                    singleLine = true,
                     keyboardActions = KeyboardActions(
                         onNext = {
                             focusManager.moveFocus(FocusDirection.Right)
                         }
                     ),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        disabledIndicatorColor = Color.Transparent,
-                    ),
                     modifier = Modifier
+                        .padding(
+                            start = 6.dp,
+                            top = 4.dp,
+                            bottom = 4.dp,
+                        )
                         .fillMaxWidth()
 
                 )
@@ -284,25 +284,24 @@ private fun CvvField(
                         shape = RoundedCornerShape(8.dp)
                     )
             ) {
-                TextField(
+                BasicTextField(
                     value = cvv.text,
                     onValueChange = {
                         onCvvChanged(it.take(4))
                     },
-                    maxLines = 1,
+                    singleLine = true,
                     keyboardActions = KeyboardActions(
                         onDone = {
                             focusManager.clearFocus()
                             keyboardController?.hide()
                         }
                     ),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
-                        disabledIndicatorColor = Color.Transparent,
-                    ),
                     modifier = Modifier
+                        .padding(
+                            start = 6.dp,
+                            top = 4.dp,
+                            bottom = 4.dp,
+                        )
                         .fillMaxWidth()
                 )
             }
