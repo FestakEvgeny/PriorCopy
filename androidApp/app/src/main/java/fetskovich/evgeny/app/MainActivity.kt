@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import fetskovich.evgeny.app.features.ui.addbankcard.api.AddAnotherBankCardFeatureApi
@@ -23,40 +24,49 @@ import fetskovich.evgeny.app.features.ui.splash.api.SplashFeatureApi
 import fetskovich.evgeny.presentation.theme.BasicTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val kodein by lazy {
+        (application as BaseApplication).di
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             BasicTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                CompositionLocalProvider(
+                    ApplicationModuleComposition provides kodein,
                 ) {
-
-                    val features = remember {
-                        setOf(
-                            SplashFeatureApi(),
-                            MainBottomNavigationFeatureApi(
-                                setOf(
-                                    MainScreensGraphApi(
-                                        setOf(
-                                            LoginScreenApi(),
-                                            ProductsScreenApi(),
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
+                    ) {
+                        val features = remember {
+                            setOf(
+                                SplashFeatureApi(),
+                                MainBottomNavigationFeatureApi(
+                                    setOf(
+                                        MainScreensGraphApi(
+                                            setOf(
+                                                LoginScreenApi(),
+                                                ProductsScreenApi(),
+                                            )
+                                        ),
+                                        HistoryScreenApi(),
+                                        PaymentsScreenApi(),
+                                        MoreScreensGraphApi(
+                                            setOf(OtherScreenApi())
                                         )
-                                    ),
-                                    HistoryScreenApi(),
-                                    PaymentsScreenApi(),
-                                    MoreScreensGraphApi(
-                                        setOf(OtherScreenApi())
                                     )
-                                )
-                            ),
-                            AddAnotherBankCardFeatureApi(),
+                                ),
+                                AddAnotherBankCardFeatureApi(),
+                            )
+                        }
+
+                        ApplicationNavHost(
+                            features = features,
                         )
                     }
-
-                    ApplicationNavHost(
-                        features = features,
-                    )
                 }
             }
         }

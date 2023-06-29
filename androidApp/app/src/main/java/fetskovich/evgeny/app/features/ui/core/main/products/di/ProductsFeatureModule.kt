@@ -8,7 +8,7 @@ import org.kodein.di.bind
 import org.kodein.di.factory
 import org.kodein.di.instance
 
-val productsFeatureModule = DI.Module {
+val productsFeatureModule = DI.Module ("Products") {
     bind<ProductsScreenMviHandler>() with factory {
         ProductsScreenMviHandler(
             resourceProvider = instance(),

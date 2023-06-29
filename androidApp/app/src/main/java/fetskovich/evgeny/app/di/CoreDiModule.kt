@@ -9,7 +9,7 @@ import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.singleton
 
-val coreDiModule = DI.Module {
+val coreDiModule = DI.Module ("Core") {
     bind<ResourceProvider>() with singleton {
         ResourceProviderImpl(context = instance())
     }
