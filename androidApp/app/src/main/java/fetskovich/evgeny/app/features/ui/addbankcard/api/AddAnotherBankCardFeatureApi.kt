@@ -13,10 +13,10 @@ import fetskovich.evgeny.app.features.ui.addbankcard.AddAnotherBankCardScreen
 import fetskovich.evgeny.app.features.ui.addbankcard.AddAnotherBankCardViewModel
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenMviHandler
 import fetskovich.evgeny.app.features.viewmodel.ViewModelProviderFactory
-import fetskovich.evgeny.domain.usecase.card.IdentifyCardUseCase
-import fetskovich.evgeny.domain.usecase.card.ValidateCardCvvUseCase
-import fetskovich.evgeny.domain.usecase.card.ValidateCardExpirationUseCase
-import fetskovich.evgeny.domain.usecase.card.ValidateCardNumberUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.IdentifyCardUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardCvvUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardExpirationUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardNumberUseCase
 
 class AddAnotherBankCardFeatureApi : FeatureApi {
 

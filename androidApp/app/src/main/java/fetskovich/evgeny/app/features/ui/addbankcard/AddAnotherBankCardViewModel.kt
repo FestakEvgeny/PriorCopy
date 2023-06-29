@@ -8,14 +8,14 @@ import fetskovich.evgeny.app.features.ui.addbankcard.mvi.BankCardVariant
 import fetskovich.evgeny.app.features.viewmodel.BaseViewModel
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
 import fetskovich.evgeny.architecture.mvi.ActionIntent
-import fetskovich.evgeny.domain.usecase.card.IdentifyBankCardIntent
-import fetskovich.evgeny.domain.usecase.card.IdentifyCardUseCase
-import fetskovich.evgeny.domain.usecase.card.ValidateCardCvvIntent
-import fetskovich.evgeny.domain.usecase.card.ValidateCardCvvUseCase
-import fetskovich.evgeny.domain.usecase.card.ValidateCardExpirationIntent
-import fetskovich.evgeny.domain.usecase.card.ValidateCardExpirationUseCase
-import fetskovich.evgeny.domain.usecase.card.ValidateCardIntent
-import fetskovich.evgeny.domain.usecase.card.ValidateCardNumberUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.IdentifyBankCardIntent
+import fetskovich.evgeny.domain.usecase.card.validation.IdentifyCardUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardCvvIntent
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardCvvUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardExpirationIntent
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardExpirationUseCase
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardIntent
+import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardNumberUseCase
 import kotlinx.coroutines.launch
 
 class AddAnotherBankCardViewModel(

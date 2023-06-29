@@ -1,4 +1,4 @@
-package fetskovich.evgeny.domain.usecase.card
+package fetskovich.evgeny.domain.usecase.card.validation
 
 import fetskovich.evgeny.architecture.mvi.ActionIntent
 import fetskovich.evgeny.architecture.mvi.IntentResult

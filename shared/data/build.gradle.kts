@@ -22,6 +22,9 @@ kotlin {
                 implementation(project(":shared:entity"))
                 implementation(project(":shared:domain"))
                 implementation(project(":shared:architecture"))
+
+                implementation(shared.SharedLibrary.Kodein.core)
+
                 implementation(shared.SharedLibrary.Coroutines.core)
                 implementation(shared.SharedLibrary.Storage.settings)
             }

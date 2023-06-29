@@ -53,6 +53,8 @@ dependencies {
     implementation(project(":shared:domain"))
     implementation(project(":shared:data"))
 
+    implementation(shared.SharedLibrary.Kodein.core)
+
     // Modules
     implementation(project(":androidApp:navigation"))
     implementation(project(":androidApp:presentation:theme"))
