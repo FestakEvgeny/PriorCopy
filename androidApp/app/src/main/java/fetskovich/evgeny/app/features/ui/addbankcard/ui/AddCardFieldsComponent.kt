@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -226,6 +227,7 @@ private fun ExpirationDateField(
                             focusManager.moveFocus(FocusDirection.Right)
                         }
                     ),
+                    cursorBrush = SolidColor(ApplicationTheme.colors.primary),
                     modifier = Modifier
                         .padding(
                             start = 6.dp,
@@ -296,6 +298,7 @@ private fun CvvField(
                             keyboardController?.hide()
                         }
                     ),
+                    cursorBrush = SolidColor(ApplicationTheme.colors.primary),
                     modifier = Modifier
                         .padding(
                             start = 6.dp,

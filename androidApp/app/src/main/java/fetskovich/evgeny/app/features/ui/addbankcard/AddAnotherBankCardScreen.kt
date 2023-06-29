@@ -66,7 +66,7 @@ fun AddAnotherBankCardScreen(
             viewModel.actionFlow.collectLatest { action ->
                 when (action) {
                     is AddAnotherBankCardScreenAction.NavigateBack -> {
-                        // TODO Display simple toast
+                        navController.popBackStack()
                     }
                 }
             }
