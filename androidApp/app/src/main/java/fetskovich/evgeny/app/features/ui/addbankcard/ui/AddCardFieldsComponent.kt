@@ -38,10 +38,13 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import fetskovich.evgeny.app.core.validation.ValidationFieldState
+import fetskovich.evgeny.app.features.ui.addbankcard.ui.formatter.formatCardExpirationField
+import fetskovich.evgeny.app.features.ui.addbankcard.ui.formatter.formatCardNumber
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
 import fetskovich.evgeny.recipeskmm.app.R
@@ -152,6 +155,7 @@ private fun ColumnScope.CardNumberField(
                 }
             ),
             keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
                 imeAction = ImeAction.Next
             ),
             colors = TextFieldDefaults.textFieldColors(
@@ -160,6 +164,7 @@ private fun ColumnScope.CardNumberField(
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
             ),
+            visualTransformation = ::formatCardNumber,
             modifier = Modifier
                 .weight(1f)
         )
@@ -233,9 +238,11 @@ private fun ExpirationDateField(
                         }
                     ),
                     keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
                     ),
                     cursorBrush = SolidColor(ApplicationTheme.colors.primary),
+                    visualTransformation = ::formatCardExpirationField,
                     modifier = Modifier
                         .padding(
                             start = 6.dp,
@@ -297,7 +304,7 @@ private fun CvvField(
                 BasicTextField(
                     value = cvv.text,
                     onValueChange = {
-                        onCvvChanged(it.take(4))
+                        onCvvChanged(it.take(3))
                     },
                     singleLine = true,
                     keyboardActions = KeyboardActions(
@@ -307,6 +314,7 @@ private fun CvvField(
                         }
                     ),
                     keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
                     ),
                     cursorBrush = SolidColor(ApplicationTheme.colors.primary),

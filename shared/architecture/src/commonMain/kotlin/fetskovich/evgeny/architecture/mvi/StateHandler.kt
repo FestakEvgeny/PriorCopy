@@ -17,7 +17,7 @@ abstract class StateHandler<S : ScreenState, A : SingleAction>(
     private val singleActionChannel = Channel<A>()
     val singleAction = singleActionChannel.receiveAsFlow()
 
-    protected suspend fun processSingleAction(
+    suspend fun processSingleAction(
         action: A
     ) {
         singleActionChannel.send(action)
