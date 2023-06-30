@@ -5,7 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import fetskovich.evgeny.app.ApplicationModuleComposition
+import fetskovich.evgeny.app.LocalApplicationModuleComposition
 import fetskovich.evgeny.app.features.ui.FeatureApi
 import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreen
 import fetskovich.evgeny.app.features.ui.core.main.login.LoginScreenViewModel
@@ -25,7 +25,7 @@ class LoginScreenApi : FeatureApi {
         navGraphBuilder.composable(
             route = LoginScreenNavigation.route
         ) {
-            val kodein = ApplicationModuleComposition.current
+            val kodein = LocalApplicationModuleComposition.current
 
             val loginModule = DI {
                 extend(kodein)

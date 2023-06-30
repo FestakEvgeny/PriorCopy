@@ -1,0 +1,17 @@
+CREATE TABLE BankCardModel (
+    id INTEGER NOT NULL,
+    bankCardType TEXT NOT NULL,
+    cardNumber TEXT NOT NULL,
+    expirationDate INTEGER NOT NULL,
+    cvv INTEGER NOT NULL
+);
+
+insertBankCardModel:
+INSERT INTO BankCardModel(id, bankCardType, cardNumber, expirationDate, cvv)
+VALUES(?, ?, ?, ?, ?);
+
+removeAllBankCards:
+DELETE FROM BankCardModel;
+
+selectedAlLBankCards:
+SELECT BankCardModel.* FROM BankCardModel;

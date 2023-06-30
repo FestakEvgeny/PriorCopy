@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import fetskovich.evgeny.app.ApplicationModuleComposition
+import fetskovich.evgeny.app.LocalApplicationModuleComposition
 import fetskovich.evgeny.app.features.ui.FeatureApi
 import fetskovich.evgeny.app.features.ui.core.main.products.ProductsScreen
 import fetskovich.evgeny.app.features.ui.core.main.products.ProductsScreenViewModel
@@ -27,7 +27,7 @@ class ProductsScreenApi : FeatureApi {
             route = ProductsScreenNavigation.route
         ) {
             val context = LocalContext.current
-            val kodein = ApplicationModuleComposition.current
+            val kodein = LocalApplicationModuleComposition.current
 
             val screenModule = DI {
                 extend(kodein)

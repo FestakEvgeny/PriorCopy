@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -27,6 +28,8 @@ kotlin {
 
                 implementation(shared.SharedLibrary.Coroutines.core)
                 implementation(shared.SharedLibrary.Storage.settings)
+
+                implementation(shared.SharedLibrary.SqlDelight.runtime)
             }
         }
         val commonTest by getting {
@@ -34,7 +37,12 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(shared.SharedLibrary.SqlDelight.Android.driver)
+            }
+        }
+
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -43,6 +51,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation(shared.SharedLibrary.SqlDelight.Ios.driver)
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -62,5 +74,11 @@ android {
     defaultConfig {
         minSdk = AndroidBuildVersions.minSdk
         targetSdk = AndroidBuildVersions.targetSdk
+    }
+}
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "fetskovich.evgeny.data.database"
     }
 }

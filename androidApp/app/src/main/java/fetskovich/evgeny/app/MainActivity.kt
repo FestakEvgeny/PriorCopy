@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BasicTheme {
                 CompositionLocalProvider(
-                    ApplicationModuleComposition provides kodein,
+                    LocalApplicationModuleComposition provides kodein,
                 ) {
                     Surface(
                         modifier = Modifier.fillMaxSize(),
