@@ -24,12 +24,13 @@ object SharedLibrary {
         const val settings = "com.russhwolf:multiplatform-settings-no-arg:1.0.0"
     }
 
-    object SqlDelight  {
+    object SqlDelight {
 
         // also must be changed at build.gradle.kts root file
         private const val version = "1.5.5"
         const val plugin = "com.squareup.sqldelight:gradle-plugin:$version"
         const val runtime = "com.squareup.sqldelight:runtime:$version"
+        const val coroutines = "com.squareup.sqldelight:coroutines-extensions:$version"
 
         object Android {
             const val driver = "com.squareup.sqldelight:android-driver:$version"

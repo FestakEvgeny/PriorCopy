@@ -4,10 +4,17 @@ import androidx.lifecycle.viewModelScope
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenAction
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenIntent
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenMviHandler
+import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenState
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.BankCardVariant
 import fetskovich.evgeny.app.features.viewmodel.BaseViewModel
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
 import fetskovich.evgeny.architecture.mvi.ActionIntent
+import fetskovich.evgeny.domain.usecase.card.data.InsertBankCardUseCase
+import fetskovich.evgeny.domain.usecase.card.data.InsertBankCardsIntent
+import fetskovich.evgeny.domain.usecase.card.data.InsertBankCardsResult
+import fetskovich.evgeny.domain.usecase.card.expiration.ExpirationDateToTimestampIntent
+import fetskovich.evgeny.domain.usecase.card.expiration.ExpirationDateToTimestampResult
+import fetskovich.evgeny.domain.usecase.card.expiration.ExpirationDateToTimestampUseCase
 import fetskovich.evgeny.domain.usecase.card.validation.IdentifyBankCardIntent
 import fetskovich.evgeny.domain.usecase.card.validation.IdentifyCardUseCase
 import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardCvvIntent
@@ -16,6 +23,7 @@ import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardExpirationIn
 import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardExpirationUseCase
 import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardIntent
 import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardNumberUseCase
+import fetskovich.evgeny.entity.card.BankCard
 import kotlinx.coroutines.launch
 
 class AddAnotherBankCardViewModel(
@@ -24,6 +32,8 @@ class AddAnotherBankCardViewModel(
     private val validateCardNumberUseCase: ValidateCardNumberUseCase,
     private val validateCardCvvUseCase: ValidateCardCvvUseCase,
     private val validateCardExpirationUseCase: ValidateCardExpirationUseCase,
+    private val insertBankCardUseCase: InsertBankCardUseCase,
+    private val expirationDateToTimestampUseCase: ExpirationDateToTimestampUseCase,
     private val coroutinesContextProvider: CoroutinesContextProvider,
 ) : BaseViewModel() {
 
@@ -76,16 +86,70 @@ class AddAnotherBankCardViewModel(
             ).isValid
 
             if (isCardNumberValid && isExpirationValid && isCvvValid) {
-                // TODO Execute action to save card
-                mviStateHandler.processSingleAction(
-                    AddAnotherBankCardScreenAction.NavigateBack
-                )
+                parseDataAndInsertBankCard(state)
             } else {
                 mviStateHandler.executeActionOnCardValidation(
                     isCardNumberValid = isCardNumberValid,
                     isCardExpirationValid = isExpirationValid,
                     isCardCvvValid = isCvvValid,
                 )
+            }
+        }
+    }
+
+    private suspend fun parseDataAndInsertBankCard(
+        state: AddAnotherBankCardScreenState
+    ) {
+        val expirationDate = state.cardExpiration.text
+        val expirationDateTimestampResult = expirationDateToTimestampUseCase.execute(
+            ExpirationDateToTimestampIntent(
+                expirationDate = expirationDate,
+            )
+        )
+
+        when (expirationDateTimestampResult) {
+            ExpirationDateToTimestampResult.InvalidInput -> {
+                mviStateHandler.processSingleAction(
+                    AddAnotherBankCardScreenAction.DisplayError(
+                        ""
+                    )
+                )
+            }
+
+            is ExpirationDateToTimestampResult.Success -> {
+                insertBankCard(
+                    state = state,
+                    expirationTimestamp = expirationDateTimestampResult.timestamp,
+                )
+            }
+        }
+    }
+
+    private suspend fun insertBankCard(
+        state: AddAnotherBankCardScreenState,
+        expirationTimestamp: Long,
+    ) {
+        val result = insertBankCardUseCase.execute(
+            InsertBankCardsIntent(
+                bankCard = BankCard(
+                    id = 0L,
+                    bankCardType = BankCardVariant.toBankType(state.cardVariant),
+                    cardNumber = state.cardNumber.text,
+                    expirationDate = expirationTimestamp,
+                    cvv = state.cardCvv.text.toLong(),
+                )
+            )
+        )
+
+        when (result) {
+            is InsertBankCardsResult.Error -> {
+                mviStateHandler.processSingleAction(
+                    AddAnotherBankCardScreenAction.DisplayError(result.error.message ?: "")
+                )
+            }
+
+            InsertBankCardsResult.Success -> {
+                mviStateHandler.processSingleAction(AddAnotherBankCardScreenAction.NavigateBack)
             }
         }
     }

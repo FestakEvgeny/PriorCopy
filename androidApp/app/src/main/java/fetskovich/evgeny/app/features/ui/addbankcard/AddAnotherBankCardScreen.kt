@@ -1,5 +1,6 @@
 package fetskovich.evgeny.app.features.ui.addbankcard
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,6 +42,7 @@ fun AddAnotherBankCardScreen(
 ) {
     val state by viewModel.stateFlow.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
+    val context = LocalContext.current
 
     Screen(
         state = state,
@@ -67,6 +70,10 @@ fun AddAnotherBankCardScreen(
                 when (action) {
                     is AddAnotherBankCardScreenAction.NavigateBack -> {
                         navController.popBackStack()
+                    }
+
+                    is AddAnotherBankCardScreenAction.DisplayError -> {
+                        Toast.makeText(context, action.error, Toast.LENGTH_LONG).show()
                     }
                 }
             }

@@ -33,5 +33,16 @@ enum class BankCardVariant(@DrawableRes val imageId: Int) {
                 BankCardType.UNKNOWN -> UNKNOWN
             }
         }
+
+        fun toBankType(type: BankCardVariant): BankCardType {
+            return when (type) {
+                JCB -> BankCardType.JCB
+                VISA -> BankCardType.VISA
+                MASTERCARD -> BankCardType.MASTERCARD
+                DISCOVER -> BankCardType.DISCOVER
+                MAESTRO -> BankCardType.MAESTRO
+                UNKNOWN -> BankCardType.UNKNOWN
+            }
+        }
     }
 }

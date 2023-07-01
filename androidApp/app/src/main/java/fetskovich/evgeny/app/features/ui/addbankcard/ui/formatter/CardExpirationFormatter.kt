@@ -17,7 +17,9 @@ fun formatCardExpirationField(
 
     for (i in trimmed.indices) {
         out += trimmed[i]
-        if (i == 1) out += "/"
+        if (i == 1) {
+            out += "/"
+        }
     }
 
     val creditCardOffsetTranslator = object : OffsetMapping {

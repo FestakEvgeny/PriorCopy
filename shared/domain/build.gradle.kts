@@ -22,6 +22,8 @@ kotlin {
                 implementation(shared.SharedLibrary.Coroutines.core)
                 implementation(shared.SharedLibrary.Kodein.core)
 
+                implementation(shared.SharedLibrary.Core.dateTime)
+
                 implementation(project(":shared:entity"))
                 implementation(project(":shared:architecture"))
             }

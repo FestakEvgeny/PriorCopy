@@ -2,6 +2,7 @@ package fetskovich.evgeny.data.di
 
 import fetskovich.evgeny.data.auth.AuthorizationRepositoryImpl
 import fetskovich.evgeny.data.bank.BankCardRepositoryImpl
+import fetskovich.evgeny.data.bank.mapper.BankCardMapper
 import fetskovich.evgeny.data.database.Database
 import fetskovich.evgeny.data.database.dao.BankCardDao
 import fetskovich.evgeny.data.user.UserSettingsStorageImpl
@@ -11,13 +12,16 @@ import fetskovich.evgeny.domain.user.UserSettingsStorage
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
+import org.kodein.di.provider
 import org.kodein.di.singleton
 
+// Later separate per different modules
 val dataDiModule = DI.Module("DataModule") {
     // Database
     bind<Database>() with singleton {
         Database(
-            databaseDriverFactory = instance()
+            databaseDriverFactory = instance(),
+            coroutinesContextProvider = instance(),
         )
     }
 
@@ -27,11 +31,15 @@ val dataDiModule = DI.Module("DataModule") {
     }
 
 
+    // Mappers
+    bind<BankCardMapper>() with provider { BankCardMapper() }
+
     // repositories (separate to another module if there will be a lot)
     bind<AuthorizationRepository>() with singleton { AuthorizationRepositoryImpl() }
     bind<BankCardRepository>() with singleton {
         BankCardRepositoryImpl(
             bankCardDao = instance(),
+            bankCardMapper = instance(),
         )
     }
 

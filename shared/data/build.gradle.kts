@@ -30,6 +30,7 @@ kotlin {
                 implementation(shared.SharedLibrary.Storage.settings)
 
                 implementation(shared.SharedLibrary.SqlDelight.runtime)
+                implementation(shared.SharedLibrary.SqlDelight.coroutines)
             }
         }
         val commonTest by getting {
