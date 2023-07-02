@@ -3,6 +3,7 @@ package fetskovich.evgeny.data.bank.mapper
 import fetskovich.evgeny.data.database.BankCardModel
 import fetskovich.evgeny.entity.card.BankCard
 import fetskovich.evgeny.entity.card.BankCardType
+import fetskovich.evgeny.entity.currency.Currency
 
 class BankCardMapper {
 
@@ -12,7 +13,9 @@ class BankCardMapper {
             bankCardType = BankCardType.valueOf(model.bankCardType),
             cardNumber = model.cardNumber,
             expirationDate = model.expirationDate,
-            cvv = model.cvv
+            cvv = model.cvv,
+            cardCurrency = Currency.valueOf(model.cardCurrency),
+            balance = model.balance,
         )
     }
 
@@ -23,6 +26,8 @@ class BankCardMapper {
             cardNumber = entity.cardNumber,
             expirationDate = entity.expirationDate,
             cvv = entity.cvv,
+            cardCurrency = entity.cardCurrency.name,
+            balance = entity.balance,
         )
     }
 }

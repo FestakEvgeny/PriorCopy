@@ -1,6 +1,7 @@
 package fetskovich.evgeny.app.features.ui.addbankcard
 
 import androidx.lifecycle.viewModelScope
+import fetskovich.evgeny.app.core.resources.ResourceProvider
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenAction
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenIntent
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.AddAnotherBankCardScreenMviHandler
@@ -24,7 +25,10 @@ import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardExpirationUs
 import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardIntent
 import fetskovich.evgeny.domain.usecase.card.validation.ValidateCardNumberUseCase
 import fetskovich.evgeny.entity.card.BankCard
+import fetskovich.evgeny.entity.currency.Currency
+import fetskovich.evgeny.recipeskmm.app.R
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class AddAnotherBankCardViewModel(
     private val mviStateHandler: AddAnotherBankCardScreenMviHandler,
@@ -35,6 +39,7 @@ class AddAnotherBankCardViewModel(
     private val insertBankCardUseCase: InsertBankCardUseCase,
     private val expirationDateToTimestampUseCase: ExpirationDateToTimestampUseCase,
     private val coroutinesContextProvider: CoroutinesContextProvider,
+    private val resourceProvider: ResourceProvider,
 ) : BaseViewModel() {
 
     val stateFlow = mviStateHandler.stateFlow
@@ -111,7 +116,7 @@ class AddAnotherBankCardViewModel(
             ExpirationDateToTimestampResult.InvalidInput -> {
                 mviStateHandler.processSingleAction(
                     AddAnotherBankCardScreenAction.DisplayError(
-                        ""
+                        resourceProvider.provideString(R.string.add_another_bank_card_expiration_invalid_format) // add error message
                     )
                 )
             }
@@ -137,6 +142,8 @@ class AddAnotherBankCardViewModel(
                     cardNumber = state.cardNumber.text,
                     expirationDate = expirationTimestamp,
                     cvv = state.cardCvv.text.toLong(),
+                    cardCurrency = Currency.BYN,
+                    balance = Random.nextDouble(500.0, 100000.0),
                 )
             )
         )

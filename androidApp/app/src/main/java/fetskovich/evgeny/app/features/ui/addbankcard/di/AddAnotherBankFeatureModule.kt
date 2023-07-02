@@ -37,6 +37,7 @@ val addAnotherBankCardFeatureModule = DI.Module("AddAnotherBankCard") {
                 validateCardExpirationUseCase = instance(),
                 expirationDateToTimestampUseCase = instance(),
                 insertBankCardUseCase = instance(),
+                resourceProvider = instance(),
                 coroutinesContextProvider = instance(),
             )
         }

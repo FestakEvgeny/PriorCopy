@@ -24,6 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import fetskovich.evgeny.app.features.ui.addbankcard.mvi.BankCardVariant
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
 import fetskovich.evgeny.recipeskmm.app.R
@@ -123,16 +125,20 @@ private fun CardComponent(
     ) {
         Column(
             modifier = Modifier
-                .padding(8.dp)
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
 
             Row(
                 modifier = Modifier
+                    .padding(
+                        top = 4.dp,
+                    )
                     .fillMaxWidth()
             ) {
 
                 Icon(
-                    painter = painterResource(id = item.cardIcon),
+                    painter = painterResource(id = item.cardIcon.imageId),
                     contentDescription = null,
                     modifier = Modifier
                         .width(30.dp)
@@ -148,12 +154,18 @@ private fun CardComponent(
                     ) {
                         Text(
                             text = item.cardName,
-                            style = MaterialTheme.typography.subtitle2
+                            style = MaterialTheme.typography.subtitle2.copy(
+                                fontSize = 14.sp,
+                            ),
+                            color = ApplicationTheme.colors.primaryVariant,
                         )
 
                         Text(
                             text = item.cardBalanceMainCurrency,
-                            style = MaterialTheme.typography.subtitle2,
+                            style = MaterialTheme.typography.subtitle2.copy(
+                                fontSize = 14.sp,
+                            ),
+                            color = ApplicationTheme.colors.primaryVariant,
                             modifier = Modifier
                                 .padding(
                                     start = 50.dp,
@@ -171,12 +183,22 @@ private fun CardComponent(
                     ) {
                         Text(
                             text = item.cardNumber,
-                            style = MaterialTheme.typography.body2
+                            style = MaterialTheme.typography.body2.copy(
+                                color = MaterialTheme.colors.primaryVariant.copy(
+                                    alpha = 0.4f
+                                ),
+                                fontSize = 12.5.sp,
+                            )
                         )
 
                         Text(
                             text = item.cardBalanceOffCurrency,
-                            style = MaterialTheme.typography.body2,
+                            style = MaterialTheme.typography.body2.copy(
+                                color = MaterialTheme.colors.primaryVariant.copy(
+                                    alpha = 0.4f
+                                ),
+                                fontSize = 12.5.sp,
+                            ),
                             modifier = Modifier
                                 .padding(
                                     start = 50.dp,
@@ -191,7 +213,7 @@ private fun CardComponent(
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier
                     .padding(
-                        top = 10.dp,
+                        top = 20.dp,
                     )
                     .clickable(
                         onClick = onSortChange
@@ -200,6 +222,7 @@ private fun CardComponent(
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_more),
+                    tint = ApplicationTheme.colors.activeLink,
                     contentDescription = null,
                     modifier = Modifier
                         .size(16.dp)
@@ -212,6 +235,9 @@ private fun CardComponent(
 
                 Text(
                     text = stringResource(id = R.string.products_screen_my_products_card_item_sort),
+                    color = ApplicationTheme.colors.activeLink,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 13.5.sp,
                 )
             }
         }
@@ -226,7 +252,7 @@ private fun CardComponentsListPreview() {
             items = listOf(
                 CardListItem(
                     id = "test",
-                    cardIcon = R.drawable.ic_profile,
+                    cardIcon = BankCardVariant.VISA,
                     cardName = "DK9581",
                     cardNumber = "---- 9581",
                     cardBalanceMainCurrency = "4 959,03 BYN",
@@ -234,7 +260,7 @@ private fun CardComponentsListPreview() {
                 ),
                 CardListItem(
                     id = "test2",
-                    cardIcon = R.drawable.ic_profile,
+                    cardIcon = BankCardVariant.VISA,
                     cardName = "DK9581",
                     cardNumber = "---- 9581",
                     cardBalanceMainCurrency = "4 959,03 BYN",
@@ -242,7 +268,7 @@ private fun CardComponentsListPreview() {
                 ),
                 CardListItem(
                     id = "tes3",
-                    cardIcon = R.drawable.ic_profile,
+                    cardIcon = BankCardVariant.VISA,
                     cardName = "DK9581",
                     cardNumber = "---- 9581",
                     cardBalanceMainCurrency = "4 959,03 BYN",
@@ -262,7 +288,7 @@ private fun CardComponentPreview() {
         CardComponent(
             item = CardListItem(
                 id = "test",
-                cardIcon = R.drawable.ic_profile,
+                cardIcon = BankCardVariant.VISA,
                 cardName = "DK9581",
                 cardNumber = "---- 9581",
                 cardBalanceMainCurrency = "4 959,03 BYN",

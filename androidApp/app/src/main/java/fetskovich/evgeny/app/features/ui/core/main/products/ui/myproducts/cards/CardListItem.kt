@@ -1,10 +1,10 @@
 package fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards
 
-import androidx.annotation.DrawableRes
+import fetskovich.evgeny.app.features.ui.addbankcard.mvi.BankCardVariant
 
 data class CardListItem(
     val id: String,
-    @DrawableRes val cardIcon: Int,
+    val cardIcon: BankCardVariant,
     val cardName: String,
     val cardNumber: String,
     val cardBalanceMainCurrency: String,

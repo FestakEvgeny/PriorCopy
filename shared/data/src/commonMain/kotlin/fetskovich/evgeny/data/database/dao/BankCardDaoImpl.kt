@@ -42,6 +42,8 @@ class BankCardDaoImpl(
                 cardNumber = model.cardNumber,
                 expirationDate = model.expirationDate,
                 cvv = model.cvv,
+                cardCurrency = model.cardCurrency,
+                balance = model.balance,
             )
         }
     }

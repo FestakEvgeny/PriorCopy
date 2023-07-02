@@ -1,6 +1,7 @@
 package fetskovich.evgeny.app.features.ui.core.main.products.mvi
 
 import fetskovich.evgeny.app.core.resources.ResourceProvider
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.ProductTypeListItem
 import fetskovich.evgeny.architecture.mvi.StateHandler
 import fetskovich.evgeny.recipeskmm.app.R
@@ -42,6 +43,20 @@ class ProductsScreenMviHandler(
         updateState(
             state.copy(
                 bottomSheetState = sheetState,
+            )
+        )
+    }
+
+    fun updateBankCards(
+        cards: List<CardListItem>
+    ) {
+        val products = state.productsSectionState.copy(
+            cardsList = cards,
+        )
+
+        updateState(
+            state.copy(
+                productsSectionState = products,
             )
         )
     }

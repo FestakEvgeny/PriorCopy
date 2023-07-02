@@ -3,12 +3,14 @@ CREATE TABLE BankCardModel (
     bankCardType TEXT NOT NULL,
     cardNumber TEXT NOT NULL,
     expirationDate INTEGER NOT NULL,
-    cvv INTEGER NOT NULL
+    cvv INTEGER NOT NULL,
+    cardCurrency TEXT NOT NULL,
+    balance REAL NOT NULL
 );
 
 insertBankCardModel:
-INSERT INTO BankCardModel(id, bankCardType, cardNumber, expirationDate, cvv)
-VALUES(?, ?, ?, ?, ?);
+INSERT INTO BankCardModel(id, bankCardType, cardNumber, expirationDate, cvv, cardCurrency, balance)
+VALUES(?, ?, ?, ?, ?, ?, ?);
 
 removeAllBankCards:
 DELETE FROM BankCardModel;

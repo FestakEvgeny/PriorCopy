@@ -17,20 +17,11 @@ class ObserveBankCardsUseCase(
     ): Flow<ObserverBankCardsResult> {
         return repository.getBankCards()
             .map {
-                if (it.isEmpty()) {
-                    ObserverBankCardsResult.CardsNotFound
-                } else {
-                    ObserverBankCardsResult.ReceivedCards(it)
-                }
+                ObserverBankCardsResult(it)
             }
     }
 }
 
 object ObserveBankCardsIntent : ActionIntent
 
-sealed class ObserverBankCardsResult : IntentResult {
-
-    object CardsNotFound : ObserverBankCardsResult()
-
-    data class ReceivedCards(val data: List<BankCard>) : ObserverBankCardsResult()
-}
+data class ObserverBankCardsResult(val data: List<BankCard>)  : IntentResult

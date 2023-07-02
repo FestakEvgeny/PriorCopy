@@ -50,5 +50,6 @@
     <string name="add_another_bank_card_cvv">CVC/CVV</string>
     <string name="add_another_bank_card_cvv_invalid">Введите срок действия карты</string>
     <string name="add_another_bank_card_add">Добавить</string>
+    <string name="add_another_bank_card_expiration_invalid_format">Неправильный формат срока годности карты</string>
 
 </resources>

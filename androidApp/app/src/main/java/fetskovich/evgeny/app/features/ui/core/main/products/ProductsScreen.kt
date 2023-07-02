@@ -24,6 +24,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
 import fetskovich.evgeny.app.features.ui.addbankcard.api.AddAnotherBankCardNavigation
+import fetskovich.evgeny.app.features.ui.addbankcard.mvi.BankCardVariant
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.MyProductsState
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductType
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsBottomSheetState
@@ -36,7 +37,6 @@ import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.toolbar.ProductsToolbar
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
-import fetskovich.evgeny.recipeskmm.app.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -254,7 +254,7 @@ private fun BottomSheetScreenPreview() {
                     cardsList = listOf(
                         CardListItem(
                             id = "1",
-                            cardIcon = R.drawable.ic_profile,
+                            cardIcon = BankCardVariant.VISA,
                             cardName = "9541B",
                             cardNumber = "---- 9581",
                             cardBalanceMainCurrency = "4,315.12 BYR",
@@ -262,7 +262,7 @@ private fun BottomSheetScreenPreview() {
                         ),
                         CardListItem(
                             id = "2",
-                            cardIcon = R.drawable.ic_profile,
+                            cardIcon = BankCardVariant.VISA,
                             cardName = "9541B",
                             cardNumber = "---- 9581",
                             cardBalanceMainCurrency = "4,315.12 BYR",
