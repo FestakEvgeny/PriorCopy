@@ -19,6 +19,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -36,6 +37,8 @@ fun CardListComponent(
     onSortChange: () -> Unit,
     modifier: Modifier
 ) {
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp - 20.dp
+
     if (items.isEmpty()) {
         CardNotFoundComponent(
             modifier = modifier,
@@ -54,6 +57,8 @@ fun CardListComponent(
                 CardComponent(
                     item = item,
                     onSortChange = onSortChange,
+                    modifier = Modifier
+                        .width(screenWidth)
                 )
             }
         }
@@ -118,7 +123,6 @@ private fun CardComponent(
         elevation = 6.dp,
         backgroundColor = ApplicationTheme.colors.background,
         modifier = modifier
-            .fillMaxWidth()
             .padding(
                 all = 10.dp
             ),
@@ -166,10 +170,6 @@ private fun CardComponent(
                                 fontSize = 14.sp,
                             ),
                             color = ApplicationTheme.colors.primaryVariant,
-                            modifier = Modifier
-                                .padding(
-                                    start = 50.dp,
-                                )
                         )
                     }
 
@@ -199,10 +199,6 @@ private fun CardComponent(
                                 ),
                                 fontSize = 12.5.sp,
                             ),
-                            modifier = Modifier
-                                .padding(
-                                    start = 50.dp,
-                                )
                         )
                     }
                 }
