@@ -5,6 +5,7 @@ import com.squareup.sqldelight.runtime.coroutines.mapToList
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
 import fetskovich.evgeny.data.database.AppDatabaseQueries
 import fetskovich.evgeny.data.database.BankCardModel
+import fetskovich.evgeny.entity.card.BankCard
 import kotlinx.coroutines.flow.Flow
 
 interface BankCardDao {
@@ -35,9 +36,16 @@ class BankCardDaoImpl(
     }
 
     override fun createBankCardModel(model: BankCardModel) {
+        // Workaround for non availability to make model id as not null, investigate it
+        val id = if (model.id == BankCard.NOT_EXISTS_DB_ID) {
+            null
+        } else {
+            model.id
+        }
+
         dbQuery.transaction {
             dbQuery.insertBankCardModel(
-                id = model.id,
+                id = id,
                 bankCardType = model.bankCardType,
                 cardNumber = model.cardNumber,
                 expirationDate = model.expirationDate,

@@ -21,7 +21,7 @@ class BankCardMapper {
 
     fun mapBankCardEntityToModel(entity: BankCard) : BankCardModel {
         return BankCardModel(
-            id = entity.id,
+            id = entity.id ?: BankCard.NOT_EXISTS_DB_ID,
             bankCardType = entity.bankCardType.name,
             cardNumber = entity.cardNumber,
             expirationDate = entity.expirationDate,
