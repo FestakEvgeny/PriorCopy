@@ -9,4 +9,10 @@ data class CardListItem(
     val cardNumber: String,
     val cardBalanceMainCurrency: String,
     val cardBalanceOffCurrency: String,
-)
+) {
+
+    companion object {
+
+        const val CARD_NUMBER_SEPARATOR = "●"
+    }
+}

@@ -17,7 +17,7 @@ class BankCardToListItemMapper(
                 id = it.id.toString(),
                 cardIcon = BankCardVariant.fromBankCardType(it.bankCardType),
                 cardName = "DK$lastCardNumbers",
-                cardNumber = "---- $lastCardNumbers",
+                cardNumber = "●●●● $lastCardNumbers",
                 cardBalanceMainCurrency = "${currencyFormatter.format(it.balance)} ${it.cardCurrency.currencyValue}",
                 cardBalanceOffCurrency = "${currencyFormatter.format(it.balance * 3)} USD", // TODO calculate depending on the exchange rate
             )

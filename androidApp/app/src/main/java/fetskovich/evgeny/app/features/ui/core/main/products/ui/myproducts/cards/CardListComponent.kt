@@ -247,7 +247,7 @@ private fun CardComponentsListPreview() {
                     id = "test",
                     cardIcon = BankCardVariant.VISA,
                     cardName = "DK9581",
-                    cardNumber = "---- 9581",
+                    cardNumber = "${CardListItem.CARD_NUMBER_SEPARATOR} 9581",
                     cardBalanceMainCurrency = "4 959,03 BYN",
                     cardBalanceOffCurrency = "1 654,11 USD"
                 ),
@@ -255,7 +255,7 @@ private fun CardComponentsListPreview() {
                     id = "test2",
                     cardIcon = BankCardVariant.VISA,
                     cardName = "DK9581",
-                    cardNumber = "---- 9581",
+                    cardNumber = "${CardListItem.CARD_NUMBER_SEPARATOR} 9581",
                     cardBalanceMainCurrency = "4 959,03 BYN",
                     cardBalanceOffCurrency = "1 654,11 USD"
                 ),
@@ -263,7 +263,7 @@ private fun CardComponentsListPreview() {
                     id = "tes3",
                     cardIcon = BankCardVariant.VISA,
                     cardName = "DK9581",
-                    cardNumber = "---- 9581",
+                    cardNumber = "${CardListItem.CARD_NUMBER_SEPARATOR} 9581",
                     cardBalanceMainCurrency = "4 959,03 BYN",
                     cardBalanceOffCurrency = "1 654,11 USD"
                 )
@@ -283,7 +283,7 @@ private fun CardComponentPreview() {
                 id = "test",
                 cardIcon = BankCardVariant.VISA,
                 cardName = "DK9581",
-                cardNumber = "---- 9581",
+                cardNumber = "${CardListItem.CARD_NUMBER_SEPARATOR} 9581",
                 cardBalanceMainCurrency = "4 959,03 BYN",
                 cardBalanceOffCurrency = "1 654,11 USD"
             ),
