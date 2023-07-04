@@ -9,12 +9,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,6 +40,10 @@ fun MyProductsComponent(
     onSortChanged: () -> Unit,
     onChangeProductType: (ProductTypeListItem) -> Unit,
 ) {
+    val itemWidthModifier = Modifier
+        .padding(start = 16.dp, end = 16.dp)
+        .width(LocalConfiguration.current.screenWidthDp.dp - 20.dp)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,23 +77,18 @@ fun MyProductsComponent(
                     CardListComponent(
                         items = state.cardsList,
                         onSortChange = onSortChanged,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 8.dp)
-
+                        modifier = itemWidthModifier
                     )
                 }
 
                 ProductType.CREDITS -> CreditsListComponent(
                     items = state.creditsList,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = itemWidthModifier
                 )
 
                 ProductType.DEPOSITS -> DepositsListComponent(
                     items = state.depositsList,
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = itemWidthModifier
                 )
             }
         } ?: kotlin.run {

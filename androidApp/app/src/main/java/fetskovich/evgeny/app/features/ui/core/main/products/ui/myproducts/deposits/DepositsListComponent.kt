@@ -35,13 +35,10 @@ private fun DepositsNotFoundComponent(
     modifier: Modifier
 ) {
     Card(
-        elevation = 4.dp,
+        elevation = 6.dp,
         backgroundColor = ApplicationTheme.colors.background,
         modifier = modifier
-            .fillMaxWidth()
             .padding(
-                start = 16.dp,
-                end = 16.dp,
                 bottom = 8.dp,
             ),
     ) {

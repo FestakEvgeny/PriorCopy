@@ -19,7 +19,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,7 +36,6 @@ fun CardListComponent(
     onSortChange: () -> Unit,
     modifier: Modifier
 ) {
-    val screenWidth = LocalConfiguration.current.screenWidthDp.dp - 20.dp
 
     if (items.isEmpty()) {
         CardNotFoundComponent(
@@ -46,7 +44,10 @@ fun CardListComponent(
     } else {
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = modifier,
+            modifier = Modifier
+                .padding(
+                    bottom = 8.dp
+                )
         ) {
             items(
                 items = items,
@@ -57,8 +58,10 @@ fun CardListComponent(
                 CardComponent(
                     item = item,
                     onSortChange = onSortChange,
-                    modifier = Modifier
-                        .width(screenWidth)
+                    modifier = modifier
+                        .padding(
+                            end = 12.dp,
+                        )
                 )
             }
         }
@@ -70,13 +73,10 @@ private fun CardNotFoundComponent(
     modifier: Modifier
 ) {
     Card(
-        elevation = 4.dp,
+        elevation = 6.dp,
         backgroundColor = ApplicationTheme.colors.background,
         modifier = modifier
-            .fillMaxWidth()
             .padding(
-                start = 16.dp,
-                end = 16.dp,
                 bottom = 8.dp,
             ),
     ) {
@@ -123,9 +123,6 @@ private fun CardComponent(
         elevation = 6.dp,
         backgroundColor = ApplicationTheme.colors.background,
         modifier = modifier
-            .padding(
-                all = 10.dp
-            ),
     ) {
         Column(
             modifier = Modifier
