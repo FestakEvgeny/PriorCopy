@@ -137,7 +137,7 @@ class AddAnotherBankCardViewModel(
         val result = insertBankCardUseCase.execute(
             InsertBankCardsIntent(
                 bankCard = BankCard(
-                    id = 0L,
+                    id = null,
                     bankCardType = BankCardVariant.toBankType(state.cardVariant),
                     cardNumber = state.cardNumber.text,
                     expirationDate = expirationTimestamp,

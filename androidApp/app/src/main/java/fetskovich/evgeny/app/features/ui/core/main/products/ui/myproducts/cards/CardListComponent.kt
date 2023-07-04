@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -49,12 +49,15 @@ fun CardListComponent(
                     bottom = 8.dp
                 )
         ) {
-            items(
+
+            itemsIndexed(
                 items = items,
-                key = { item ->
+                key = { index, item ->
                     item.id
                 }
-            ) { item ->
+            ) { index, item ->
+                val isNotLastItem = index != items.lastIndex
+
                 CardComponent(
                     item = item,
                     onSortChange = onSortChange,
