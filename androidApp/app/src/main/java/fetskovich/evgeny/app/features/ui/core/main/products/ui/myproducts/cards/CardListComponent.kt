@@ -19,6 +19,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,6 +43,8 @@ fun CardListComponent(
             modifier = modifier,
         )
     } else {
+       val itemWidth = LocalConfiguration.current.screenWidthDp.dp - 20.dp
+
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
@@ -57,13 +60,19 @@ fun CardListComponent(
                 }
             ) { index, item ->
                 val isNotLastItem = index != items.lastIndex
+                val width = if (isNotLastItem) {
+                    itemWidth - 40.dp
+                } else {
+                    itemWidth
+                }
 
                 CardComponent(
                     item = item,
                     onSortChange = onSortChange,
-                    modifier = modifier
+                    modifier = Modifier
+                        .width(width)
                         .padding(
-                            end = 12.dp,
+                            start = 16.dp,
                         )
                 )
             }
