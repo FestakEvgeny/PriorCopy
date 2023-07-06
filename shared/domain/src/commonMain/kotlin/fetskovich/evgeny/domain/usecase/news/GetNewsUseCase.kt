@@ -12,6 +12,7 @@ class GetNewsUseCase : ReactiveUseCase<GetNewsIntent, GetNewsResult> {
     override fun execute(
         intent: GetNewsIntent
     ): Flow<GetNewsResult> = flow {
+        // Hardcoded list only for the information
         val list = listOf(
             BankNewsShortcut("1", "Будьте бдительны"),
             BankNewsShortcut("2", "Активируйте свой кредит"),

@@ -19,6 +19,9 @@
 
     <!-- Products Screen -->
 
+    <!-- News -->
+    <string name="products_screen_news_watch_more">Watch more</string>
+
     <!-- My Products -->
     <string name="products_screen_my_products_title">My products</string>
     <string name="products_screen_my_products_card_item_sort">Sort</string>

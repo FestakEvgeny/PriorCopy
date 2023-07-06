@@ -1,13 +1,14 @@
 package fetskovich.evgeny.app.features.ui.core.main.products.mapper
 
 import androidx.compose.ui.graphics.Color
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.news.ShortNewsListBaseItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.news.ShortNewsListItem
 import fetskovich.evgeny.entity.news.BankNewsShortcut
 import kotlin.random.Random
 
 class NewsToListItemMapper {
 
-    fun map(list: List<BankNewsShortcut>): List<ShortNewsListItem> {
+    fun map(list: List<BankNewsShortcut>): List<ShortNewsListBaseItem> {
         return list.map {
             ShortNewsListItem(
                 id = it.id,
