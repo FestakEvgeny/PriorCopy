@@ -20,6 +20,7 @@ import fetskovich.evgeny.app.features.ui.core.main.products.api.ProductsScreenAp
 import fetskovich.evgeny.app.features.ui.core.more.api.MoreScreensGraphApi
 import fetskovich.evgeny.app.features.ui.core.more.other.api.OtherScreenApi
 import fetskovich.evgeny.app.features.ui.core.payments.api.PaymentsScreenApi
+import fetskovich.evgeny.app.features.ui.singlenews.api.SingleNewsFeatureApi
 import fetskovich.evgeny.app.features.ui.splash.api.SplashFeatureApi
 import fetskovich.evgeny.presentation.theme.BasicTheme
 
@@ -60,6 +61,7 @@ class MainActivity : ComponentActivity() {
                                     )
                                 ),
                                 AddAnotherBankCardFeatureApi(),
+                                SingleNewsFeatureApi(),
                             )
                         }
 

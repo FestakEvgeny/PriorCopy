@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
@@ -34,7 +35,9 @@ import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.MyProd
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.addproduct.AddMyProductBottomSheetComponent
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.ProductTypeListItem
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.news.NewsComponent
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.toolbar.ProductsToolbar
+import fetskovich.evgeny.app.features.ui.singlenews.api.SingleNewsFeatureNavigation
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
 import kotlinx.coroutines.flow.collectLatest
@@ -76,6 +79,12 @@ fun ProductsScreen(
         requestForOpenCredit = {
             viewModel.processIntent(ProductsScreenIntent.DismissAddProductDialog)
         },
+        onNewsClick = { id ->
+            parentNavController?.navigate(
+               route = SingleNewsFeatureNavigation.command(id).destination,
+            )
+        },
+        onShowFullNewsClick = { /*TODO*/ },
         executeIntent = viewModel::processIntent,
     )
 
@@ -103,7 +112,8 @@ private fun BottomSheetScreen(
     createCardOfAnotherBankClick: () -> Unit,
     openOnlineDeposit: () -> Unit,
     requestForOpenCredit: () -> Unit,
-
+    onNewsClick: (id: String) -> Unit,
+    onShowFullNewsClick: () -> Unit,
     onChangeProductType: (ProductTypeListItem) -> Unit,
     executeIntent: (ProductsScreenIntent) -> Unit,
 ) {
@@ -143,6 +153,8 @@ private fun BottomSheetScreen(
             onSupportClick = onSupportClick,
             onProfileClick = onProfileClick,
             onChangeProductType = onChangeProductType,
+            onNewsClick = onNewsClick,
+            onShowFullNewsClick = onShowFullNewsClick,
         )
     }
 
@@ -163,6 +175,8 @@ private fun Screen(
     onAddProductClick: () -> Unit,
     onSortChanged: () -> Unit,
     onChangeProductType: (ProductTypeListItem) -> Unit,
+    onNewsClick: (id: String) -> Unit,
+    onShowFullNewsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Surface(
@@ -182,6 +196,20 @@ private fun Screen(
             )
 
             LazyColumn {
+
+                item {
+                    NewsComponent(
+                        news = state.news,
+                        onNewsClick = onNewsClick,
+                        onShowFullNewsClick = onShowFullNewsClick,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                start = 16.dp,
+                            )
+                    )
+                }
+
                 item {
                     MyProductsComponent(
                         state = state.productsSectionState,
@@ -282,6 +310,8 @@ private fun BottomSheetScreenPreview() {
             createCardOfAnotherBankClick = {},
             openOnlineDeposit = {},
             requestForOpenCredit = {},
+            onNewsClick = {},
+            onShowFullNewsClick = {},
             executeIntent = {},
         )
     }
