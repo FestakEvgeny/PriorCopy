@@ -64,9 +64,9 @@ dependencies {
     // Libraries
     implementation(AndroidXLibrary.core)
     implementation(AndroidXLibrary.appCompat)
+    implementation(AndroidXLibrary.material)
     implementation(AndroidXLibrary.workmanager)
     implementation(AndroidXLibrary.viewModel)
-    implementation(AndroidXLibrary.material)
 
     implementation(AndroidComposeLibrary.Ui.activity)
     implementation(AndroidComposeLibrary.Ui.ui)

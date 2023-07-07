@@ -9,6 +9,7 @@ import fetskovich.evgeny.app.LocalApplicationModuleComposition
 import fetskovich.evgeny.app.features.ui.FeatureApi
 import fetskovich.evgeny.app.features.ui.singlenews.SingleNewsScreen
 import fetskovich.evgeny.app.features.ui.singlenews.SingleNewsViewModel
+import fetskovich.evgeny.app.features.ui.singlenews.di.SINGLE_NEWS_SCREEN_ID_KEY
 import fetskovich.evgeny.app.features.ui.singlenews.di.singleNewsFeatureModule
 import fetskovich.evgeny.app.features.viewmodel.ViewModelProviderFactory
 import org.kodein.di.DI
@@ -28,13 +29,13 @@ class SingleNewsFeatureApi : FeatureApi {
             arguments = SingleNewsFeatureNavigation.args,
         ) {
 
-            val newsId = SingleNewsFeatureNavigation.getNewsId(it)
+           val newsId = SingleNewsFeatureNavigation.getNewsId(it)
 
             val kodein = LocalApplicationModuleComposition.current
 
             val screenModule = DI {
                 extend(kodein)
-                constant("newsId") with newsId
+                constant(SINGLE_NEWS_SCREEN_ID_KEY) with newsId
                 import(singleNewsFeatureModule)
             }
 

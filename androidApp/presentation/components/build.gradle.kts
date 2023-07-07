@@ -1,4 +1,5 @@
 import android.AndroidComposeLibrary
+import android.AndroidXLibrary
 
 plugins {
     id("com.android.library")
@@ -33,6 +34,10 @@ android {
 
 dependencies {
     implementation(project(":androidApp:presentation:theme"))
+
+    implementation(AndroidXLibrary.core)
+    implementation(AndroidXLibrary.appCompat)
+    implementation(AndroidXLibrary.material)
 
     implementation(AndroidComposeLibrary.Ui.ui)
     implementation(AndroidComposeLibrary.Ui.tooling)

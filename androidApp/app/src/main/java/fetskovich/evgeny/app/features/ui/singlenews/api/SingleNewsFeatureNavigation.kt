@@ -10,9 +10,9 @@ object SingleNewsFeatureNavigation {
 
     private const val NEWS_ID_KEY = "newsId"
 
-    private const val innerRoute = "single_news_screen"
+    private const val innerRoute = "single_news_screen/"
 
-    const val route = "$innerRoute?$NEWS_ID_KEY=${NEWS_ID_KEY}"
+    const val route = "$innerRoute{$NEWS_ID_KEY}"
 
     val args = listOf(
         navArgument(NEWS_ID_KEY) {
@@ -24,7 +24,7 @@ object SingleNewsFeatureNavigation {
         requireNotNull(entry.arguments?.getString(NEWS_ID_KEY))
 
     fun command(newsId: String) = object : NavHostNavigationCommand {
-        override val destination: String = "$innerRoute?$NEWS_ID_KEY=$newsId"
+        override val destination: String = innerRoute + newsId
         override val arguments: List<NamedNavArgument> = args
     }
 }

@@ -9,6 +9,8 @@ import org.kodein.di.bind
 import org.kodein.di.factory
 import org.kodein.di.instance
 
+const val SINGLE_NEWS_SCREEN_ID_KEY = "newsId"
+
 val singleNewsFeatureModule = DI.Module("SingleNewsFeature") {
     import(newsDiModule)
 
@@ -17,7 +19,7 @@ val singleNewsFeatureModule = DI.Module("SingleNewsFeature") {
     bind<ViewModelProviderFactory<SingleNewsViewModel>>() with factory {
         ViewModelProviderFactory {
             SingleNewsViewModel(
-                newsId = "2",
+                newsId = instance(SINGLE_NEWS_SCREEN_ID_KEY),
                 mviHandler = instance(),
                 getSingleNewsUseCase = instance(),
                 coroutinesContextProvider = instance(),
