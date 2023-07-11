@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
 
+    <!-- Splash -->
+    <string name="splash_bank_copy">Приорбанк копия</string>
+
     <!-- Bottom Navigation Bar -->
     <string name="bottom_tab_main">Главная</string>
     <string name="bottom_tab_history">История</string>

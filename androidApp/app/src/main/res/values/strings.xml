@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
 
+    <!-- Splash -->
+    <string name="splash_bank_copy">Priorbank copy</string>
+
     <!-- Bottom Navigation Bar -->
     <string name="bottom_tab_main">Main</string>
     <string name="bottom_tab_history">History</string>
