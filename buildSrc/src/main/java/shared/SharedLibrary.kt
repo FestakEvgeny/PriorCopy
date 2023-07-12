@@ -2,6 +2,10 @@ package shared
 
 object SharedLibrary {
 
+    object Kotlin {
+        const val SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+    }
+
     object Core {
         val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
     }
@@ -39,5 +43,16 @@ object SharedLibrary {
         object Ios {
             const val driver = "com.squareup.sqldelight:native-driver:$version"
         }
+    }
+
+    object Ktor {
+        private const val VERSION = "2.3.1"
+        const val CORE = "io.ktor:ktor-client-core:$VERSION"
+        const val JSON = "io.ktor:ktor-serialization-kotlinx-json:$VERSION"
+        const val UTILS = "io.ktor:ktor-utils:$VERSION"
+
+        const val LOGGING_PLUGIN = "io.ktor:ktor-client-logging:$VERSION"
+        const val CONTENT_NEGOTIATION_PLUGIN = "io.ktor:ktor-client-content-negotiation:$VERSION"
+        const val AUTH_PLUGIN = "io.ktor:ktor-client-auth:$VERSION"
     }
 }

@@ -10,6 +10,7 @@ plugins {
 buildscript {
     dependencies {
         classpath("com.squareup.sqldelight:gradle-plugin:1.5.5")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.7.20")
     }
 }
 
