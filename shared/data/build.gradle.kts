@@ -23,6 +23,7 @@ kotlin {
                 implementation(project(":shared:entity"))
                 implementation(project(":shared:domain"))
                 implementation(project(":shared:architecture"))
+                implementation(project(":shared:networking"))
 
                 implementation(shared.SharedLibrary.Kodein.core)
 
