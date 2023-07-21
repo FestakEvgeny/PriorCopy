@@ -5,9 +5,11 @@ import fetskovich.evgeny.data.bank.BankCardRepositoryImpl
 import fetskovich.evgeny.data.bank.mapper.BankCardMapper
 import fetskovich.evgeny.data.database.Database
 import fetskovich.evgeny.data.database.dao.BankCardDao
+import fetskovich.evgeny.data.exchange.ExchangeRateRepositoryImpl
 import fetskovich.evgeny.data.user.UserSettingsStorageImpl
 import fetskovich.evgeny.domain.authorization.AuthorizationRepository
 import fetskovich.evgeny.domain.bank.BankCardRepository
+import fetskovich.evgeny.domain.exchange.ExchangeRateRepository
 import fetskovich.evgeny.domain.user.UserSettingsStorage
 import org.kodein.di.DI
 import org.kodein.di.bind
@@ -40,6 +42,12 @@ val dataDiModule = DI.Module("DataModule") {
         BankCardRepositoryImpl(
             bankCardDao = instance(),
             bankCardMapper = instance(),
+        )
+    }
+    bind<ExchangeRateRepository>() with singleton {
+        ExchangeRateRepositoryImpl(
+            api = instance(),
+            coroutinesContextProvider = instance(),
         )
     }
 

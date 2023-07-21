@@ -25,6 +25,8 @@ kotlin {
                 implementation(project(":shared:architecture"))
                 implementation(project(":shared:networking"))
 
+                implementation(shared.SharedLibrary.Core.dateTime)
+
                 implementation(shared.SharedLibrary.Kodein.core)
 
                 implementation(shared.SharedLibrary.Coroutines.core)

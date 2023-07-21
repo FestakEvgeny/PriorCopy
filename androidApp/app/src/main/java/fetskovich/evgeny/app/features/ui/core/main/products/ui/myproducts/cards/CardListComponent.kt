@@ -218,7 +218,7 @@ private fun CardComponent(
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier
                     .padding(
-                        top = 20.dp,
+                        top = 28.dp,
                     )
                     .clickable(
                         onClick = onSortChange

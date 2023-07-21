@@ -6,6 +6,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import fetskovich.evgeny.app.di.coreDiModule
 import fetskovich.evgeny.data.database.DatabaseDriverFactory
 import fetskovich.evgeny.data.di.dataDiModule
+import fetskovich.evgeny.data.di.networkingDiModule
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.bind
@@ -28,6 +29,7 @@ class BaseApplication : Application(), DIAware {
         }
 
         import(coreDiModule)
+        import(networkingDiModule)
         import(dataDiModule)
     }
 }

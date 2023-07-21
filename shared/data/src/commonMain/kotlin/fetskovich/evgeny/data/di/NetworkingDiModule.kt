@@ -21,7 +21,6 @@ val networkingDiModule = DI.Module("NetworkingApi") {
             apiKey = "ab3aa5d7d0715faf1114df7a"
         )
     }
-
 }
 
 private fun createExchangeRateApi(

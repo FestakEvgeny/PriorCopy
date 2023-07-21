@@ -12,6 +12,7 @@ import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesConte
 import fetskovich.evgeny.architecture.mvi.ActionIntent
 import fetskovich.evgeny.domain.usecase.card.data.ObserveBankCardsIntent
 import fetskovich.evgeny.domain.usecase.card.data.ObserveBankCardsUseCase
+import fetskovich.evgeny.domain.usecase.exchange.ObserveExchangeRateUseCase
 import fetskovich.evgeny.domain.usecase.news.GetNewsIntent
 import fetskovich.evgeny.domain.usecase.news.GetNewsUseCase
 import fetskovich.evgeny.recipeskmm.app.R
@@ -23,6 +24,7 @@ class ProductsScreenViewModel(
     private val mviStateHandler: ProductsScreenMviHandler,
     private val observeBankCardsUseCase: ObserveBankCardsUseCase,
     private val getNewsUseCase: GetNewsUseCase,
+    private val observeExchangeRateUseCase: ObserveExchangeRateUseCase,
     private val bankCardsMapper: BankCardToListItemMapper,
     private val newsToListItemMapper: NewsToListItemMapper,
     private val coroutinesContextProvider: CoroutinesContextProvider,
