@@ -7,14 +7,14 @@ import fetskovich.evgeny.entity.exchange.ExchangeRate
 class ExchangeRateToItemMapper {
 
     fun mapExchangeRate(
-        watchCurrency: Currency,
-        toCurrency: Currency,
+        basicCurrency: Currency,
+        offCurrency: Currency,
         item: ExchangeRate,
     ): ExchangeRateItem {
         return ExchangeRateItem(
-            monitoringCurrency = watchCurrency.currencyValue,
-            buy = item.conversionRates[toCurrency]?.toString().orEmpty(),
-            sell = item.conversionRates[toCurrency]?.toString().orEmpty()
+            monitoringCurrency = basicCurrency.currencyValue,
+            buy = item.conversionRates[offCurrency]?.toString().orEmpty(),
+            sell = item.conversionRates[offCurrency]?.toString().orEmpty()
         )
     }
 }
