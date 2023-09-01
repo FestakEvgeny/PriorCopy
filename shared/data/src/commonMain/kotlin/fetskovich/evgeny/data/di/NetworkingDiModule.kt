@@ -18,7 +18,7 @@ val networkingDiModule = DI.Module("NetworkingApi") {
     bind<ExchangeRateApi>() with singleton {
         createExchangeRateApi(
             ktorApiFactory = instance(),
-            apiKey = "ab3aa5d7d0715faf1114df7a"
+            apiKey = "ab3aa5d7d0715faf1114df7a" // TODO safe strorage
         )
     }
 }
