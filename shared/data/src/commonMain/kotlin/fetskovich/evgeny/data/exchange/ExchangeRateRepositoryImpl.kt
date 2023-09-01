@@ -8,6 +8,7 @@ import fetskovich.evgeny.entity.currency.Currency
 import fetskovich.evgeny.entity.exchange.ExchangeRate
 import fetskovich.evgeny.networking.api.exchange.ExchangeRateApi
 import fetskovich.evgeny.networking.api.exchange.model.ExchangeRateApiModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +28,9 @@ class ExchangeRateRepositoryImpl(
 
     override fun getExchangeRate(currency: Currency): Flow<ExchangeRate?> {
         if (exchangeRate.value == null) {
-            scope.launch {
+            scope.launch(CoroutineExceptionHandler { _, _ ->
+                // do nothing
+            }) {
 
                 val latestDbModel = exchangeRateDao.getActualExchangeRate()
                 if (latestDbModel == null) {

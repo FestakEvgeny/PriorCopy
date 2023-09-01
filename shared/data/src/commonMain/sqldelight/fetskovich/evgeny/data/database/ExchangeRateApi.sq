@@ -13,16 +13,7 @@ CREATE TABLE ExchangeRateModel (
 insertExchangeRateModel:
 INSERT OR REPLACE
 INTO ExchangeRateModel(
-id,
- lastUpdateTime,
-  nextUpdateTime,
-   baseCode,
-    conversionRateUsd,
-     conversionRateByn,
-      conversionRateEur,
-       conversionRatePln,
-        conversionRateRub
-        )
+id, lastUpdateTime,  nextUpdateTime, baseCode, conversionRateUsd, conversionRateByn, conversionRateEur, conversionRatePln, conversionRateRub)
 VALUES ?;
 
 getExchangeRateModels:
