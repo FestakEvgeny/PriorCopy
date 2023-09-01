@@ -3,9 +3,11 @@ package fetskovich.evgeny.app.features.ui.core.main.products
 import androidx.lifecycle.viewModelScope
 import fetskovich.evgeny.app.core.resources.ResourceProvider
 import fetskovich.evgeny.app.features.ui.core.main.products.mapper.BankCardToListItemMapper
+import fetskovich.evgeny.app.features.ui.core.main.products.mapper.ExchangeRateToItemMapper
 import fetskovich.evgeny.app.features.ui.core.main.products.mapper.NewsToListItemMapper
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsScreenIntent
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsScreenMviHandler
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.exchange.ExchangeRateUiItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.news.ShortNewsOtherListItem
 import fetskovich.evgeny.app.features.viewmodel.BaseViewModel
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
@@ -13,6 +15,7 @@ import fetskovich.evgeny.architecture.mvi.ActionIntent
 import fetskovich.evgeny.domain.usecase.card.data.ObserveBankCardsIntent
 import fetskovich.evgeny.domain.usecase.card.data.ObserveBankCardsUseCase
 import fetskovich.evgeny.domain.usecase.exchange.ObserveExchangeRateIntent
+import fetskovich.evgeny.domain.usecase.exchange.ObserveExchangeRateResult
 import fetskovich.evgeny.domain.usecase.exchange.ObserveExchangeRateUseCase
 import fetskovich.evgeny.domain.usecase.news.GetNewsIntent
 import fetskovich.evgeny.domain.usecase.news.GetNewsUseCase
@@ -29,6 +32,7 @@ class ProductsScreenViewModel(
     private val observeExchangeRateUseCase: ObserveExchangeRateUseCase,
     private val bankCardsMapper: BankCardToListItemMapper,
     private val newsToListItemMapper: NewsToListItemMapper,
+    private val exchangeRateToItemMapper: ExchangeRateToItemMapper,
     private val coroutinesContextProvider: CoroutinesContextProvider,
     private val resourceProvider: ResourceProvider,
 ) : BaseViewModel() {
@@ -39,12 +43,7 @@ class ProductsScreenViewModel(
     init {
         subscribeOnBankCards()
         subscribeOnNews()
-
-        viewModelScope.launch (coroutinesContextProvider.io) {
-            observeExchangeRateUseCase.execute(ObserveExchangeRateIntent(Currency.USD)).collectLatest {
-                println("JEKA Received: "+it)
-            }
-        }
+        subscribeOnExchangeRate()
     }
 
     override fun processIntent(intent: ActionIntent) {
@@ -92,6 +91,37 @@ class ProductsScreenViewModel(
                 .collectLatest {
                     mviStateHandler.updateNews(it)
                 }
+        }
+    }
+
+    private fun subscribeOnExchangeRate() {
+        viewModelScope.launch(coroutinesContextProvider.io) {
+            observeExchangeRateUseCase.execute(
+                ObserveExchangeRateIntent(Currency.USD)
+            ).collectLatest {
+                when (it) {
+                    is ObserveExchangeRateResult.Error -> {
+                        mviStateHandler.updateExchangeRateLoaded(ExchangeRateUiItem.Error)
+                    }
+
+                    ObserveExchangeRateResult.Loading -> {
+                        mviStateHandler.updateExchangeRateLoaded(ExchangeRateUiItem.Loading)
+                    }
+
+                    ObserveExchangeRateResult.NoDataReceived -> {
+                        mviStateHandler.updateExchangeRateLoaded(ExchangeRateUiItem.Error)
+                    }
+
+                    is ObserveExchangeRateResult.Success -> {
+                        val mappedData = exchangeRateToItemMapper.mapExchangeRate(
+                            monitoringCurrency = Currency.USD,
+                            offCurrency = Currency.BYN,
+                            item = it.result,
+                        )
+                        mviStateHandler.updateExchangeRateLoaded(mappedData)
+                    }
+                }
+            }
         }
     }
 }

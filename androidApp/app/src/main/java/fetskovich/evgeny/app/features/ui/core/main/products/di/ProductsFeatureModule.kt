@@ -3,6 +3,7 @@ package fetskovich.evgeny.app.features.ui.core.main.products.di
 import fetskovich.evgeny.app.core.currency.CoreCurrencyFormatter
 import fetskovich.evgeny.app.features.ui.core.main.products.ProductsScreenViewModel
 import fetskovich.evgeny.app.features.ui.core.main.products.mapper.BankCardToListItemMapper
+import fetskovich.evgeny.app.features.ui.core.main.products.mapper.ExchangeRateToItemMapper
 import fetskovich.evgeny.app.features.ui.core.main.products.mapper.NewsToListItemMapper
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsScreenMviHandler
 import fetskovich.evgeny.app.features.viewmodel.ViewModelProviderFactory
@@ -37,6 +38,12 @@ val productsFeatureModule = DI.Module("Products") {
 
     bind<NewsToListItemMapper>() with provider { NewsToListItemMapper() }
 
+    bind<ExchangeRateToItemMapper>() with factory {
+        ExchangeRateToItemMapper(
+            currencyFormatter = instance(CoreCurrencyFormatter.DI_TAG)
+        )
+    }
+
     bind<ViewModelProviderFactory<ProductsScreenViewModel>>() with factory {
         ViewModelProviderFactory {
             ProductsScreenViewModel(
@@ -48,6 +55,7 @@ val productsFeatureModule = DI.Module("Products") {
                 coroutinesContextProvider = instance(),
                 resourceProvider = instance(),
                 observeExchangeRateUseCase = instance(),
+                exchangeRateToItemMapper = instance(),
             )
         }
     }

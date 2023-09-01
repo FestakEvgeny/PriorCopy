@@ -7,8 +7,8 @@ import java.util.Locale
 class CoreCurrencyFormatter: CurrencyFormatter {
 
     private val formatSymbols = DecimalFormatSymbols(Locale.getDefault())
-    private val formatter = DecimalFormat("#,###", formatSymbols).apply {
-        maximumFractionDigits = 2
+    private val formatter = DecimalFormat("#,####", formatSymbols).apply {
+        maximumFractionDigits = 4
     }
 
     override fun format(currency: Double): String {

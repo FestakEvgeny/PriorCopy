@@ -1,11 +1,10 @@
 package fetskovich.evgeny.app.features.ui.core.main.products.mvi
 
 import fetskovich.evgeny.app.core.resources.ResourceProvider
-import fetskovich.evgeny.app.features.ui.core.main.products.mapper.NewsToListItemMapper
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.exchange.ExchangeRateUiItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.ProductTypeListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.news.ShortNewsListBaseItem
-import fetskovich.evgeny.app.features.ui.core.main.products.ui.news.ShortNewsListItem
 import fetskovich.evgeny.architecture.mvi.StateHandler
 import fetskovich.evgeny.recipeskmm.app.R
 
@@ -72,6 +71,16 @@ class ProductsScreenMviHandler(
         )
 
         updateState(news)
+    }
+
+    fun updateExchangeRateLoaded(
+        item: ExchangeRateUiItem
+    ) {
+        updateState(
+            state.copy(
+                exchangeRateState = item,
+            )
+        )
     }
 }
 

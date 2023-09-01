@@ -1,5 +1,6 @@
 package fetskovich.evgeny.app.features.ui.core.main.products.mvi
 
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.exchange.ExchangeRateUiItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.types.ProductTypeListItem
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.news.ShortNewsListBaseItem
@@ -10,6 +11,7 @@ data class ProductsScreenState(
     val news: List<ShortNewsListBaseItem> = emptyList(),
     val productsSectionState: MyProductsState,
     val bottomSheetState: ProductsBottomSheetState? = null,
+    val exchangeRateState: ExchangeRateUiItem = ExchangeRateUiItem.Loading,
 ): ScreenState
 
 data class MyProductsState(

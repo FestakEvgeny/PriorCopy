@@ -91,10 +91,7 @@ fun MyProductsComponent(
                     modifier = itemWidthModifier
                 )
             }
-        } ?: kotlin.run {
-            // Display loading
         }
-
     }
 }
 

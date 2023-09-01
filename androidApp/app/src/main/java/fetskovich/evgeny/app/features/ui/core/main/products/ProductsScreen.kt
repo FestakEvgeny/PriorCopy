@@ -31,6 +31,7 @@ import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductType
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsBottomSheetState
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsScreenIntent
 import fetskovich.evgeny.app.features.ui.core.main.products.mvi.ProductsScreenState
+import fetskovich.evgeny.app.features.ui.core.main.products.ui.exchange.ExchangeRateComponent
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.MyProductsComponent
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.addproduct.AddMyProductBottomSheetComponent
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListItem
@@ -81,7 +82,7 @@ fun ProductsScreen(
         },
         onNewsClick = { id ->
             parentNavController?.navigate(
-               route = SingleNewsFeatureNavigation.command(id).destination,
+                route = SingleNewsFeatureNavigation.command(id).destination,
             )
         },
         onShowFullNewsClick = { /*TODO*/ },
@@ -216,6 +217,13 @@ private fun Screen(
                         onAddProductClick = onAddProductClick,
                         onSortChanged = onSortChanged,
                         onChangeProductType = onChangeProductType,
+                    )
+                }
+
+                item {
+                    ExchangeRateComponent(
+                        firstRate = state.exchangeRateState,
+                        modifier = Modifier,
                     )
                 }
             }
