@@ -12,9 +12,11 @@ import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesConte
 import fetskovich.evgeny.architecture.mvi.ActionIntent
 import fetskovich.evgeny.domain.usecase.card.data.ObserveBankCardsIntent
 import fetskovich.evgeny.domain.usecase.card.data.ObserveBankCardsUseCase
+import fetskovich.evgeny.domain.usecase.exchange.ObserveExchangeRateIntent
 import fetskovich.evgeny.domain.usecase.exchange.ObserveExchangeRateUseCase
 import fetskovich.evgeny.domain.usecase.news.GetNewsIntent
 import fetskovich.evgeny.domain.usecase.news.GetNewsUseCase
+import fetskovich.evgeny.entity.currency.Currency
 import fetskovich.evgeny.recipeskmm.app.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
@@ -37,6 +39,8 @@ class ProductsScreenViewModel(
     init {
         subscribeOnBankCards()
         subscribeOnNews()
+
+        observeExchangeRateUseCase.execute(ObserveExchangeRateIntent(Currency.USD)) // TODO Testnig
     }
 
     override fun processIntent(intent: ActionIntent) {

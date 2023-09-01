@@ -6,8 +6,8 @@ private const val PATCH_VERSION = 1
 
 object AndroidBuildVersions {
 
-    const val compileSdk = 33
-    const val targetSdk = 33
+    const val compileSdk = 34
+    const val targetSdk = 34
     const val minSdk = 24
 
     const val versionCode = MAJOR_VERSION * 10000 + MINOR_VERSION + PATCH_VERSION
@@ -15,6 +15,6 @@ object AndroidBuildVersions {
 
     const val applicationId = "fetskovich.evgeny.recipeskmm"
 
-    val javaVersion = JavaVersion.VERSION_1_8
-    const val jvmTarget = "1.8"
+    val javaVersion = JavaVersion.VERSION_17
+    const val jvmTarget = "17"
 }

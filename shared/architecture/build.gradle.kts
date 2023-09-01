@@ -6,7 +6,15 @@ plugins {
 }
 
 kotlin {
-    android()
+    jvmToolchain(17)
+
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = AndroidBuildVersions.jvmTarget
+            }
+        }
+    }
     
     listOf(
         iosX64(),

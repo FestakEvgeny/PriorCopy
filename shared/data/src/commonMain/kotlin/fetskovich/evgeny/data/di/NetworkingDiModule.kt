@@ -29,7 +29,7 @@ private fun createExchangeRateApi(
 ): ExchangeRateApi {
     return ktorApiFactory.provideExchangeRate(
         config = KtorApiSetupConfig(
-            baseUrl = "https://v6.exchangerate-api.com/v6/$apiKey",
+            baseUrl = "https://v6.exchangerate-api.com/v6/$apiKey/",
             loggerConfig = createLoggedConfig(),
             timeout = createKtorTimeout(),
         )

@@ -13,7 +13,7 @@ class ExchangeRateApiModel(
     val nextUpdate: String,
     @SerialName("base_code")
     val baseCode: Currency,
-    @SerialName("conversion_rate")
+    @SerialName("conversion_rates")
     val conversionRatesModel: ConversionRateApiModel,
 )
 

@@ -1,13 +1,14 @@
 package android
 
+// TODO Apply BoM version
 object AndroidComposeLibrary {
 
-    const val composeCompilerVersion = "1.4.7"
-    const val composeVersion = "1.4.3"
+    const val composeCompilerVersion = "1.5.3"
+    const val composeVersion = "1.6.0-alpha04"
     private const val composeActivityVersion = "1.7.0"
 
     const val runtime = "androidx.compose.runtime:runtime:$composeVersion"
-    const val navigation = "androidx.navigation:navigation-compose:2.5.3"
+    const val navigation = "androidx.navigation:navigation-compose:2.7.1"
 
     const val animation = "androidx.compose.animation:animation:$composeVersion"
 
@@ -26,7 +27,7 @@ object AndroidComposeLibrary {
     }
 
     object Lifecycle {
-        private const val version = "2.6.1"
+        private const val version = "2.7.0-alpha01"
 
         const val viewModelLifecycle = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
         const val runtimeLifecycle  = "androidx.lifecycle:lifecycle-runtime-compose:$version"

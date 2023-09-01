@@ -18,11 +18,6 @@ android {
         versionName = AndroidBuildVersions.versionName
     }
 
-    compileOptions {
-        sourceCompatibility = AndroidBuildVersions.javaVersion
-        targetCompatibility = AndroidBuildVersions.javaVersion
-    }
-
     kotlinOptions {
         jvmTarget = AndroidBuildVersions.jvmTarget
     }
@@ -44,6 +39,10 @@ android {
             isMinifyEnabled = false
         }
     }
+}
+
+kotlin{
+    jvmToolchain(17)
 }
 
 dependencies {

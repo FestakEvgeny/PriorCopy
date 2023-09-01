@@ -54,5 +54,13 @@ object SharedLibrary {
         const val LOGGING_PLUGIN = "io.ktor:ktor-client-logging:$VERSION"
         const val CONTENT_NEGOTIATION_PLUGIN = "io.ktor:ktor-client-content-negotiation:$VERSION"
         const val AUTH_PLUGIN = "io.ktor:ktor-client-auth:$VERSION"
+
+        object Android {
+            const val OK_HTTP = "io.ktor:ktor-client-okhttp:$VERSION"
+        }
+
+        object Ios {
+            const val DARWIN = "io.ktor:ktor-client-darwin:$VERSION"
+        }
     }
 }

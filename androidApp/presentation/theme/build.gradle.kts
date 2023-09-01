@@ -15,11 +15,6 @@ android {
         targetSdk = AndroidBuildVersions.targetSdk
     }
 
-    compileOptions {
-        sourceCompatibility = AndroidBuildVersions.javaVersion
-        targetCompatibility = AndroidBuildVersions.javaVersion
-    }
-
     kotlinOptions {
         jvmTarget = AndroidBuildVersions.jvmTarget
     }
@@ -30,6 +25,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = AndroidComposeLibrary.composeCompilerVersion
     }
+}
+
+kotlin{
+    jvmToolchain(17)
 }
 
 dependencies {

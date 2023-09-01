@@ -1,5 +1,11 @@
 package fetskovich.evgeny.networking.ktor.clients
 
+import fetskovich.evgeny.networking.ktor.setup.json.KtorJson
+import fetskovich.evgeny.networking.ktor.setup.logging.LogLevel
+import fetskovich.evgeny.networking.ktor.setup.logging.Logger
+import fetskovich.evgeny.networking.ktor.setup.logging.LoggerConfig
+import fetskovich.evgeny.networking.ktor.setup.logging.toKtor
+import fetskovich.evgeny.networking.ktor.setup.timeout.KtorTimeout
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.auth.Auth
@@ -11,12 +17,6 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
 import io.ktor.util.appendIfNameAbsent
-import fetskovich.evgeny.networking.ktor.setup.timeout.KtorTimeout
-import fetskovich.evgeny.networking.ktor.setup.json.KtorJson
-import fetskovich.evgeny.networking.ktor.setup.logging.LogLevel
-import fetskovich.evgeny.networking.ktor.setup.logging.Logger
-import fetskovich.evgeny.networking.ktor.setup.logging.LoggerConfig
-import fetskovich.evgeny.networking.ktor.setup.logging.toKtor
 import kotlin.time.DurationUnit
 
 internal fun createHttpClient(
@@ -29,7 +29,7 @@ internal fun createHttpClient(
         logger = Logger.DEFAULT,
     ),
     timeout: KtorTimeout = KtorTimeout(),
-): HttpClient = HttpClient {
+): HttpClient = HttpClient(provideHttpClientEngine()) {
 
     bearer?.let { bearer ->
         install(Auth) {

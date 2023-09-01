@@ -27,7 +27,6 @@ fun HtmlTextField(
             }
         },
         update = {
-            Log.e("JEKA", "Update: "+htmlFormattedText)
             it.text = htmlFormattedText
         }
     )

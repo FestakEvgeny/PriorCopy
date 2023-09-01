@@ -17,7 +17,7 @@ internal class ExchangeRateApiImpl(
     override suspend fun getExchangeRates(currency: Currency): Result<ExchangeRateApiModel> {
         return try {
             val data: ExchangeRateApiModel = requestExecutor.get(
-                url = "/latest/${currency.currencyValue}",
+                url = "latest/${currency.currencyValue}",
             )
             Result.success(data)
         } catch (e: Exception) {

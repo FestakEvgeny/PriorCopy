@@ -1,5 +1,6 @@
 package fetskovich.evgeny.domain.usecase.news.di
 
+import fetskovich.evgeny.domain.usecase.exchange.ObserveExchangeRateUseCase
 import fetskovich.evgeny.domain.usecase.news.GetNewsUseCase
 import fetskovich.evgeny.domain.usecase.news.GetSingleNewsUseCase
 import org.kodein.di.DI
@@ -13,6 +14,11 @@ val newsDiModule = DI.Module("News") {
     bind<GetSingleNewsUseCase>() with factory {
         GetSingleNewsUseCase(
             getNewsUseCase = instance(),
+        )
+    }
+    bind<ObserveExchangeRateUseCase>() with singleton {
+        ObserveExchangeRateUseCase(
+            repository = instance(),
         )
     }
 }

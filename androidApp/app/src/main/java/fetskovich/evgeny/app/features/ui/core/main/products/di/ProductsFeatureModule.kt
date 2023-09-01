@@ -47,6 +47,7 @@ val productsFeatureModule = DI.Module("Products") {
                 getNewsUseCase = instance(),
                 coroutinesContextProvider = instance(),
                 resourceProvider = instance(),
+                observeExchangeRateUseCase = instance(),
             )
         }
     }

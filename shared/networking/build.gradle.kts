@@ -9,12 +9,14 @@ apply(plugin = "kotlinx-serialization")
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    jvmToolchain(17)
+
     targetHierarchy.default()
 
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = AndroidBuildVersions.jvmTarget
             }
         }
     }
@@ -45,6 +47,19 @@ kotlin {
                 implementation(SharedLibrary.Kotlin.SERIALIZATION)
             }
         }
+
+        val androidMain by getting {
+            dependencies {
+                implementation(shared.SharedLibrary.Ktor.Android.OK_HTTP)
+            }
+        }
+
+        val iosMain by getting {
+            dependencies {
+                implementation(shared.SharedLibrary.Ktor.Ios.DARWIN)
+            }
+        }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
