@@ -1,0 +1,29 @@
+CREATE TABLE ExchangeRateModel (
+    id INTEGER PRIMARY KEY,
+    lastUpdateTime INTEGER NOT NULL,
+    nextUpdateTime INTEGER NOT NULL,
+    baseCode TEXT NOT NULL,
+    conversionRateUsd REAL NOT NULL,
+    conversionRateByn REAL NOT NULL,
+    conversionRateEur REAL NOT NULL,
+    conversionRatePln REAL NOT NULL,
+    conversionRateRub REAL NOT NULL
+);
+
+insertExchangeRateModel:
+INSERT OR REPLACE
+INTO ExchangeRateModel(
+id,
+ lastUpdateTime,
+  nextUpdateTime,
+   baseCode,
+    conversionRateUsd,
+     conversionRateByn,
+      conversionRateEur,
+       conversionRatePln,
+        conversionRateRub
+        )
+VALUES ?;
+
+getExchangeRateModels:
+SELECT * FROM ExchangeRateModel;

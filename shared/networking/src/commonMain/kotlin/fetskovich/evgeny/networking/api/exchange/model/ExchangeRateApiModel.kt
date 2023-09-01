@@ -20,13 +20,13 @@ class ExchangeRateApiModel(
 @Serializable
 class ConversionRateApiModel(
     @SerialName("USD")
-    val usd: Float,
+    val usd: Double,
     @SerialName("BYN")
-    val byn: Float,
+    val byn: Double,
     @SerialName("EUR")
-    val eur: Float,
+    val eur: Double,
     @SerialName("PLN")
-    val pln: Float,
+    val pln: Double,
     @SerialName("RUB")
-    val rub: Float,
+    val rub: Double,
 )

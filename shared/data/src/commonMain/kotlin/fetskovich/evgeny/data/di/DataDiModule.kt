@@ -5,6 +5,7 @@ import fetskovich.evgeny.data.bank.BankCardRepositoryImpl
 import fetskovich.evgeny.data.bank.mapper.BankCardMapper
 import fetskovich.evgeny.data.database.Database
 import fetskovich.evgeny.data.database.dao.BankCardDao
+import fetskovich.evgeny.data.database.dao.ExchangeRateDao
 import fetskovich.evgeny.data.exchange.ExchangeRateRepositoryImpl
 import fetskovich.evgeny.data.user.UserSettingsStorageImpl
 import fetskovich.evgeny.domain.authorization.AuthorizationRepository
@@ -31,6 +32,10 @@ val dataDiModule = DI.Module("DataModule") {
         val database: Database = instance()
         database.bankCardDao
     }
+    bind<ExchangeRateDao>() with singleton {
+        val database: Database = instance()
+        database.exchangeRatedDao
+    }
 
 
     // Mappers
@@ -48,6 +53,7 @@ val dataDiModule = DI.Module("DataModule") {
         ExchangeRateRepositoryImpl(
             api = instance(),
             coroutinesContextProvider = instance(),
+            exchangeRateDao = instance(),
         )
     }
 

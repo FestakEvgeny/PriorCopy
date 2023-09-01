@@ -7,7 +7,9 @@ import fetskovich.evgeny.domain.exchange.ExchangeRateRepository
 import fetskovich.evgeny.entity.currency.Currency
 import fetskovich.evgeny.entity.exchange.ExchangeRate
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 
 class ObserveExchangeRateUseCase(
     private val repository: ExchangeRateRepository,
@@ -18,14 +20,17 @@ class ObserveExchangeRateUseCase(
     ): Flow<ObserveExchangeRateResult> {
         return repository.getExchangeRate(intent.currency)
             .map {
-                it?.fold(
-                    onSuccess = {
-                        ObserveExchangeRateResult.Success(it)
-                    },
-                    onFailure = {
-                        ObserveExchangeRateResult.Error(it)
-                    }
-                ) ?: ObserveExchangeRateResult.Loading
+                if (it != null) {
+                    ObserveExchangeRateResult.Success(it)
+                } else {
+                    ObserveExchangeRateResult.NoDataReceived
+                }
+            }
+            .onStart {
+                emit(ObserveExchangeRateResult.Loading)
+            }
+            .catch {
+                emit(ObserveExchangeRateResult.Error(it))
             }
     }
 }
@@ -36,7 +41,8 @@ class ObserveExchangeRateIntent(
 
 sealed class ObserveExchangeRateResult : IntentResult {
 
-    object Loading : ObserveExchangeRateResult()
-    class Error(val error: Throwable) : ObserveExchangeRateResult()
-    class Success(val result: ExchangeRate) : ObserveExchangeRateResult()
+    data object Loading : ObserveExchangeRateResult()
+    data object NoDataReceived : ObserveExchangeRateResult()
+    data class Error(val error: Throwable) : ObserveExchangeRateResult()
+    data class Success(val result: ExchangeRate) : ObserveExchangeRateResult()
 }

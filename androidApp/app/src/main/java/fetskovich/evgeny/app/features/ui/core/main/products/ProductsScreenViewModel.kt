@@ -40,7 +40,11 @@ class ProductsScreenViewModel(
         subscribeOnBankCards()
         subscribeOnNews()
 
-        observeExchangeRateUseCase.execute(ObserveExchangeRateIntent(Currency.USD)) // TODO Testnig
+        viewModelScope.launch (coroutinesContextProvider.io) {
+            observeExchangeRateUseCase.execute(ObserveExchangeRateIntent(Currency.USD)).collectLatest {
+                println("JEKA Received: "+it)
+            }
+        }
     }
 
     override fun processIntent(intent: ActionIntent) {

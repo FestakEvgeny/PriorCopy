@@ -6,5 +6,5 @@ data class ExchangeRate(
     val id: Long,
     val nextUpdate: Long,
     val baseCurrency: Currency,
-    val conversionRates: Map<Currency, Float>,
+    val conversionRates: Map<Currency, Double>,
 )

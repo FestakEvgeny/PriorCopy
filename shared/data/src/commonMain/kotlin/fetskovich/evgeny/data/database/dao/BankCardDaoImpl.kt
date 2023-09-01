@@ -3,7 +3,7 @@ package fetskovich.evgeny.data.database.dao
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
-import fetskovich.evgeny.data.database.AppDatabaseQueries
+import fetskovich.evgeny.data.database.BankCardApiQueries
 import fetskovich.evgeny.data.database.BankCardModel
 import fetskovich.evgeny.entity.card.BankCard
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +17,7 @@ interface BankCardDao {
 }
 
 class BankCardDaoImpl(
-    private val dbQuery: AppDatabaseQueries,
+    private val dbQuery: BankCardApiQueries,
     private val coroutinesContextProvider: CoroutinesContextProvider,
 ) : BankCardDao {
 

@@ -8,5 +8,5 @@ interface ExchangeRateRepository {
 
     fun getExchangeRate(
         currency: Currency
-    ): Flow<Result<ExchangeRate>?>
+    ): Flow<ExchangeRate?>
 }

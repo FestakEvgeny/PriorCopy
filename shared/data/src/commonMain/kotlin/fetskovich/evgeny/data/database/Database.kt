@@ -1,7 +1,10 @@
 package fetskovich.evgeny.data.database
 
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
+import fetskovich.evgeny.data.database.dao.BankCardDao
 import fetskovich.evgeny.data.database.dao.BankCardDaoImpl
+import fetskovich.evgeny.data.database.dao.ExchangeRateDao
+import fetskovich.evgeny.data.database.dao.ExchangeRateDaoImpl
 
 internal class Database(
     databaseDriverFactory: DatabaseDriverFactory,
@@ -9,10 +12,13 @@ internal class Database(
 ) {
 
     private val database = AppDatabase(databaseDriverFactory.createDriver())
-    private val dbQuery = database.appDatabaseQueries
 
-    val bankCardDao: BankCardDaoImpl = BankCardDaoImpl(
-        dbQuery = dbQuery,
+    val bankCardDao: BankCardDao = BankCardDaoImpl(
+        dbQuery = database.bankCardApiQueries,
         coroutinesContextProvider = coroutinesContextProvider,
+    )
+
+    val exchangeRatedDao: ExchangeRateDao = ExchangeRateDaoImpl(
+        dbQuery = database.exchangeRateApiQueries,
     )
 }
