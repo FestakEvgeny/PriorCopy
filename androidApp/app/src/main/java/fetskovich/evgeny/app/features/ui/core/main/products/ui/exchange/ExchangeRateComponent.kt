@@ -202,7 +202,6 @@ private fun TotalSumComponent(
             val secondaryColor = ApplicationTheme.colors.secondaryVariant
             val secondaryColorAlpha = remember { secondaryColor.copy(alpha = 0.3f) }
 
-            // TODO Move to Right
             Spacer(
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
