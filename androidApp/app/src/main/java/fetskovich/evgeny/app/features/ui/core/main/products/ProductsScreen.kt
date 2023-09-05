@@ -222,7 +222,8 @@ private fun Screen(
 
                 item {
                     ExchangeRateComponent(
-                        firstRate = state.exchangeRateState,
+                        exchangeRate = state.exchangeRateState,
+                        totalSum = state.totalCardsSum,
                         modifier = Modifier,
                     )
                 }
@@ -307,7 +308,8 @@ private fun BottomSheetScreenPreview() {
                     ),
                     creditsList = emptyList(),
                     depositsList = emptyList(),
-                )
+                ),
+                totalCardsSum = "3,2050"
             ),
             onProfileClick = { },
             onSupportClick = { },

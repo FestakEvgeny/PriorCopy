@@ -22,10 +22,10 @@
 
     <!-- Products Screen -->
 
-    <!-- News -->
+    <!-- Products Screen News -->
     <string name="products_screen_news_watch_more">Смотреть все</string>
 
-    <!-- My Products -->
+    <!-- Products Screen My Products -->
     <string name="products_screen_my_products_title">Мои продукты</string>
     <string name="products_screen_my_products_card_item_sort">Упорядочить</string>
     <string name="products_screen_my_products_cards">Карты</string>
@@ -36,14 +36,19 @@
     <string name="products_screen_my_products_no_deposits">У Вас нет доступных депозитов и счетов, Вы можете оформить новый депозит</string>
     <string name="products_screen_my_products_create_now">Оформить сейчас</string>
 
-    <!-- Add My Product Bottom Sheet -->
+    <!-- Products Screen Add My Product Bottom Sheet -->
     <string name="products_screen_add_product_card">Оформить карту</string>
     <string name="products_screen_add_product_card_another_bank">Добавить карту другого банка</string>
     <string name="products_screen_add_product_deposit">Открыть онлайн-депозит</string>
     <string name="products_screen_add_product_credit">Подать заявку на кредит</string>
 
+    <!-- Products Screen Exchange -->
+    <string name="products_screen_exchange_title">Онлайн</string>
+    <string name="products_screen_exchange_buy">Покупка</string>
 
-
+    <!-- Products Screen Total Sum -->
+    <string name="products_screen_total_sum_title">Общая сумма</string>
+    <string name="products_screen_total_sum_all_checks">Все счета</string>
 
     <!-- Add Another Bank Card -->
     <string name="add_another_bank_card_title">Карта другого банка</string>

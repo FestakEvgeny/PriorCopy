@@ -113,6 +113,7 @@ private fun createInitialState(
             cardsList = emptyList(),
             creditsList = emptyList(),
             depositsList = emptyList(),
-        )
+        ),
+        totalCardsSum = null,
     )
 }

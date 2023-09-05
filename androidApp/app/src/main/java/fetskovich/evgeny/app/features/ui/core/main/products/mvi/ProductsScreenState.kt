@@ -12,6 +12,7 @@ data class ProductsScreenState(
     val productsSectionState: MyProductsState,
     val bottomSheetState: ProductsBottomSheetState? = null,
     val exchangeRateState: ExchangeRateUiItem = ExchangeRateUiItem.Loading,
+    val totalCardsSum: String?,
 ): ScreenState
 
 data class MyProductsState(
