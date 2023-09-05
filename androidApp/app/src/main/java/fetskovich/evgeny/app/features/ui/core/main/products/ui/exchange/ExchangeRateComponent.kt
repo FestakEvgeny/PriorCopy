@@ -205,6 +205,7 @@ private fun TotalSumComponent(
             // TODO Move to Right
             Spacer(
                 modifier = Modifier
+                    .align(Alignment.CenterEnd)
                     .fillMaxHeight()
                     .width(50.dp)
                     .padding(
