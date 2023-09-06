@@ -50,7 +50,8 @@ class ProductsScreenMviHandler(
     }
 
     fun updateBankCards(
-        cards: List<CardListItem>
+        cards: List<CardListItem>,
+        totalSum: String?,
     ) {
         val products = state.productsSectionState.copy(
             cardsList = cards,
@@ -59,6 +60,7 @@ class ProductsScreenMviHandler(
         updateState(
             state.copy(
                 productsSectionState = products,
+                totalCardsSum = totalSum,
             )
         )
     }

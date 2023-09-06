@@ -67,9 +67,12 @@ class ProductsScreenViewModel(
     private fun subscribeOnBankCards() {
         viewModelScope.launch(coroutinesContextProvider.io) {
             observeBankCardsUseCase.execute(ObserveBankCardsIntent)
-                .map { bankCardsMapper.map(it.data) }
+                .map {
+                    bankCardsMapper.map(it.data) to bankCardsMapper.mapBankCardsToTotalSum(it.data)
+                }
                 .collectLatest {
-                    mviStateHandler.updateBankCards(it)
+                    val (cards, totalSum) = it
+                    mviStateHandler.updateBankCards(cards, totalSum)
                 }
         }
     }

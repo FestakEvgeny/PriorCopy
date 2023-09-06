@@ -23,4 +23,16 @@ class BankCardToListItemMapper(
             )
         }
     }
+
+    fun mapBankCardsToTotalSum(list: List<BankCard>): String? {
+        if (list.isEmpty()) {
+            return null
+        }
+
+        return list.groupBy { it.cardCurrency }
+            .maxBy { it.value.size }
+            .value
+            .sumOf { it.balance }
+            .let(currencyFormatter::format)
+    }
 }

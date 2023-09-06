@@ -2,6 +2,7 @@ package fetskovich.evgeny.app.features.ui.core.main.products.ui.exchange
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -199,42 +200,46 @@ private fun TotalSumComponent(
                 )
             }
 
-            val secondaryColor = ApplicationTheme.colors.secondaryVariant
-            val secondaryColorAlpha = remember { secondaryColor.copy(alpha = 0.3f) }
-
-            Spacer(
-                modifier = Modifier
-                    .align(Alignment.CenterEnd)
-                    .fillMaxHeight()
-                    .width(50.dp)
-                    .padding(
-                        end = 16.dp,
-                        top = 20.dp,
-                        bottom = 20.dp,
-                    )
-                    .drawWithCache {
-                        val strokeWidth = 6.dp.value
-
-                        this.onDrawWithContent {
-                            val path = Path()
-                            path.moveTo(size.width, 0f)
-                            path.lineTo(0f, 0f)
-                            path.lineTo(size.width / 2, size.height / 2)
-                            path.lineTo(0f, size.height)
-                            path.lineTo(size.width, size.height)
-                            this.drawPath(
-                                path = path,
-                                color = secondaryColorAlpha,
-                                style = Stroke(
-                                    width = strokeWidth
-                                )
-                            )
-                        }
-                    }
-            )
-
+            TotalSumSign()
         }
     }
+}
+
+@Composable
+private fun BoxScope.TotalSumSign() {
+    val secondaryColor = ApplicationTheme.colors.secondaryVariant
+    val secondaryColorAlpha = remember { secondaryColor.copy(alpha = 0.3f) }
+
+    Spacer(
+        modifier = Modifier
+            .align(Alignment.CenterEnd)
+            .fillMaxHeight()
+            .width(50.dp)
+            .padding(
+                end = 16.dp,
+                top = 20.dp,
+                bottom = 20.dp,
+            )
+            .drawWithCache {
+                val strokeWidth = 6.dp.value
+
+                this.onDrawWithContent {
+                    val path = Path()
+                    path.moveTo(size.width, 0f)
+                    path.lineTo(0f, 0f)
+                    path.lineTo(size.width / 2, size.height / 2)
+                    path.lineTo(0f, size.height)
+                    path.lineTo(size.width, size.height)
+                    this.drawPath(
+                        path = path,
+                        color = secondaryColorAlpha,
+                        style = Stroke(
+                            width = strokeWidth
+                        )
+                    )
+                }
+            }
+    )
 }
 
 @Preview
