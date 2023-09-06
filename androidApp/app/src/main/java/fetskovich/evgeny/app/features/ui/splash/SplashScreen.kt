@@ -9,7 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -19,8 +19,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import fetskovich.evgeny.app.features.ui.core.bottomnav.api.BottomScreenNavigation
 import fetskovich.evgeny.app.features.ui.splash.api.SplashScreenNavigation
+import fetskovich.evgeny.app.features.ui.unauthorized.bottomnav.api.UnauthorizedMainScreenNavigation
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.recipeskmm.app.R
 import kotlinx.coroutines.delay
@@ -42,7 +42,7 @@ fun SplashScreen(
     LaunchedEffect(Unit) {
         scope.launch {
             delay(ANIMATION_DURATION)
-            navController?.navigate(BottomScreenNavigation.route) {
+            navController?.navigate(UnauthorizedMainScreenNavigation.route) {
                 popUpTo(SplashScreenNavigation.route) {
                     inclusive = true
                 }
@@ -53,8 +53,11 @@ fun SplashScreen(
 
 @Composable
 private fun Screen() {
-    val offset = remember { mutableStateOf(0) }
-    val animatedOffset by animateIntAsState(targetValue = offset.value)
+    val offset = remember { mutableIntStateOf(0) }
+    val animatedOffset by animateIntAsState(
+        targetValue = offset.intValue,
+        label = "title x offset"
+    )
     val offsetDpValue = with(LocalDensity.current) { animatedOffset.toDp() }
 
     Box(
@@ -75,7 +78,7 @@ private fun Screen() {
 
     TitleOffsetAnimation(
         onUpdateValue = { additionalOffset ->
-            offset.value = offset.value + additionalOffset
+            offset.intValue = offset.intValue + additionalOffset
         }
     )
 }
