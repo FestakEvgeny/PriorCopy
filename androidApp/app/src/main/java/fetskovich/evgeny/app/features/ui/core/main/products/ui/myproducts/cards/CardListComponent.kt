@@ -43,7 +43,7 @@ fun CardListComponent(
             modifier = modifier,
         )
     } else {
-       val itemWidth = LocalConfiguration.current.screenWidthDp.dp - 20.dp
+        val itemWidth = LocalConfiguration.current.screenWidthDp.dp - 16.dp
 
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -61,7 +61,7 @@ fun CardListComponent(
             ) { index, item ->
                 val isNotLastItem = index != items.lastIndex
                 val width = if (isNotLastItem) {
-                    itemWidth - 40.dp
+                    itemWidth - 20.dp
                 } else {
                     itemWidth
                 }
@@ -73,6 +73,7 @@ fun CardListComponent(
                         .width(width)
                         .padding(
                             start = 16.dp,
+                            end = 4.dp,
                         )
                 )
             }
