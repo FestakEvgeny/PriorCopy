@@ -66,7 +66,7 @@ class ProductsScreenViewModel(
 
     private fun subscribeOnBankCards() {
         viewModelScope.launch(coroutinesContextProvider.io) {
-            observeBankCardsUseCase.execute(ObserveBankCardsIntent)
+            observeBankCardsUseCase.execute(ObserveBankCardsIntent(Currency.USD))
                 .map {
                     bankCardsMapper.map(it.data) to bankCardsMapper.mapBankCardsToTotalSum(it.data)
                 }
@@ -85,7 +85,7 @@ class ProductsScreenViewModel(
                         .toMutableList().apply {
                             add(
                                 ShortNewsOtherListItem(
-                                    id = "6", // just a hardcoded id
+                                    id = (it.news.size + 1).toString(),
                                     title = resourceProvider.provideString(R.string.products_screen_news_watch_more)
                                 )
                             )

@@ -21,6 +21,7 @@ val productsFeatureModule = DI.Module("Products") {
     bind<ObserveBankCardsUseCase>() with factory {
         ObserveBankCardsUseCase(
             repository = instance(),
+            exchangeRateRepository = instance(),
         )
     }
 

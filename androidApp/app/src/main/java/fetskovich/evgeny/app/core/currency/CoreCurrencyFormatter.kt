@@ -7,7 +7,7 @@ import java.util.Locale
 class CoreCurrencyFormatter: CurrencyFormatter {
 
     private val formatSymbols = DecimalFormatSymbols(Locale.getDefault())
-    private val formatter = DecimalFormat("#,####", formatSymbols).apply {
+    private val formatter = DecimalFormat("#,##", formatSymbols).apply {
         maximumFractionDigits = 4
     }
 

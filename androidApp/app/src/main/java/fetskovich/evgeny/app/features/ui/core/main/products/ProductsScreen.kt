@@ -118,11 +118,14 @@ private fun BottomSheetScreen(
     onChangeProductType: (ProductTypeListItem) -> Unit,
     executeIntent: (ProductsScreenIntent) -> Unit,
 ) {
+    println("JEKA Received bottom sheet state $state")
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = false,
         confirmValueChange = {
-            state.bottomSheetState?.let(::getHideBottomSheetIntent)?.let(executeIntent)
+            if (it == ModalBottomSheetValue.Hidden) {
+                state.bottomSheetState?.let(::getHideBottomSheetIntent)?.let(executeIntent)
+            }
             true
         },
         animationSpec = tween(durationMillis = 300, easing = LinearEasing),

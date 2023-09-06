@@ -3,33 +3,42 @@ package fetskovich.evgeny.app.features.ui.core.main.products.mapper
 import fetskovich.evgeny.app.core.currency.CurrencyFormatter
 import fetskovich.evgeny.app.features.ui.addbankcard.mvi.BankCardVariant
 import fetskovich.evgeny.app.features.ui.core.main.products.ui.myproducts.cards.CardListItem
-import fetskovich.evgeny.entity.card.BankCard
+import fetskovich.evgeny.entity.card.BankCardWithOffCurrency
 
 class BankCardToListItemMapper(
     private val currencyFormatter: CurrencyFormatter,
 ) {
 
-    fun map(list: List<BankCard>): List<CardListItem> {
+    fun map(list: List<BankCardWithOffCurrency>): List<CardListItem> {
         return list.map {
-            val lastCardNumbers = it.cardNumber.takeLast(4)
+            val bankCard = it.bankCard
+
+            val lastCardNumbers = bankCard.cardNumber.takeLast(4)
+
+            val offCurrency = it.offCurrency?.let { cardAmount ->
+                currencyFormatter.format(cardAmount.amount) + " " + cardAmount.currency.currencyValue
+            } ?: ""
 
             CardListItem(
-                id = it.id.toString(),
-                cardIcon = BankCardVariant.fromBankCardType(it.bankCardType),
+                id = bankCard.id.toString(),
+                cardIcon = BankCardVariant.fromBankCardType(bankCard.bankCardType),
                 cardName = "DK$lastCardNumbers",
                 cardNumber = "●●●● $lastCardNumbers",
-                cardBalanceMainCurrency = "${currencyFormatter.format(it.balance)} ${it.cardCurrency.currencyValue}",
-                cardBalanceOffCurrency = "${currencyFormatter.format(it.balance * 3)} USD", // TODO calculate depending on the exchange rate
+                cardBalanceMainCurrency = "${currencyFormatter.format(bankCard.balance)} ${bankCard.cardCurrency.currencyValue}",
+                cardBalanceOffCurrency = offCurrency,
             )
         }
     }
 
-    fun mapBankCardsToTotalSum(list: List<BankCard>): String? {
+    fun mapBankCardsToTotalSum(list: List<BankCardWithOffCurrency>): String? {
         if (list.isEmpty()) {
             return null
         }
 
-        return list.groupBy { it.cardCurrency }
+        return list
+            .asSequence()
+            .map { it.bankCard }
+            .groupBy { it.cardCurrency }
             .maxBy { it.value.size }
             .value
             .sumOf { it.balance }
