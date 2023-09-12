@@ -8,6 +8,7 @@ import fetskovich.evgeny.app.features.ui.authorized.products.mapper.NewsToListIt
 import fetskovich.evgeny.app.features.ui.authorized.products.mvi.ProductsScreenMviHandler
 import fetskovich.evgeny.app.features.viewmodel.ViewModelProviderFactory
 import fetskovich.evgeny.domain.usecase.card.data.ObserveBankCardsUseCase
+import fetskovich.evgeny.domain.usecase.exchange.di.exchangeRateDiModule
 import fetskovich.evgeny.domain.usecase.news.di.newsDiModule
 import org.kodein.di.DI
 import org.kodein.di.bind
@@ -17,6 +18,7 @@ import org.kodein.di.provider
 
 val productsFeatureModule = DI.Module("Products") {
     import(newsDiModule)
+    import(exchangeRateDiModule)
 
     bind<ObserveBankCardsUseCase>() with factory {
         ObserveBankCardsUseCase(
