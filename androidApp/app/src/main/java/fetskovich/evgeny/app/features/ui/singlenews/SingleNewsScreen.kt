@@ -46,7 +46,6 @@ private fun Screen(state: SingleNewsScreenState) {
         SINGLE_NEWS_EXPANDED_TOOLBAR_HEIGHT.toPx() - SINGLE_NEWS_COLLAPSED_TOOLBAR_HEIGHT.toPx()
     }
 
-    Log.e("JEKA", "Scroll offset: " + columnState.firstVisibleItemScrollOffset)
     // lerp
 
     val isCollapsed: Boolean by remember {
