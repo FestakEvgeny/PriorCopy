@@ -4,8 +4,11 @@ package fetskovich.evgeny.app.features.ui.unauthorized.exchanges
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mvi.ExchangesIntent
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mvi.ExchangesScreenState
@@ -67,7 +71,22 @@ private fun Screen(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Text(text = "Курсы валют")
+
+            Spacer(modifier = Modifier.height(26.dp))
+
+            Text(
+                text = "Курсы валют",
+                style = MaterialTheme.typography.subtitle1.copy(
+                    fontSize = 22.sp,
+                ),
+                color = ApplicationTheme.colors.baseTextColor,
+                modifier = Modifier
+                    .padding(
+                        start = 16.dp,
+                    )
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
 
             var selectedTabIndex by remember {
                 mutableIntStateOf(state.tabsList.indexOf(state.selectedTabId))
