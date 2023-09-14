@@ -70,4 +70,16 @@
     <string name="add_another_bank_card_add">Добавить</string>
     <string name="add_another_bank_card_expiration_invalid_format">Неправильный формат срока годности карты</string>
 
+    <!-- Exchanges -->
+
+    <string name="exchanges_rates_title">Курсы валют</string>
+    <string name="exchanges_rates_tab_online">Онлайн</string>
+    <string name="exchanges_rates_tab_card">По картам</string>
+    <string name="exchanges_rates_tab_cash">Наличные</string>
+    <string name="exchanges_rates_tab_bank">НБРБ</string>
+    <string name="exchanges_rates_exchange_money">Обмен валют</string>
+    <string name="exchanges_rates_exchange_buy">Покупка</string>
+    <string name="exchanges_rates_exchange_sell">Продажа</string>
+    <string name="exchanges_rates_conversion">Конверсия валют</string>
+
 </resources>

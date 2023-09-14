@@ -82,6 +82,7 @@ private fun ExchangeRateModel.toEntity(): ExchangeRate {
     return ExchangeRate(
         id = this.id,
         nextUpdate = this.nextUpdateTime,
+        lastUpdate = this.lastUpdateTime,
         baseCurrency = Currency.fromString(this.baseCode),
         conversionRates = mapOf(
             Currency.USD to this.conversionRateUsd,

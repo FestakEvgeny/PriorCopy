@@ -12,6 +12,22 @@ class ExchangesMviHandler(
     )
 ) {
 
+    fun updateVariants(
+        onlineVariant: ExchangesOnlineVariant,
+        cardsVariant: ExchangesCardsVariant,
+        cashVariant: ExchangesCashVariant,
+        bankVariant: ExchangesBankVariant,
+    ){
+        updateState(
+            state.copy(
+                onlineVariant = onlineVariant,
+                cardVariant = cardsVariant,
+                cashVariant = cashVariant,
+                bankVariant = bankVariant,
+            )
+        )
+    }
+
     fun updateSelectedTab(newTabId: ExchangesTabId) {
         updateState(
             state.copy(

@@ -3,6 +3,7 @@
 package fetskovich.evgeny.app.features.ui.unauthorized.exchanges
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,6 +42,7 @@ import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.ui.ExchangeCours
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.ui.ExchangeVariantComponent
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
+import fetskovich.evgeny.recipeskmm.app.R
 
 @Composable
 fun ExchangesScreen(
@@ -75,7 +78,7 @@ private fun Screen(
             Spacer(modifier = Modifier.height(26.dp))
 
             Text(
-                text = "Курсы валют",
+                text = stringResource(id = R.string.exchanges_rates_title),
                 style = MaterialTheme.typography.subtitle1.copy(
                     fontSize = 22.sp,
                 ),
@@ -110,13 +113,7 @@ private fun Screen(
                 backgroundColor = ApplicationTheme.colors.background,
                 contentColor = ApplicationTheme.colors.primaryVariant,
                 divider = {
-                    Divider(
-                        thickness = 1.dp,
-                        modifier = Modifier
-                            .shadow(
-                                elevation = 1.dp,
-                            )
-                    )
+                    Box(Modifier)
                 },
                 indicator = { tabPositions ->
                     // TODO Implement custom indicator modifier with offset that depends on the pager state
@@ -144,10 +141,10 @@ private fun Screen(
                         text = {
                             Text(
                                 text = when (exchangesTabId) {
-                                    ExchangesTabId.ONLINE -> "Онлайн"
-                                    ExchangesTabId.CARD -> "По картам"
-                                    ExchangesTabId.CASH -> "Наличные"
-                                    ExchangesTabId.BANK -> "НБРБ"
+                                    ExchangesTabId.ONLINE -> stringResource(id = R.string.exchanges_rates_tab_online)
+                                    ExchangesTabId.CARD -> stringResource(id = R.string.exchanges_rates_tab_card)
+                                    ExchangesTabId.CASH -> stringResource(id = R.string.exchanges_rates_tab_cash)
+                                    ExchangesTabId.BANK -> stringResource(id = R.string.exchanges_rates_tab_bank)
                                 },
                                 style = MaterialTheme.typography.subtitle2,
                             )
@@ -172,10 +169,10 @@ private fun Screen(
                     .weight(1f),
             ) { index ->
                 when (state.tabsList[index]) {
-                    ExchangesTabId.ONLINE -> ExchangeVariantComponent(testIndex = 1)
-                    ExchangesTabId.CARD -> ExchangeVariantComponent(testIndex = 2)
-                    ExchangesTabId.CASH -> ExchangeVariantComponent(testIndex = 3)
-                    ExchangesTabId.BANK -> ExchangeCourseVariantComponent()
+                    ExchangesTabId.ONLINE -> ExchangeVariantComponent(state.onlineVariant)
+                    ExchangesTabId.CARD -> ExchangeVariantComponent(state.cardVariant)
+                    ExchangesTabId.CASH -> ExchangeVariantComponent(state.cashVariant)
+                    ExchangesTabId.BANK -> ExchangeCourseVariantComponent(state.bankVariant)
                 }
             }
         }

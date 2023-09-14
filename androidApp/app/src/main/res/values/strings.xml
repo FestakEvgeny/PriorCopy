@@ -71,4 +71,16 @@
     <string name="add_another_bank_card_cvv_invalid">Input correct CVC/CVV</string>
     <string name="add_another_bank_card_add">Add</string>
     <string name="add_another_bank_card_expiration_invalid_format">Invalid expiration date format</string>
+
+    <!-- Exchanges -->
+    <string name="exchanges_rates_title">Exchange Rates</string>
+    <string name="exchanges_rates_tab_online">Online</string>
+    <string name="exchanges_rates_tab_card">By cards</string>
+    <string name="exchanges_rates_tab_cash">By cash</string>
+    <string name="exchanges_rates_tab_bank">NBRB</string>
+    <string name="exchanges_rates_exchange_money">Exchange</string>
+    <string name="exchanges_rates_exchange_buy">Buy</string>
+    <string name="exchanges_rates_exchange_sell">Sell</string>
+    <string name="exchanges_rates_conversion">Conversion</string>
+
 </resources>

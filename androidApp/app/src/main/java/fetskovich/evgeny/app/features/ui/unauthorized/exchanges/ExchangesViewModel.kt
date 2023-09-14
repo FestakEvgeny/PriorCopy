@@ -3,6 +3,7 @@ package fetskovich.evgeny.app.features.ui.unauthorized.exchanges
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mapper.ExchangesRatesMapper
+import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mvi.ExchangesBankVariant
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mvi.ExchangesIntent
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mvi.ExchangesMviHandler
 import fetskovich.evgeny.architecture.coroutines.contextprovider.CoroutinesContextProvider
@@ -53,7 +54,12 @@ class ExchangesViewModel(
                     }
 
                     is ObserveExchangeRateResult.Success -> {
-
+                        mviHandler.updateVariants(
+                            onlineVariant = exchangesRatesMapper.mapToOnline(it.result),
+                            cardsVariant = exchangesRatesMapper.mapToCard(it.result),
+                            cashVariant = exchangesRatesMapper.mapToCash(it.result),
+                            bankVariant = ExchangesBankVariant(),
+                        )
                     }
                 }
             }
