@@ -1,7 +1,8 @@
 package fetskovich.evgeny.components.modifiers
 
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
@@ -14,6 +15,7 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlin.math.abs
 
 fun Modifier.tabFractionOffsetModifier(
     currentTabPosition: TabPosition,
@@ -27,27 +29,21 @@ fun Modifier.tabFractionOffsetModifier(
 ) {
     var offsetNew: Dp = previousTabPosition.left
     if (tabSwitchFraction > 0) {
-        offsetNew =
-            (previousTabPosition.left.value + (previousTabPosition.width.value * tabSwitchFraction)).dp
+        offsetNew = (previousTabPosition.left.value + (previousTabPosition.width.value * tabSwitchFraction)).dp
         // Goes to the right
     } else if (tabSwitchFraction < 0) {
-        offsetNew =
-            (previousTabPosition.left.value - (previousTabPosition.width.value * tabSwitchFraction)).dp
+        offsetNew = (previousTabPosition.left.value - (previousTabPosition.width.value * abs(tabSwitchFraction))).dp
     } else {
         // do nothing
     }
 
     val currentTabWidth by animateDpAsState(
         targetValue = currentTabPosition.width,
-        animationSpec = tween(
-            durationMillis = 100,
-        ), label = "width"
+        animationSpec = spring(stiffness = Spring.StiffnessLow), label = "width"
     )
     val indicatorOffset by animateDpAsState(
         targetValue = offsetNew,
-        animationSpec = tween(
-            durationMillis = 100,
-        ), label = "offset"
+        animationSpec = spring(stiffness = Spring.StiffnessLow), label = "offset"
     )
     fillMaxWidth()
         .wrapContentSize(Alignment.BottomStart)
