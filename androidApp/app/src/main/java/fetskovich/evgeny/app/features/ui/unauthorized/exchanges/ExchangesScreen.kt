@@ -19,7 +19,6 @@ import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRowDefaults
-import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,6 +39,7 @@ import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mvi.ExchangesScr
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.mvi.ExchangesTabId
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.ui.ExchangeCourseVariantComponent
 import fetskovich.evgeny.app.features.ui.unauthorized.exchanges.ui.ExchangeVariantComponent
+import fetskovich.evgeny.components.modifiers.tabFractionOffsetModifier
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
 import fetskovich.evgeny.presentation.theme.BasicTheme
 import fetskovich.evgeny.recipeskmm.app.R
@@ -116,12 +116,18 @@ private fun Screen(
                     Box(Modifier)
                 },
                 indicator = { tabPositions ->
-                    // TODO Implement custom indicator modifier with offset that depends on the pager state
+                    val previousTab = tabPositions[pagerState.currentPage]
+
+
                     TabRowDefaults.Indicator(
                         height = 4.dp,
                         color = ApplicationTheme.colors.primary,
                         modifier = Modifier
-                            .tabIndicatorOffset(tabPositions[selectedTabIndex])
+                            .tabFractionOffsetModifier(
+                                currentTabPosition = tabPositions[selectedTabIndex],
+                                previousTabPosition = previousTab,
+                                tabSwitchFraction = pagerState.currentPageOffsetFraction,
+                            )
                             .clip(
                                 RoundedCornerShape(
                                     topStart = 30.dp,
