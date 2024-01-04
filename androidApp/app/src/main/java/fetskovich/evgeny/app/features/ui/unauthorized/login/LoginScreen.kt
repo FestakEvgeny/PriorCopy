@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -25,6 +26,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -39,6 +41,7 @@ import fetskovich.evgeny.components.actions.TextActionButton
 import fetskovich.evgeny.components.text.BaseTextField
 import fetskovich.evgeny.components.text.PasswordTextField
 import fetskovich.evgeny.presentation.theme.ApplicationTheme
+import fetskovich.evgeny.presentation.theme.BasicTheme
 import fetskovich.evgeny.recipeskmm.app.R
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -52,20 +55,36 @@ fun LoginScreen(
     val state by viewModel.stateFlow.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    val loginTextChangedLambda = remember {
+        { login: String ->
+            viewModel.processIntent(LoginScreenIntent.UpdateEmail(login))
+        }
+    }
+
+    val passwordTextChangedLambda = remember {
+        { password: String ->
+            viewModel.processIntent(LoginScreenIntent.UpdatePassword(password))
+        }
+    }
+
+    val reversePasswordClickLambda = remember {
+        {
+            viewModel.processIntent(LoginScreenIntent.ReversePasswordVisibility)
+        }
+    }
+
+    val loginButtonClickLambda = remember {
+        {
+            viewModel.processIntent(LoginScreenIntent.LoginUser)
+        }
+    }
+
     Screen(
         state = state,
-        onEmailTextChanged = {
-            viewModel.processIntent(LoginScreenIntent.UpdateEmail(it))
-        },
-        onPasswordTextChanged = {
-            viewModel.processIntent(LoginScreenIntent.UpdatePassword(it))
-        },
-        onReversePasswordClick = {
-            viewModel.processIntent(LoginScreenIntent.ReversePasswordVisibility)
-        },
-        onLoginButtonClick = {
-            viewModel.processIntent(LoginScreenIntent.LoginUser)
-        },
+        onEmailTextChanged = loginTextChangedLambda,
+        onPasswordTextChanged = passwordTextChangedLambda,
+        onReversePasswordClick = reversePasswordClickLambda,
+        onLoginButtonClick = loginButtonClickLambda,
     )
 
     LaunchedEffect(Unit) {
@@ -233,4 +252,18 @@ private fun PasswordField(
         modifier = Modifier
             .fillMaxWidth()
     )
+}
+
+@Preview
+@Composable
+private fun ScreenPreview() {
+    BasicTheme {
+        Screen(
+            state = LoginScreenState(),
+            onEmailTextChanged = {},
+            onPasswordTextChanged = {},
+            onReversePasswordClick = { },
+            onLoginButtonClick = {},
+        )
+    }
 }
