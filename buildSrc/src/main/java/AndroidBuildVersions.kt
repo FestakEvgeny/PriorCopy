@@ -2,7 +2,7 @@ import org.gradle.api.JavaVersion
 
 private const val MAJOR_VERSION  = 0
 private const val MINOR_VERSION = 0
-private const val PATCH_VERSION = 1
+private const val PATCH_VERSION = 2
 
 object AndroidBuildVersions {
 
