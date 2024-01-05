@@ -1,9 +1,12 @@
 import android.AndroidComposeLibrary
 import android.AndroidXLibrary
+import shared.SharedLibrary
 
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -80,4 +83,8 @@ dependencies {
     implementation(AndroidComposeLibrary.runtime)
     implementation(AndroidComposeLibrary.animation)
     implementation(AndroidComposeLibrary.navigation)
+
+    implementation(platform(SharedLibrary.Firebase.BOM_PLATFORM))
+    implementation(SharedLibrary.Firebase.CRASHLYTICS)
+    implementation(SharedLibrary.Firebase.ANALYTICS)
 }

@@ -6,6 +6,12 @@ object SharedLibrary {
         const val SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
     }
 
+    object Firebase {
+        const val BOM_PLATFORM = "com.google.firebase:firebase-bom:32.7.0"
+        const val CRASHLYTICS = "com.google.firebase:firebase-crashlytics"
+        const val ANALYTICS = "com.google.firebase:firebase-analytics"
+    }
+
     object Core {
         val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
     }
