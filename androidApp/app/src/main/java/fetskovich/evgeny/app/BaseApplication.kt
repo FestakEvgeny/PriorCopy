@@ -18,7 +18,6 @@ val LocalApplicationModuleComposition = staticCompositionLocalOf {
 }
 
 class BaseApplication : Application(), DIAware {
-
     override val di: DI = DI {
         bind<Context>() with singleton { this@BaseApplication }
 
@@ -31,5 +30,9 @@ class BaseApplication : Application(), DIAware {
         import(coreDiModule)
         import(networkingDiModule)
         import(dataDiModule)
+    }
+
+    private fun testing() {
+        // do nothing
     }
 }
