@@ -1,0 +1,31 @@
+name: Assemble and upload to Firebase App Distribution
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - development
+
+jobs:
+  upload_to_firebase:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: build debug
+        run: ./gradlew bundleDebug
+      - name: upload artifact to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: '1:696469956541:android:58545f578a806c8cc7d4d4'
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: testers
+          file: app/build/outputs/bundle/debug/app-debug.aab
