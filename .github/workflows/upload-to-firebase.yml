@@ -33,5 +33,5 @@ jobs:
         with:
           appId: '1:696469956541:android:58545f578a806c8cc7d4d4'
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          groups: testers
-          file: app/build/outputs/bundle/debug/app-debug.aab
+          groups: MainTest
+          file: androidApp/app/build/outputs/bundle/debug/app-debug.aab
