@@ -20,13 +20,13 @@ jobs:
           distribution: 'temurin'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Create file
+      - name: Create file for google services
         run: cat /home/runner/work/PriorCopy/PriorCopy/androidApp/app/google-services.json | base64
-      - name: Putting data
+      - name: Putting data into google services file
         env:
           DATA: ${{ secrets.GOOGLE_SERVICES }}
         run: echo $DATA > /home/runner/work/PriorCopy/PriorCopy/androidApp/app/google-services.json
-      - name: build debug
+      - name: build debug build
         run: ./gradlew bundleDebug
       - name: upload artifact to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
