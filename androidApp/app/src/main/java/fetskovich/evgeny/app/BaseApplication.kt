@@ -33,6 +33,6 @@ class BaseApplication : Application(), DIAware {
     }
 
     private fun testing() {
-        // do nothing 3
+        // do nothing 4
     }
 }
